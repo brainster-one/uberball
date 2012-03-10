@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>c7d56767-6415-44ff-aa31-91753b92016c</ProjectGuid>
+    <ProjectGuid>{54CA50BB-E2E7-44C7-A556-19EBA05AF37B}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Uberball.Game.Services.MatchService.ConsoleHost</RootNamespace>
