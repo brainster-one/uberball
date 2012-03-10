@@ -1,0 +1,12 @@
+*.pdb
+*.suo
+*.user
+*.dotCover
+*.ReSharper
+*.DotSettings
+Binaries
+NDependOut
+TestResults
+_ReSharper.Uberball
+obj
+bin
