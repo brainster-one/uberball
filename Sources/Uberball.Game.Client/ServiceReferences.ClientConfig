@@ -1,0 +1,17 @@
+﻿<configuration>
+    <system.serviceModel>
+        <bindings>
+            <customBinding>
+                <binding name="CustomBinding_IAuthenticationService">
+                    <binaryMessageEncoding />
+                    <httpTransport maxReceivedMessageSize="2147483647" maxBufferSize="2147483647" />
+                </binding>
+            </customBinding>
+        </bindings>
+        <client>
+            <endpoint address="http://localhost:53756/Services/AuthenticationService.svc"
+                binding="customBinding" bindingConfiguration="CustomBinding_IAuthenticationService"
+                contract="AuthenticationService.IAuthenticationService" name="CustomBinding_IAuthenticationService" />
+        </client>
+    </system.serviceModel>
+</configuration>
