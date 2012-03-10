@@ -9,6 +9,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Hosts", "Hosts", "{F77D61CE
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uberball.Game.Services.MatchService.ConsoleHost", "Uberball.Game.Services.MatchService.ConsoleHost\Uberball.Game.Services.MatchService.ConsoleHost.csproj", "{54CA50BB-E2E7-44C7-A556-19EBA05AF37B}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Game", "Game", "{E36688EB-0A62-419C-978B-31D5448A7395}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uberball.Game.Logic.Entities", "Uberball.Game.Logic.Entities\Uberball.Game.Logic.Entities.csproj", "{FE18CAFE-2F92-4B34-AF22-872F23AF9D3D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uberball.Game.NetworkProtocol", "Uberball.Game.NetworkProtocol\Uberball.Game.NetworkProtocol.csproj", "{773C167F-DAD9-4C61-90D1-F9C4D22EB576}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +45,26 @@ Global
 		{54CA50BB-E2E7-44C7-A556-19EBA05AF37B}.Release|Mixed Platforms.Build.0 = Release|x86
 		{54CA50BB-E2E7-44C7-A556-19EBA05AF37B}.Release|x86.ActiveCfg = Release|x86
 		{54CA50BB-E2E7-44C7-A556-19EBA05AF37B}.Release|x86.Build.0 = Release|x86
+		{FE18CAFE-2F92-4B34-AF22-872F23AF9D3D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE18CAFE-2F92-4B34-AF22-872F23AF9D3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE18CAFE-2F92-4B34-AF22-872F23AF9D3D}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{FE18CAFE-2F92-4B34-AF22-872F23AF9D3D}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{FE18CAFE-2F92-4B34-AF22-872F23AF9D3D}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{FE18CAFE-2F92-4B34-AF22-872F23AF9D3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE18CAFE-2F92-4B34-AF22-872F23AF9D3D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE18CAFE-2F92-4B34-AF22-872F23AF9D3D}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{FE18CAFE-2F92-4B34-AF22-872F23AF9D3D}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{FE18CAFE-2F92-4B34-AF22-872F23AF9D3D}.Release|x86.ActiveCfg = Release|Any CPU
+		{773C167F-DAD9-4C61-90D1-F9C4D22EB576}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{773C167F-DAD9-4C61-90D1-F9C4D22EB576}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{773C167F-DAD9-4C61-90D1-F9C4D22EB576}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{773C167F-DAD9-4C61-90D1-F9C4D22EB576}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{773C167F-DAD9-4C61-90D1-F9C4D22EB576}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{773C167F-DAD9-4C61-90D1-F9C4D22EB576}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{773C167F-DAD9-4C61-90D1-F9C4D22EB576}.Release|Any CPU.Build.0 = Release|Any CPU
+		{773C167F-DAD9-4C61-90D1-F9C4D22EB576}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{773C167F-DAD9-4C61-90D1-F9C4D22EB576}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{773C167F-DAD9-4C61-90D1-F9C4D22EB576}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -46,5 +72,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{8A7DA556-4893-4E0D-8728-FBCC39D079B5} = {CBA04D72-C263-49B8-B9C5-AD7905DD5FFD}
 		{54CA50BB-E2E7-44C7-A556-19EBA05AF37B} = {F77D61CE-F7B8-457F-813B-6E3E527CF7BA}
+		{FE18CAFE-2F92-4B34-AF22-872F23AF9D3D} = {E36688EB-0A62-419C-978B-31D5448A7395}
+		{773C167F-DAD9-4C61-90D1-F9C4D22EB576} = {E36688EB-0A62-419C-978B-31D5448A7395}
 	EndGlobalSection
 EndGlobal
