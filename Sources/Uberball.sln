@@ -16,6 +16,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uberball.Game.NetworkProtocol", "Uberball.Game.NetworkProtocol\Uberball.Game.NetworkProtocol.csproj", "{773C167F-DAD9-4C61-90D1-F9C4D22EB576}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uberball.Game.Client", "Uberball.Game.Client\Uberball.Game.Client.csproj", "{78BE54C5-71D3-4CCC-8218-52903AFABC02}"
+	ProjectSection(ProjectDependencies) = postProject
+		{7642B8D4-7844-4219-AB04-B94B8DBBB575} = {7642B8D4-7844-4219-AB04-B94B8DBBB575}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uberball.Game.Client.Web", "Uberball.Game.Client.Web\Uberball.Game.Client.Web.csproj", "{7642B8D4-7844-4219-AB04-B94B8DBBB575}"
 EndProject
