@@ -37,12 +37,6 @@
     <Reference Include="Khrussk.NetworkRealm">
       <HintPath>..\..\Packages\Khrussk.0.0.2\lib\net40\Khrussk.NetworkRealm.dll</HintPath>
     </Reference>
-    <Reference Include="Khrussk.Peers">
-      <HintPath>..\..\Packages\Khrussk.0.0.2\lib\net40\Khrussk.Peers.dll</HintPath>
-    </Reference>
-    <Reference Include="Khrussk.Sockets">
-      <HintPath>..\..\Packages\Khrussk.0.0.2\lib\net40\Khrussk.Sockets.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
   </ItemGroup>
@@ -52,6 +46,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Uberball.Game.NetworkProtocol\Uberball.Game.NetworkProtocol.csproj">
+      <Project>{773C167F-DAD9-4C61-90D1-F9C4D22EB576}</Project>
+      <Name>Uberball.Game.NetworkProtocol</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
