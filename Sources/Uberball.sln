@@ -1,8 +1,25 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uberball.Game.Services.MatchService", "Uberball.Game.Services.MatchService\Uberball.Game.Services.MatchService.csproj", "{8A7DA556-4893-4E0D-8728-FBCC39D079B5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{CBA04D72-C263-49B8-B9C5-AD7905DD5FFD}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8A7DA556-4893-4E0D-8728-FBCC39D079B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A7DA556-4893-4E0D-8728-FBCC39D079B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A7DA556-4893-4E0D-8728-FBCC39D079B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A7DA556-4893-4E0D-8728-FBCC39D079B5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{8A7DA556-4893-4E0D-8728-FBCC39D079B5} = {CBA04D72-C263-49B8-B9C5-AD7905DD5FFD}
 	EndGlobalSection
 EndGlobal
