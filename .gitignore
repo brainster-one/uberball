@@ -4,6 +4,7 @@
 *.dotCover
 *.ReSharper
 *.DotSettings
+packages
 Binaries
 NDependOut
 TestResults
