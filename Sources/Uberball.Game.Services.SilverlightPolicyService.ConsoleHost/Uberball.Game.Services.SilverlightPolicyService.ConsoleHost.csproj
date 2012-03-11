@@ -36,8 +36,20 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Khrussk.Extras">
-      <HintPath>..\..\Packages\Khrussk.0.0.3\lib\net40\Khrussk.Extras.dll</HintPath>
+    <Reference Include="Khrussk.Extras, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Khrussk.0.0.4\lib\net40\Khrussk.Extras.dll</HintPath>
+    </Reference>
+    <Reference Include="Khrussk.Interfaces, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Khrussk.0.0.4\lib\net40\Khrussk.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Khrussk.NetworkRealm, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Khrussk.0.0.4\lib\net40\Khrussk.NetworkRealm.dll</HintPath>
+    </Reference>
+    <Reference Include="Khrussk.Peers, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Khrussk.0.0.4\lib\net40\Khrussk.Peers.dll</HintPath>
+    </Reference>
+    <Reference Include="Khrussk.Sockets, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Khrussk.0.0.4\lib\net40\Khrussk.Sockets.dll</HintPath>
     </Reference>
     <Reference Include="System" />
   </ItemGroup>
@@ -46,12 +58,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="clientaccesspolicy.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />

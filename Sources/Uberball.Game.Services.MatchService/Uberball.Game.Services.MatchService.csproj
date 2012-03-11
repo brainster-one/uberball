@@ -33,20 +33,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Khrussk.Extras">
-      <HintPath>..\..\Packages\Khrussk.0.0.3\lib\net40\Khrussk.Extras.dll</HintPath>
-    </Reference>
     <Reference Include="Khrussk.Interfaces, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\Packages\Khrussk.0.0.3\lib\net40\Khrussk.Interfaces.dll</HintPath>
+      <HintPath>..\packages\Khrussk.0.0.4\lib\net40\Khrussk.Interfaces.dll</HintPath>
     </Reference>
     <Reference Include="Khrussk.NetworkRealm, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\Packages\Khrussk.0.0.3\lib\net40\Khrussk.NetworkRealm.dll</HintPath>
+      <HintPath>..\packages\Khrussk.0.0.4\lib\net40\Khrussk.NetworkRealm.dll</HintPath>
     </Reference>
     <Reference Include="Khrussk.Peers, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\Packages\Khrussk.0.0.3\lib\net40\Khrussk.Peers.dll</HintPath>
+      <HintPath>..\packages\Khrussk.0.0.4\lib\net40\Khrussk.Peers.dll</HintPath>
     </Reference>
     <Reference Include="Khrussk.Sockets, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\Packages\Khrussk.0.0.3\lib\net40\Khrussk.Sockets.dll</HintPath>
+      <HintPath>..\packages\Khrussk.0.0.4\lib\net40\Khrussk.Sockets.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -56,6 +53,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Uberball.Game.Logic.Entities\Uberball.Game.Logic.Entities.csproj">
+      <Project>{FE18CAFE-2F92-4B34-AF22-872F23AF9D3D}</Project>
+      <Name>Uberball.Game.Logic.Entities</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Uberball.Game.NetworkProtocol\Uberball.Game.NetworkProtocol.csproj">
       <Project>{773C167F-DAD9-4C61-90D1-F9C4D22EB576}</Project>
       <Name>Uberball.Game.NetworkProtocol</Name>
