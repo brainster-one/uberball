@@ -62,6 +62,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Khrussk.Silverlight">
+      <HintPath>..\packages\Khrussk.0.0.3\lib\sl50\Khrussk.Silverlight.dll</HintPath>
+    </Reference>
     <Reference Include="mscorlib" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
@@ -97,6 +100,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <None Include="packages.config" />
     <None Include="Properties\AppManifest.xml" />
     <None Include="Service References\AuthenticationService\AuthenticationService.wsdl" />
     <None Include="Service References\AuthenticationService\AuthenticationService.xsd">
