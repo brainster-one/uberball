@@ -1,8 +1,12 @@
-﻿<Application xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
-             x:Class="Uberball.Game.Client.App"
-             >
-    <Application.Resources>
-        
-    </Application.Resources>
+﻿<Application
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+	x:Class="Uberball.Game.Client.App"
+	xmlns:Local="clr-namespace:Uberball.Game.Client">
+	
+	<Application.Resources>
+		<ResourceDictionary>
+			<Local:ViewModelLocator x:Key="ViewModelLocator"/>
+		</ResourceDictionary>
+	</Application.Resources>
 </Application>
