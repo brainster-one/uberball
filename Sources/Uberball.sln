@@ -34,6 +34,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{9E2F8F
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uberball.Game.Client.Areas.MatchArea", "Uberball.Game.Client.Areas.MatchArea\Uberball.Game.Client.Areas.MatchArea.csproj", "{BD5AE16F-B547-4561-842D-C1ED8BFA0A29}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -124,6 +126,16 @@ Global
 		{21FB2B21-86AB-4BA5-A2E4-D1DB47DFCBAF}.Release|Mixed Platforms.Build.0 = Release|x86
 		{21FB2B21-86AB-4BA5-A2E4-D1DB47DFCBAF}.Release|x86.ActiveCfg = Release|x86
 		{21FB2B21-86AB-4BA5-A2E4-D1DB47DFCBAF}.Release|x86.Build.0 = Release|x86
+		{BD5AE16F-B547-4561-842D-C1ED8BFA0A29}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD5AE16F-B547-4561-842D-C1ED8BFA0A29}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD5AE16F-B547-4561-842D-C1ED8BFA0A29}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{BD5AE16F-B547-4561-842D-C1ED8BFA0A29}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{BD5AE16F-B547-4561-842D-C1ED8BFA0A29}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{BD5AE16F-B547-4561-842D-C1ED8BFA0A29}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD5AE16F-B547-4561-842D-C1ED8BFA0A29}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD5AE16F-B547-4561-842D-C1ED8BFA0A29}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{BD5AE16F-B547-4561-842D-C1ED8BFA0A29}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{BD5AE16F-B547-4561-842D-C1ED8BFA0A29}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -137,5 +149,6 @@ Global
 		{FE18CAFE-2F92-4B34-AF22-872F23AF9D3D} = {E36688EB-0A62-419C-978B-31D5448A7395}
 		{773C167F-DAD9-4C61-90D1-F9C4D22EB576} = {E36688EB-0A62-419C-978B-31D5448A7395}
 		{78BE54C5-71D3-4CCC-8218-52903AFABC02} = {31DA120C-689A-4FB9-A22B-F061067CFF3A}
+		{BD5AE16F-B547-4561-842D-C1ED8BFA0A29} = {31DA120C-689A-4FB9-A22B-F061067CFF3A}
 	EndGlobalSection
 EndGlobal
