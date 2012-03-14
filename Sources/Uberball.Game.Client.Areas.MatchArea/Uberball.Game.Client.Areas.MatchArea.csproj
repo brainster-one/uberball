@@ -49,15 +49,15 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Khrussk.NetworkRealm.Silverlight, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Khrussk.NetworkRealm.Silverlight.0.0.3\lib\sl5\Khrussk.NetworkRealm.Silverlight.dll</HintPath>
+      <HintPath>..\..\Assets\Packages\Khrussk.NetworkRealm.Silverlight.0.0.3\lib\sl5\Khrussk.NetworkRealm.Silverlight.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib" />
     <Reference Include="system" />
     <Reference Include="System.Core" />
     <Reference Include="System.Net" />
     <Reference Include="System.Windows" />
-    <Reference Include="Thersuli">
-      <HintPath>..\packages\Thersuli.0.0.1\lib\sl50\Thersuli.dll</HintPath>
+    <Reference Include="Thersuli, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\Assets\Packages\Thersuli.0.0.1\lib\sl50\Thersuli.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -82,7 +82,7 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
-  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
+  <Import Project="$(SolutionDir)\..\Assets\nuget.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
