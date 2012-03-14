@@ -34,7 +34,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Khrussk.Interfaces, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Khrussk.0.0.4\lib\net40\Khrussk.Interfaces.dll</HintPath>
+      <HintPath>..\packages\Khrussk.Interfaces.0.0.3\lib\Khrussk.Interfaces.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
