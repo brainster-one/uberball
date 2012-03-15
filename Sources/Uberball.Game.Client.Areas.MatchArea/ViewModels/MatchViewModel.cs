@@ -1,21 +1,25 @@
 ﻿
 namespace Uberball.Game.Client.Areas.MatchArea.ViewModels {
 	using System.Windows;
-	using System.Windows.Input;
 	using Khrussk.NetworkRealm;
 	using Thersuli;
 	using Uberball.Game.Client.Areas.MatchArea.Commands;
 	using Uberball.Game.Logic.Entities;
 	using Uberball.Game.NetworkProtocol;
+	using System.Net;
 
 	public class MatchViewModel : ViewModel {
-		public MatchViewModel() {
+		public MatchViewModel(IPEndPoint endpoint) {
 			Client = new RealmClient();
+			Client.EntityAdded += Client_EntityAdded;
 			Client.Protocol.RegisterEntityType(typeof(Player), new PlayerSerializer());
+			
+			Connect = new ConnectCommand(Client, endpoint);
+			Connect.Completed += Connect_Completed;
+		}
 
-			Connect = new ConnectCommand(this, Client);
-
-			Client.EntityAdded += new System.EventHandler<RealmEventArgs>(Client_EntityAdded);
+		void Connect_Completed(object sender, System.EventArgs e) {
+			ConnectionState = "Connected";
 		}
 
 		void Client_EntityAdded(object sender, RealmEventArgs e) {
@@ -27,7 +31,7 @@ namespace Uberball.Game.Client.Areas.MatchArea.ViewModels {
 			set { _connectionState = value; OnPropertyChanged("ConnectionState"); }
 		}
 
-		public ICommand Connect { get; private set; }
+		public ConnectCommand Connect { get; private set; }
 
 		public RealmClient Client { get; private set; }
 

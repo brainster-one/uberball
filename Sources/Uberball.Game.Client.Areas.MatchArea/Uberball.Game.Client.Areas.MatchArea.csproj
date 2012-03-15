@@ -57,7 +57,7 @@
     <Reference Include="System.Net" />
     <Reference Include="System.Windows" />
     <Reference Include="Thersuli, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\Assets\Packages\Thersuli.0.0.1\lib\sl50\Thersuli.dll</HintPath>
+      <HintPath>..\..\Assets\Packages\Thersuli.0.0.3\lib\sl50\Thersuli.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

@@ -4,31 +4,39 @@ namespace Uberball.Game.Client.Areas.MatchArea.Commands {
 	using System.Net;
 	using Khrussk.NetworkRealm;
 	using Thersuli;
-	using Uberball.Game.Client.Areas.MatchArea.ViewModels;
-	using System.Windows;
 
-	// TODO _viewModel.ConnectionState replace to event - ConnectionState changed
+	/// <summary>Connect to match service command.</summary>
 	public class ConnectCommand : Command {
-		public ConnectCommand(MatchViewModel viewModel, RealmClient client) {
-			_viewModel = viewModel;
+		/// <summary>Initializes a new instance of the ConnectCommand class.</summary>
+		/// <param name="client">Realm client to connect to remote service.</param>
+		/// <param name="endpoint">Endpoint to connect to.</param>
+		public ConnectCommand(RealmClient client, IPEndPoint endpoint) {
+			_endpoint = endpoint;
 			_client = client;
-			_client.Connected += new EventHandler<RealmEventArgs>(_client_Connected);
+			_client.Connected += OnConnected;
 		}
 
-		void _client_Connected(object sender, RealmEventArgs e) {
-			Deployment.Current.Dispatcher.BeginInvoke(() => _viewModel.ConnectionState = "connected");
-		}
-
+		/// <summary>Executes command.</summary>
+		/// <param name="parameter">Parameter.</param>
 		public override void Execute(object parameter) {
-			try {
-				_viewModel.ConnectionState = "Connecting";
-				_client.Connect(new IPEndPoint(IPAddress.Loopback, 4530));
-			} catch (Exception ex) {
-				_viewModel.ConnectionState = ex.Message;
-			}
+			_client.Connect(_endpoint);
 		}
 
-		private MatchViewModel _viewModel;
+		/// <summary>When execution completed.</summary>
+		public event EventHandler Completed;
+
+		/// <summary>Connection established.</summary>
+		/// <param name="sender">Event sender.</param>
+		/// <param name="e">Event args.</param>
+		void OnConnected(object sender, RealmEventArgs e) {
+			var evnt = Completed;
+			if (evnt != null) evnt(this, new EventArgs());
+		}
+
+		/// <summary>Realm client.</summary>
 		private RealmClient _client;
+
+		/// <summary>Endpoint to connect to.</summary>
+		private IPEndPoint _endpoint;
 	}
 }

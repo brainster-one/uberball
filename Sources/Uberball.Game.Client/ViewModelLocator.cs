@@ -6,7 +6,7 @@ namespace Uberball.Game.Client {
 		private static MatchViewModel _matchViewModel;
 
 		public static MatchViewModel MatchViewModel {
-			get { return _matchViewModel ?? (_matchViewModel = new MatchViewModel()); }
+			get { return _matchViewModel ?? (_matchViewModel = new MatchViewModel(Configuration.MatchServiceEndPoint)); }
 		}
 	}
 }
