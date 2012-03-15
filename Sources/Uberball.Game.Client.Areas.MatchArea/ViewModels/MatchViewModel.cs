@@ -1,29 +1,21 @@
 ﻿
 namespace Uberball.Game.Client.Areas.MatchArea.ViewModels {
-	using System.Windows;
+	using System.Net;
+	using Ardelme.Core;
 	using Khrussk.NetworkRealm;
 	using Thersuli;
 	using Uberball.Game.Client.Areas.MatchArea.Commands;
 	using Uberball.Game.Logic.Entities;
 	using Uberball.Game.NetworkProtocol;
-	using System.Net;
+	using System.Collections.Generic;
 
-	public class MatchViewModel : ViewModel {
+	public sealed class MatchViewModel : ViewModel {
 		public MatchViewModel(IPEndPoint endpoint) {
-			Client = new RealmClient();
-			Client.EntityAdded += Client_EntityAdded;
-			Client.Protocol.RegisterEntityType(typeof(Player), new PlayerSerializer());
+			_client.EntityAdded += Client_EntityAdded;
+			_client.Protocol.RegisterEntityType(typeof(Player), new PlayerSerializer());
 			
-			Connect = new ConnectCommand(Client, endpoint);
+			Connect = new ConnectCommand(_client, endpoint);
 			Connect.Completed += Connect_Completed;
-		}
-
-		void Connect_Completed(object sender, System.EventArgs e) {
-			ConnectionState = "Connected";
-		}
-
-		void Client_EntityAdded(object sender, RealmEventArgs e) {
-			Deployment.Current.Dispatcher.BeginInvoke(() => MessageBox.Show(((Player)e.Entity).Name + " has been added."));
 		}
 
 		public string ConnectionState {
@@ -31,9 +23,23 @@ namespace Uberball.Game.Client.Areas.MatchArea.ViewModels {
 			set { _connectionState = value; OnPropertyChanged("ConnectionState"); }
 		}
 
+		public IEnumerable<object> Entities {
+			get { return _realm.Entities; /* TODO: return list of entity presentation models */ }
+		}
+
 		public ConnectCommand Connect { get; private set; }
 
-		public RealmClient Client { get; private set; }
+		void Connect_Completed(object sender, System.EventArgs e) {
+			ConnectionState = "Connected";
+		}
+
+		void Client_EntityAdded(object sender, RealmEventArgs e) {
+			_realm.AddEntity(e.Entity);
+			OnPropertyChanged("Entities");
+		}
+
+		private RealmClient _client = new RealmClient();
+		private Realm _realm = new Realm();
 
 		string _connectionState;
 	}

@@ -48,6 +48,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Ardelme.Silverlight, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Assets\Packages\Ardelme.0.0.2\lib\sl50\Ardelme.Silverlight.dll</HintPath>
+    </Reference>
     <Reference Include="Khrussk.NetworkRealm.Silverlight, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\Assets\Packages\Khrussk.NetworkRealm.Silverlight.0.0.3\lib\sl5\Khrussk.NetworkRealm.Silverlight.dll</HintPath>
     </Reference>
@@ -73,6 +77,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Behaviors\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <ProjectExtensions>
