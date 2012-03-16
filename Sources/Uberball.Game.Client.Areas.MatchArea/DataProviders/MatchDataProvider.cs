@@ -1,8 +1,8 @@
 ﻿
 namespace Uberball.Game.Client.Areas.MatchArea.DataProviders {
 	using System;
-	using System.Collections.Generic;
 	using System.Collections.ObjectModel;
+	using System.Collections.Specialized;
 	using System.Linq;
 	using System.Net;
 	using System.Windows;
@@ -13,33 +13,34 @@ namespace Uberball.Game.Client.Areas.MatchArea.DataProviders {
 	using Uberball.Game.Client.Areas.MatchArea.ViewModels.Entities;
 	using Uberball.Game.Logic.Entities;
 	using Uberball.Game.NetworkProtocol;
+	using Uberball.Game.Client.Areas.MatchArea.ViewModels.Mappers;
+	using System.Collections.Generic;
 
-	public class Ent {
-		/*public Ent(int id, object entity, object entityViewModel) {
-			Id = _id;
-			Entity = entity;
-			EntityViewModel = entityViewModel;
-		}*/
+	/// <summary>Entity metadata.</summary>
+	public class EntityInfo {
+		/// <summary>Gets or sets entity network Id.</summary>
+		public int Id { get; set; }
 
-		public int Id;
-		public object Entity;
-		public object ViewModel;
+		/// <summary>Entity itself.</summary>
+		public object Entity { get; set; }
+
+		/// <summary>Gets or sets entity view model.</summary>
+		public object ViewModel { get; set; }
 	}
 
-	/*public class EntDataStorage {
-		public 
-	}*/
-
-	public class MatchDataProvider {
+	/// <summary>Match data provider.</summary>
+	public sealed class MatchDataProvider {
+		/// <summary>Initializes a new instance of the MatchDataProvider class.</summary>
 		public MatchDataProvider() {
 			Entities = new ObservableCollection<object>();
-			_client.Connected += new System.EventHandler<RealmEventArgs>(_client_Connected);
-			_client.EntityAdded += Client_EntityAdded;
-			_client.EntityRemoved += new System.EventHandler<RealmEventArgs>(_client_EntityRemoved);
-			_client.EntityModified += new System.EventHandler<RealmEventArgs>(_client_EntityModified);
 			_client.Protocol.RegisterEntityType(typeof(Player), new PlayerSerializer());
-
+			_client.Connected += _client_Connected;
+			_client.EntityAdded += Client_EntityAdded;
+			_client.EntityRemoved += _client_EntityRemoved;
+			_client.EntityModified += _client_EntityModified;
 			_realm.AddBehavior(new UpdatePlayerPositionRealmBehavior());
+			_storage.CollectionChanged += EntitiesCollectionChanged;
+			_mappers.Add(typeof(Player), new PlayerMapper());
 
 			/* looks like shit */
 			CompositionTarget.Rendering += (x, y) => {
@@ -62,10 +63,10 @@ namespace Uberball.Game.Client.Areas.MatchArea.DataProviders {
 
 		void Client_EntityAdded(object sender, RealmEventArgs e) {
 			lock (_realm) {
-				var ent = new Ent { Id = e.EntityId, Entity = e.Entity, ViewModel = CreateViewModel(e.Entity) };
-				_storage.Add(ent);
-				_realm.AddEntity(ent.ViewModel);
-				Deployment.Current.Dispatcher.BeginInvoke(() => Entities.Add(ent.ViewModel));
+				object viewModel = null;
+				var mapper = _mappers[e.Entity.GetType()];
+				mapper.Map(e.Entity, ref viewModel);
+				_storage.Add(new EntityInfo { Id = e.EntityId, Entity = e.Entity, ViewModel = viewModel });
 			}
 		}
 
@@ -76,22 +77,20 @@ namespace Uberball.Game.Client.Areas.MatchArea.DataProviders {
 		void _client_EntityModified(object sender, RealmEventArgs e) {
 			lock (_realm) {
 				var ent = _storage.First(x => e.EntityId == x.Id);
+				var viewModel = ent.ViewModel;
+				var mapper = _mappers[ent.Entity.GetType()];
 				e.EntityDiffData.ApplyChanges(ent.Entity);
-				UpdateViewModel(ent.ViewModel, ent.Entity);
+				Deployment.Current.Dispatcher.BeginInvoke(() => mapper.Map(ent.Entity, ref viewModel));
 			}
 		}
 
-		private object CreateViewModel(object entity) {
-			return new PlayerViewModel(); /* TODO: convert to viewModel correct */
-		}
-
-		private void UpdateViewModel(object viewModel, object entity) {
-			var playerVm = (PlayerViewModel)viewModel;
-			var playerEn = (Player)entity;
-
-			playerVm.Name = playerEn.Name + string.Format("({0}, {1})", playerEn.X, playerEn.Y);
-			playerVm.NewX = playerEn.X;
-			playerVm.NewY = playerEn.Y;
+		void EntitiesCollectionChanged(object sender, NotifyCollectionChangedEventArgs e) {
+			if (e.Action == NotifyCollectionChangedAction.Add) {
+				foreach (EntityInfo item in e.NewItems) {
+					_realm.AddEntity(item.ViewModel);
+					Deployment.Current.Dispatcher.BeginInvoke(() => Entities.Add(item.ViewModel));
+				}
+			}
 		}
 
 		// <summary>Client's realm. Provides client's realm calculations.</summary>
@@ -100,6 +99,7 @@ namespace Uberball.Game.Client.Areas.MatchArea.DataProviders {
 		/// <summary>Client interface to connect to remote service.</summary>
 		private RealmClient _client = new RealmClient();
 
-		private List<Ent> _storage = new List<Ent>();
+		private ObservableCollection<EntityInfo> _storage = new ObservableCollection<EntityInfo>();
+		private Dictionary<Type, IMapper> _mappers = new Dictionary<Type, IMapper>();
 	}
 }
