@@ -11,8 +11,17 @@ namespace Uberball.Game.Client.Areas.MatchArea.ViewModels {
 		/// <summary>Initializes a new instance of the MatchViewModel class.</summary>
 		/// <param name="endpoint">EndPoint to connect to.</param>
 		public MatchViewModel(IPEndPoint endpoint) {
+			IsBusy = true;
 			ConnectCommand = new ConnectCommand(_matchDataProvider, endpoint);
+			ConnectCommand.Completed += (x, y) => { IsBusy = false; OnPropertyChanged("IsBusy"); };
 		}
+
+		/// <summary></summary>
+		public void UserInput() {
+
+		}
+
+		public bool IsBusy { get; private set; }
 
 		/// <summary>Gets list of entity view models.</summary>
 		public ObservableCollection<object> Entities { get { return _matchDataProvider.Entities; } }

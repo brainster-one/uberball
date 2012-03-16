@@ -9,6 +9,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
+using Uberball.Game.Client.Areas.MatchArea.Views;
 
 namespace Uberball.Game.Client {
 	public partial class App : Application {
@@ -22,7 +23,7 @@ namespace Uberball.Game.Client {
 		}
 
 		private void Application_Startup(object sender, StartupEventArgs e) {
-			this.RootVisual = new MainPage();
+			this.RootVisual = new MatchPage();
 		}
 
 		private void Application_Exit(object sender, EventArgs e) {

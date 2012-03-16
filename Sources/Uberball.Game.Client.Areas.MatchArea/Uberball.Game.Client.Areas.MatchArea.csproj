@@ -60,8 +60,12 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Net" />
     <Reference Include="System.Windows" />
+    <Reference Include="System.Windows.Controls.Navigation, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Windows.Controls.Toolkit">
+      <HintPath>..\..\Assets\Packages\SilverlightToolkit-Core.4.2010.4\lib\sl4\System.Windows.Controls.Toolkit.dll</HintPath>
+    </Reference>
     <Reference Include="Thersuli, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\Assets\Packages\Thersuli.0.0.5\lib\sl50\Thersuli.dll</HintPath>
+      <HintPath>..\..\Assets\Packages\Thersuli.0.0.6\lib\sl50\Thersuli.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -80,6 +84,9 @@
     <Compile Include="ViewModels\Entities\PlayerViewModel.cs" />
     <Compile Include="ViewModels\EntityViewSelector.cs" />
     <Compile Include="ViewModels\MatchViewModel.cs" />
+    <Compile Include="Views\MatchPage.xaml.cs">
+      <DependentUpon>MatchPage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -93,6 +100,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="Views\Common.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MatchPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
