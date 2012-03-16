@@ -1,46 +1,21 @@
 ﻿
 namespace Uberball.Game.Client.Areas.MatchArea.ViewModels {
+	using System.Collections.ObjectModel;
 	using System.Net;
-	using Ardelme.Core;
-	using Khrussk.NetworkRealm;
 	using Thersuli;
 	using Uberball.Game.Client.Areas.MatchArea.Commands;
-	using Uberball.Game.Logic.Entities;
-	using Uberball.Game.NetworkProtocol;
-	using System.Collections.Generic;
+	using Uberball.Game.Client.Areas.MatchArea.DataProviders;
 
+	/// <summary>Match view model.</summary>
 	public sealed class MatchViewModel : ViewModel {
 		public MatchViewModel(IPEndPoint endpoint) {
-			_client.EntityAdded += Client_EntityAdded;
-			_client.Protocol.RegisterEntityType(typeof(Player), new PlayerSerializer());
-			
-			Connect = new ConnectCommand(_client, endpoint);
-			Connect.Completed += Connect_Completed;
+			ConnectCommand = new ConnectCommand(_service, endpoint);
 		}
 
-		public string ConnectionState {
-			get { return _connectionState; }
-			set { _connectionState = value; OnPropertyChanged("ConnectionState"); }
-		}
+		public ObservableCollection<object> Entities { get { return _service.Entities; } }
 
-		public IEnumerable<object> Entities {
-			get { return _realm.Entities; /* TODO: return list of entity presentation models */ }
-		}
-
-		public ConnectCommand Connect { get; private set; }
-
-		void Connect_Completed(object sender, System.EventArgs e) {
-			ConnectionState = "Connected";
-		}
-
-		void Client_EntityAdded(object sender, RealmEventArgs e) {
-			_realm.AddEntity(e.Entity);
-			OnPropertyChanged("Entities");
-		}
-
-		private RealmClient _client = new RealmClient();
-		private Realm _realm = new Realm();
-
-		string _connectionState;
+		public ConnectCommand ConnectCommand { get; private set; }
+		
+		private MatchDataProvider _service = new MatchDataProvider();
 	}
 }

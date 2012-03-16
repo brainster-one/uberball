@@ -61,7 +61,7 @@
     <Reference Include="System.Net" />
     <Reference Include="System.Windows" />
     <Reference Include="Thersuli, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\Assets\Packages\Thersuli.0.0.3\lib\sl50\Thersuli.dll</HintPath>
+      <HintPath>..\..\Assets\Packages\Thersuli.0.0.5\lib\sl50\Thersuli.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -71,15 +71,29 @@
     <Compile Include="..\uberball.game.networkprotocol\PlayerSerializer.cs">
       <Link>Shared\PlayerSerializer.cs</Link>
     </Compile>
+    <Compile Include="Behaviors\UpdateViewModelsBehavior.cs" />
     <Compile Include="Commands\ConnectCommand.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="DataProviders\MatchDataProvider.cs" />
+    <Compile Include="ViewModels\Entities\PlayerViewModel.cs" />
+    <Compile Include="ViewModels\EntityViewSelector.cs" />
     <Compile Include="ViewModels\MatchViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Behaviors\" />
+    <Resource Include="Views\Player.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Views\Common.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <ProjectExtensions>

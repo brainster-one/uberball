@@ -6,6 +6,10 @@
 	
 	<Application.Resources>
 		<ResourceDictionary>
+			<ResourceDictionary.MergedDictionaries>
+				<ResourceDictionary Source="/Uberball.Game.Client.Areas.MatchArea;component/Views/Common.xaml" />
+				<ResourceDictionary Source="/Uberball.Game.Client.Areas.MatchArea;component/Views/Player.xaml" />
+			</ResourceDictionary.MergedDictionaries>
 			<Local:ViewModelLocator x:Key="ViewModelLocator"/>
 		</ResourceDictionary>
 	</Application.Resources>
