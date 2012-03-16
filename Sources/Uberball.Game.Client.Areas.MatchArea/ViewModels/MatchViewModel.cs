@@ -12,6 +12,7 @@ namespace Uberball.Game.Client.Areas.MatchArea.ViewModels {
 			ConnectCommand = new ConnectCommand(_service, endpoint);
 		}
 
+		/// <summary>Gets list of entity view models.</summary>
 		public ObservableCollection<object> Entities { get { return _service.Entities; } }
 
 		public ConnectCommand ConnectCommand { get; private set; }

@@ -6,7 +6,13 @@
 	mc:Ignorable="d"
 	d:DesignHeight="300" d:DesignWidth="400" DataContext="{Binding Source={StaticResource ViewModelLocator}, Path=MatchViewModel}">
 	<Grid>
-		<ListBox Margin="114,0,125,208" ItemsSource="{Binding Path=Entities}" ItemTemplate="{Binding Source={StaticResource EntityViewSelectorDataTemplate}}" />
-		<Button Command="{Binding Path=ConnectCommand}" Content="{Binding Path=ConnectionState}" Height="39" Width="96" Margin="12,0,292,260" />
+		<ItemsControl ItemsSource="{Binding Path=Entities}" ItemTemplate="{Binding Source={StaticResource EntityViewSelectorDataTemplate}}">
+			<ItemsControl.ItemsPanel>
+				<ItemsPanelTemplate>
+					<Canvas Background="LightGreen" />
+				</ItemsPanelTemplate>
+			</ItemsControl.ItemsPanel>
+		</ItemsControl>
+		<Button Command="{Binding Path=ConnectCommand}" Content="{Binding Path=ConnectionState}" Height="39" Width="39" VerticalAlignment="Top" HorizontalAlignment="Left" />
 	</Grid>
 </UserControl>

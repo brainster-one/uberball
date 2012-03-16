@@ -22,6 +22,8 @@ namespace Uberball.Game.Services.MatchService {
 			if (_plr == null) return;
 			_plr.Name = "Player_" + DateTime.Now.ToString();
 			_service.ModifyEntity(_plr);
+			_plr.X += 50;
+			_plr.Y += new Random(DateTime.Now.Millisecond).Next(50);
 		}
 
 		void _service_UserConnected(object sender, RealmEventArgs e) {
