@@ -1,11 +1,13 @@
 ﻿
 namespace Uberball.Game.Services.MatchService {
-	using Khrussk.NetworkRealm;
-	using System.Net;
 	using System;
+	using System.Linq;
+	using System.Net;
+	using System.Timers;
+	using Ardelme.Core;
+	using Khrussk.NetworkRealm;
 	using Uberball.Game.Logic.Entities;
 	using Uberball.Game.NetworkProtocol;
-	using System.Timers;
 
 	public class MatchService {
 		public MatchService() {
@@ -19,17 +21,18 @@ namespace Uberball.Game.Services.MatchService {
 		}
 
 		void tmr_Elapsed(object sender, ElapsedEventArgs e) {
-			if (_plr == null) return;
-			_plr.Name = "Player_" + DateTime.Now.ToString();
-			_service.ModifyEntity(_plr);
-			_plr.X += 50;
-			_plr.Y += new Random(DateTime.Now.Millisecond).Next(50);
+			foreach (Player plr in _realm.Entities.Cast<Player>()) {
+				plr.X += new Random(DateTime.Now.Millisecond).Next(50);
+				plr.Y += new Random(DateTime.Now.Millisecond).Next(50);
+				_service.ModifyEntity(plr);
+			}
 		}
 
 		void _service_UserConnected(object sender, RealmEventArgs e) {
 			Console.WriteLine("User connected: " + e.User);
-			_plr = new Player { Name = "Player_" + DateTime.Now.Millisecond };
-			_service.AddEntity(_plr);
+			var plr = new Player { Name = "Player_" + DateTime.Now.Millisecond };
+			_realm.AddEntity(plr);
+			_service.AddEntity(plr);
 		}
 
 		public void Start(IPEndPoint endpoint) {
@@ -40,7 +43,7 @@ namespace Uberball.Game.Services.MatchService {
 			_service.Stop();
 		}
 
+		Realm _realm = new Realm();
 		RealmService _service;
-		Player _plr;
 	}
 }

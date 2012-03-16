@@ -33,11 +33,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Ardelme">
+      <HintPath>..\..\Assets\Packages\Ardelme.0.0.2\lib\net40\Ardelme.dll</HintPath>
+    </Reference>
     <Reference Include="Khrussk.Interfaces, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\Assets\Packages\Khrussk.Interfaces.0.0.3\lib\Khrussk.Interfaces.dll</HintPath>
     </Reference>
     <Reference Include="Khrussk.NetworkRealm, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\Assets\Packages\Khrussk.NetworkRealm.0.0.3\lib\Khrussk.NetworkRealm.dll</HintPath>
+      <HintPath>..\..\Assets\Packages\Khrussk.NetworkRealm.0.0.5\lib\Khrussk.NetworkRealm.dll</HintPath>
     </Reference>
     <Reference Include="Khrussk.Peers, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\Assets\Packages\Khrussk.Peers.0.0.3\lib\Khrussk.Peers.dll</HintPath>

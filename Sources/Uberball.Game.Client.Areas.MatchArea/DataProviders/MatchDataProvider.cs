@@ -1,6 +1,7 @@
 ﻿
 namespace Uberball.Game.Client.Areas.MatchArea.DataProviders {
 	using System;
+	using System.Collections.Generic;
 	using System.Collections.ObjectModel;
 	using System.Collections.Specialized;
 	using System.Linq;
@@ -10,11 +11,9 @@ namespace Uberball.Game.Client.Areas.MatchArea.DataProviders {
 	using Ardelme.Core;
 	using Khrussk.NetworkRealm;
 	using Uberball.Game.Client.Areas.MatchArea.Behaviors;
-	using Uberball.Game.Client.Areas.MatchArea.ViewModels.Entities;
+	using Uberball.Game.Client.Areas.MatchArea.ViewModels.Mappers;
 	using Uberball.Game.Logic.Entities;
 	using Uberball.Game.NetworkProtocol;
-	using Uberball.Game.Client.Areas.MatchArea.ViewModels.Mappers;
-	using System.Collections.Generic;
 
 	/// <summary>Entity metadata.</summary>
 	public class EntityInfo {
