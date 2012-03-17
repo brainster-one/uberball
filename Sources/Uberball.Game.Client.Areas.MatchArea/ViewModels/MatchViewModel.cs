@@ -18,6 +18,8 @@ namespace Uberball.Game.Client.Areas.MatchArea.ViewModels {
 			ConnectCommand = new ConnectCommand(_matchDataProvider, endpoint);
 			ConnectCommand.Success += (x, y) => { IsBusy = false; };
 			ConnectCommand.Failure += (x, y) => { IsBusy = false; ErrorManager.Error("Unable connect to " + endpoint.Address.ToString()); };
+
+			_matchDataProvider.Disconnected += (x, y) => ErrorManager.Error("Connection lost");
 		}
 
 		/// <summary>Gets is busy flag.</summary>
