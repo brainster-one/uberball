@@ -1,5 +1,5 @@
 ﻿
-namespace Uberball.Game.Client.Areas.MatchArea.Views {
+namespace Uberball.Game.Client.Areas.MatchArea.Views.Pages {
 	using System.Windows.Controls;
 
 	public partial class MatchPage : Page {

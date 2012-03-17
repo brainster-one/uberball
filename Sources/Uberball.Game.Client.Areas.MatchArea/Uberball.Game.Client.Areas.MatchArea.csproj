@@ -78,7 +78,7 @@
     <Compile Include="..\uberball.game.networkprotocol\PlayerSerializer.cs">
       <Link>Shared\PlayerSerializer.cs</Link>
     </Compile>
-    <Compile Include="Behaviors\UpdatePlayerPositionRealmBehavior.cs" />
+    <Compile Include="RealmBehaviors\UpdatePlayerPositionRealmBehavior.cs" />
     <Compile Include="Commands\ConnectCommand.cs" />
     <Compile Include="Commands\KeyPressCommand.cs" />
     <Compile Include="ViewModels\Mappers\IMapper.cs" />
@@ -91,7 +91,7 @@
     <Compile Include="ViewModels\MatchViewModel.designer.cs">
       <DependentUpon>MatchViewModel.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\MatchPage.xaml.cs">
+    <Compile Include="Views\Pages\MatchPage.xaml.cs">
       <DependentUpon>MatchPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
@@ -115,7 +115,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\MatchPage.xaml">
+    <Page Include="Views\Pages\MatchPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

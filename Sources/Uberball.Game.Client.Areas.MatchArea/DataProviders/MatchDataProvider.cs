@@ -10,7 +10,7 @@ namespace Uberball.Game.Client.Areas.MatchArea.DataProviders {
 	using System.Windows.Media;
 	using Ardelme.Core;
 	using Khrussk.NetworkRealm;
-	using Uberball.Game.Client.Areas.MatchArea.Behaviors;
+	using Uberball.Game.Client.Areas.MatchArea.RealmBehaviors;
 	using Uberball.Game.Client.Areas.MatchArea.ViewModels.Mappers;
 	using Uberball.Game.Logic.Entities;
 	using Uberball.Game.NetworkProtocol;
