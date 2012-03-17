@@ -11,6 +11,7 @@
 				<ResourceDictionary Source="/Uberball.Game.Client.Areas.MatchArea;component/Views/Player.xaml" />
 			</ResourceDictionary.MergedDictionaries>
 			<Local:ViewModelLocator x:Key="ViewModelLocator"/>
+			<Local:DesignerViewModelLocator x:Key="DesignerViewModelLocator"/>
 		</ResourceDictionary>
 	</Application.Resources>
 </Application>

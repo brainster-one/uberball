@@ -9,4 +9,12 @@ namespace Uberball.Game.Client {
 			get { return _matchViewModel ?? (_matchViewModel = new MatchViewModel(Configuration.MatchServiceEndPoint)); }
 		}
 	}
+
+	public class DesignerViewModelLocator {
+		private static MatchDesignerViewModel _matchViewModel;
+
+		public static MatchDesignerViewModel MatchViewModel {
+			get { return _matchViewModel ?? (_matchViewModel = new MatchDesignerViewModel()); }
+		}
+	}
 }

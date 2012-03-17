@@ -84,6 +84,9 @@
     <Compile Include="ViewModels\Entities\PlayerViewModel.cs" />
     <Compile Include="ViewModels\EntityViewSelector.cs" />
     <Compile Include="ViewModels\MatchViewModel.cs" />
+    <Compile Include="ViewModels\MatchViewModel.designer.cs">
+      <DependentUpon>MatchViewModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\MatchPage.xaml.cs">
       <DependentUpon>MatchPage.xaml</DependentUpon>
     </Compile>
