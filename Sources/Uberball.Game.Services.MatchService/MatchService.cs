@@ -49,9 +49,10 @@ namespace Uberball.Game.Services.MatchService {
 		}
 
 		void _service_UserDisconnected(object sender, RealmEventArgs e) {
-			Console.WriteLine("User disconnected: " + e.User);
 			var entity = _userPlayer[e.User];
 			_realm.RemoveEntity(entity);
+			//_service.RemoveEntity(entity);
+			Console.WriteLine("User disconnected: " + e.User);
 		}
 
 		public void Start(IPEndPoint endpoint) {

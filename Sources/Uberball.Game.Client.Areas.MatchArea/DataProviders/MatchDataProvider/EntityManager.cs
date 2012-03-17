@@ -1,10 +1,10 @@
 ﻿
 namespace Uberball.Game.Client.Areas.MatchArea.DataProviders.MatchDataProvider {
 	using System;
-	using System.Linq;
 	using System.Collections.Generic;
 	using System.Collections.ObjectModel;
 	using System.Collections.Specialized;
+	using System.Linq;
 	using System.Windows;
 	using Ardelme.Core;
 	using Uberball.Game.Client.Areas.MatchArea.ViewModels.Mappers;

@@ -23,12 +23,14 @@ namespace Uberball.Game.Client.Areas.MatchArea.DataProviders.MatchDataProvider {
 			Entities = new ObservableCollection<object>();
 			_client.Protocol.RegisterPacketType(typeof(InputPacket), new InputPacketSrializer());
 			_client.Protocol.RegisterEntityType(typeof(Player), new PlayerSerializer());
-			_client.Connected += _client_Connected;
-			_client.ConnectionFailed += new EventHandler<RealmEventArgs>(_client_ConnectionFailed);
-			_client.Disconnected += new EventHandler<RealmEventArgs>(_client_Disconnected);
-			_client.EntityAdded += Client_EntityAdded;
-			_client.EntityRemoved += _client_EntityRemoved;
-			_client.EntityModified += _client_EntityModified;
+			
+			_client.Connected += (s, e) => { var evnt = Connected; if (evnt != null) evnt(this, new EventArgs()); };
+			_client.ConnectionFailed += (s, e) => { var evnt = ConnectionFailed; if (evnt != null) evnt(this, new EventArgs()); };
+			_client.Disconnected += (s, e) => { var evnt = Disconnected; if (evnt != null) evnt(this, new EventArgs()); };
+			
+			_client.EntityAdded += (s,e) => _manager.Add(e.EntityId, e.Entity);
+			_client.EntityRemoved += (s,e) => _manager.Remove(e.EntityId);
+			_client.EntityModified += (s, e) => _manager.ModifyEntity(e.EntityId, e.EntityDiffData);
 			_realm.AddBehavior(new UpdatePlayerPositionRealmBehavior());
 
 			_manager = new EntityManager(_realm, Entities);
@@ -53,33 +55,6 @@ namespace Uberball.Game.Client.Areas.MatchArea.DataProviders.MatchDataProvider {
 			_client.Send(new InputPacket {
 				IsUpPressed = u, IsRightPressed = r, IsDownPressed = d, IsLeftPressed = l
 			});
-		}
-
-		void _client_Connected(object sender, RealmEventArgs e) {
-			var evnt = Connected;
-			if (evnt != null) evnt(this, new EventArgs());
-		}
-
-		void _client_Disconnected(object sender, RealmEventArgs e) {
-			var evnt = Disconnected;
-			if (evnt != null) evnt(this, new EventArgs());
-		}
-
-		void _client_ConnectionFailed(object sender, RealmEventArgs e) {
-			var evnt = ConnectionFailed;
-			if (evnt != null) evnt(this, new EventArgs());
-		}
-
-		void Client_EntityAdded(object sender, RealmEventArgs e) {
-			_manager.Add(e.EntityId, e.Entity);
-		}
-
-		void _client_EntityRemoved(object sender, RealmEventArgs e) {
-			_manager.Remove(e.EntityId);
-		}
-
-		void _client_EntityModified(object sender, RealmEventArgs e) {
-			_manager.ModifyEntity(e.EntityId, e.EntityDiffData);
 		}
 
 		private EntityManager _manager;
