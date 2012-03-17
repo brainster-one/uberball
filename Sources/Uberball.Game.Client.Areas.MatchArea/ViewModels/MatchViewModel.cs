@@ -4,9 +4,8 @@ namespace Uberball.Game.Client.Areas.MatchArea.ViewModels {
 	using System.Net;
 	using Thersuli;
 	using Uberball.Game.Client.Areas.MatchArea.Commands;
-	using Uberball.Game.Client.Areas.MatchArea.DataProviders;
+	using Uberball.Game.Client.Areas.MatchArea.Locators;
 	using Uberball.Game.Client.Core.Managers;
-	using System.Windows;
 
 	/// <summary>Match view model.</summary>
 	public sealed class MatchViewModel : ViewModel {
@@ -14,12 +13,11 @@ namespace Uberball.Game.Client.Areas.MatchArea.ViewModels {
 		/// <param name="endpoint">EndPoint to connect to.</param>
 		public MatchViewModel(IPEndPoint endpoint) {
 			IsBusy = true;
-			KeyPressCommand = new KeyPressCommand(_matchDataProvider);
-			ConnectCommand = new ConnectCommand(_matchDataProvider, endpoint);
+			KeyPressCommand = new KeyPressCommand(DataProviderLocator.MatchDataProvider);
+			ConnectCommand = new ConnectCommand(DataProviderLocator.MatchDataProvider, endpoint);
 			ConnectCommand.Success += (x, y) => { IsBusy = false; };
 			ConnectCommand.Failure += (x, y) => { IsBusy = false; ErrorManager.Error("Unable connect to " + endpoint.Address.ToString()); };
-
-			_matchDataProvider.Disconnected += (x, y) => ErrorManager.Error("Connection lost");
+			DataProviderLocator.MatchDataProvider.Disconnected += (x, y) => ErrorManager.Error("Connection lost");
 		}
 
 		/// <summary>Gets is busy flag.</summary>
@@ -29,7 +27,7 @@ namespace Uberball.Game.Client.Areas.MatchArea.ViewModels {
 		}
 
 		/// <summary>Gets list of entity view models.</summary>
-		public ObservableCollection<object> Entities { get { return _matchDataProvider.Entities; } }
+		public ObservableCollection<object> Entities { get { return DataProviderLocator.MatchDataProvider.Entities; } }
 
 		/// <summary>Connect to remote service command.</summary>
 		public ConnectCommand ConnectCommand { get; private set; }
@@ -39,8 +37,5 @@ namespace Uberball.Game.Client.Areas.MatchArea.ViewModels {
 
 		/// <summary>Busy flag.</summary>
 		private bool _isBusy;
-		
-		/// <summary>Match data provider.</summary>
-		private MatchDataProvider _matchDataProvider = new MatchDataProvider();
 	}
 }

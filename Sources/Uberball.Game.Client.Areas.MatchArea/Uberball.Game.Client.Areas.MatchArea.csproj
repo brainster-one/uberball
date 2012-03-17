@@ -78,6 +78,7 @@
     <Compile Include="..\uberball.game.networkprotocol\PlayerSerializer.cs">
       <Link>Shared\PlayerSerializer.cs</Link>
     </Compile>
+    <Compile Include="Locators\DataProviderLocator.cs" />
     <Compile Include="RealmBehaviors\UpdatePlayerPositionRealmBehavior.cs" />
     <Compile Include="Commands\ConnectCommand.cs" />
     <Compile Include="Commands\KeyPressCommand.cs" />
