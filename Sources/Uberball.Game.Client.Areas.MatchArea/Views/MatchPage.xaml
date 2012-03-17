@@ -12,7 +12,10 @@
 	d:DesignWidth="640" d:DesignHeight="480" mc:Ignorable="d">
 
 
-	<Grid x:Name="LayoutRoot" Loaded="{thersuli:InvokeCommand Command=ConnectCommand}">
+	<Grid x:Name="LayoutRoot" Loaded="{thersuli:InvokeCommand Command=ConnectCommand}"
+		  
+		  KeyDown="{thersuli:InvokeCommand Command=KeyPressCommand, Parameter=True}"
+		  KeyUp="{thersuli:InvokeCommand Command=KeyPressCommand, Parameter=False}">
 		<ItemsControl ItemsSource="{Binding Path=Entities}" ItemTemplate="{Binding Source={StaticResource EntityViewSelectorDataTemplate}}">
 			<ItemsControl.ItemsPanel>
 				<ItemsPanelTemplate>

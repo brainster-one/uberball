@@ -53,7 +53,7 @@
       <HintPath>..\..\Assets\Packages\Ardelme.0.0.2\lib\sl50\Ardelme.Silverlight.dll</HintPath>
     </Reference>
     <Reference Include="Khrussk.NetworkRealm.Silverlight, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\Assets\Packages\Khrussk.NetworkRealm.Silverlight.0.0.3\lib\sl5\Khrussk.NetworkRealm.Silverlight.dll</HintPath>
+      <HintPath>..\..\Assets\Packages\Khrussk.NetworkRealm.Silverlight.0.0.4\lib\sl5\Khrussk.NetworkRealm.Silverlight.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib" />
     <Reference Include="system" />
@@ -65,18 +65,22 @@
       <HintPath>..\..\Assets\Packages\SilverlightToolkit-Core.4.2010.4\lib\sl4\System.Windows.Controls.Toolkit.dll</HintPath>
     </Reference>
     <Reference Include="Thersuli, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\Assets\Packages\Thersuli.0.0.6\lib\sl50\Thersuli.dll</HintPath>
+      <HintPath>..\..\Assets\Packages\Thersuli.0.0.7\lib\sl50\Thersuli.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\uberball.game.logic.entities\Player.cs">
       <Link>Shared\Player.cs</Link>
     </Compile>
+    <Compile Include="..\Uberball.Game.NetworkProtocol\InputPacket.cs">
+      <Link>Shared\InputPacket.cs</Link>
+    </Compile>
     <Compile Include="..\uberball.game.networkprotocol\PlayerSerializer.cs">
       <Link>Shared\PlayerSerializer.cs</Link>
     </Compile>
     <Compile Include="Behaviors\UpdatePlayerPositionRealmBehavior.cs" />
     <Compile Include="Commands\ConnectCommand.cs" />
+    <Compile Include="Commands\KeyPressCommand.cs" />
     <Compile Include="ViewModels\Mappers\IMapper.cs" />
     <Compile Include="ViewModels\Mappers\PlayerMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

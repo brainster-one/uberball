@@ -32,6 +32,7 @@ namespace Uberball.Game.Client.Areas.MatchArea.DataProviders {
 		/// <summary>Initializes a new instance of the MatchDataProvider class.</summary>
 		public MatchDataProvider() {
 			Entities = new ObservableCollection<object>();
+			_client.Protocol.RegisterPacketType(typeof(InputPacket), new InputPacketSrializer());
 			_client.Protocol.RegisterEntityType(typeof(Player), new PlayerSerializer());
 			_client.Connected += _client_Connected;
 			_client.EntityAdded += Client_EntityAdded;
@@ -53,6 +54,12 @@ namespace Uberball.Game.Client.Areas.MatchArea.DataProviders {
 
 		public void Connect(IPEndPoint endpoint) {
 			_client.Connect(endpoint);
+		}
+
+		public void Input(bool u, bool r, bool d, bool l) {
+			_client.Send(new InputPacket {
+				IsUpPressed = u, IsRightPressed = r, IsDownPressed = d, IsLeftPressed = l
+			});
 		}
 
 		void _client_Connected(object sender, RealmEventArgs e) {
