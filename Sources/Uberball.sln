@@ -30,6 +30,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uberball.Game.Services.Silv
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uberball.Game.Client.Areas.MatchArea", "Uberball.Game.Client.Areas.MatchArea\Uberball.Game.Client.Areas.MatchArea.csproj", "{BD5AE16F-B547-4561-842D-C1ED8BFA0A29}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uberball.Game.Client.Core", "Uberball.Game.Client.Core\Uberball.Game.Client.Core.csproj", "{DFDC27A5-589D-4BE5-873F-CED4A1085AC8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -130,6 +132,16 @@ Global
 		{BD5AE16F-B547-4561-842D-C1ED8BFA0A29}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{BD5AE16F-B547-4561-842D-C1ED8BFA0A29}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{BD5AE16F-B547-4561-842D-C1ED8BFA0A29}.Release|x86.ActiveCfg = Release|Any CPU
+		{DFDC27A5-589D-4BE5-873F-CED4A1085AC8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DFDC27A5-589D-4BE5-873F-CED4A1085AC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DFDC27A5-589D-4BE5-873F-CED4A1085AC8}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{DFDC27A5-589D-4BE5-873F-CED4A1085AC8}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{DFDC27A5-589D-4BE5-873F-CED4A1085AC8}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{DFDC27A5-589D-4BE5-873F-CED4A1085AC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DFDC27A5-589D-4BE5-873F-CED4A1085AC8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DFDC27A5-589D-4BE5-873F-CED4A1085AC8}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{DFDC27A5-589D-4BE5-873F-CED4A1085AC8}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{DFDC27A5-589D-4BE5-873F-CED4A1085AC8}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -144,5 +156,6 @@ Global
 		{773C167F-DAD9-4C61-90D1-F9C4D22EB576} = {E36688EB-0A62-419C-978B-31D5448A7395}
 		{78BE54C5-71D3-4CCC-8218-52903AFABC02} = {31DA120C-689A-4FB9-A22B-F061067CFF3A}
 		{BD5AE16F-B547-4561-842D-C1ED8BFA0A29} = {31DA120C-689A-4FB9-A22B-F061067CFF3A}
+		{DFDC27A5-589D-4BE5-873F-CED4A1085AC8} = {31DA120C-689A-4FB9-A22B-F061067CFF3A}
 	EndGlobalSection
 EndGlobal

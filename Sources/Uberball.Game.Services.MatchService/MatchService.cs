@@ -31,6 +31,7 @@ namespace Uberball.Game.Services.MatchService {
 		}
 
 		void _service_PacketReceived(object sender, RealmEventArgs e) {
+			/* todo: сохранять пакеты для обработки. Обрабатывать перед обновлением игрового мира. */
 			var player = _userPlayer[e.User];
 
 			var packet = e.Packet as InputPacket;

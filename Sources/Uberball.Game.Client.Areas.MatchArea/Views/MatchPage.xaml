@@ -11,11 +11,10 @@
 	d:DataContext="{Binding Source={StaticResource DesignerViewModelLocator}, Path=MatchViewModel}"
 	d:DesignWidth="640" d:DesignHeight="480" mc:Ignorable="d">
 
-
-	<Grid x:Name="LayoutRoot" Loaded="{thersuli:InvokeCommand Command=ConnectCommand}"
-		  
-		  KeyDown="{thersuli:InvokeCommand Command=KeyPressCommand, Parameter=True}"
-		  KeyUp="{thersuli:InvokeCommand Command=KeyPressCommand, Parameter=False}">
+	<Grid Loaded="{thersuli:InvokeCommand Command=ConnectCommand}"
+	      KeyDown="{thersuli:InvokeCommand Command=KeyPressCommand, Parameter=True}"
+	      KeyUp="{thersuli:InvokeCommand Command=KeyPressCommand, Parameter=False}">
+		
 		<ItemsControl ItemsSource="{Binding Path=Entities}" ItemTemplate="{Binding Source={StaticResource EntityViewSelectorDataTemplate}}">
 			<ItemsControl.ItemsPanel>
 				<ItemsPanelTemplate>
@@ -24,6 +23,6 @@
 			</ItemsControl.ItemsPanel>
 		</ItemsControl>
 
-		<toolkit:BusyIndicator Visibility="Visible" IsBusy="{Binding IsBusy}" />
+		<toolkit:BusyIndicator IsBusy="{Binding IsBusy}" />
 	</Grid>
 </navigation:Page>

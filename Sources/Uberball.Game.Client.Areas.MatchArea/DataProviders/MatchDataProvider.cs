@@ -35,6 +35,8 @@ namespace Uberball.Game.Client.Areas.MatchArea.DataProviders {
 			_client.Protocol.RegisterPacketType(typeof(InputPacket), new InputPacketSrializer());
 			_client.Protocol.RegisterEntityType(typeof(Player), new PlayerSerializer());
 			_client.Connected += _client_Connected;
+			_client.ConnectionFailed += new EventHandler<RealmEventArgs>(_client_ConnectionFailed);
+			_client.Disconnected += new EventHandler<RealmEventArgs>(_client_Disconnected);
 			_client.EntityAdded += Client_EntityAdded;
 			_client.EntityRemoved += _client_EntityRemoved;
 			_client.EntityModified += _client_EntityModified;
@@ -51,6 +53,8 @@ namespace Uberball.Game.Client.Areas.MatchArea.DataProviders {
 		public ObservableCollection<object> Entities { get; private set; }
 
 		public event EventHandler Connected;
+		public event EventHandler ConnectionFailed;
+		public event EventHandler Disconnected;
 
 		public void Connect(IPEndPoint endpoint) {
 			_client.Connect(endpoint);
@@ -64,6 +68,16 @@ namespace Uberball.Game.Client.Areas.MatchArea.DataProviders {
 
 		void _client_Connected(object sender, RealmEventArgs e) {
 			var evnt = Connected;
+			if (evnt != null) evnt(this, new EventArgs());
+		}
+
+		void _client_Disconnected(object sender, RealmEventArgs e) {
+			var evnt = Disconnected;
+			if (evnt != null) evnt(this, new EventArgs());
+		}
+
+		void _client_ConnectionFailed(object sender, RealmEventArgs e) {
+			var evnt = ConnectionFailed;
 			if (evnt != null) evnt(this, new EventArgs());
 		}
 

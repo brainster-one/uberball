@@ -53,7 +53,7 @@
       <HintPath>..\..\Assets\Packages\Ardelme.0.0.2\lib\sl50\Ardelme.Silverlight.dll</HintPath>
     </Reference>
     <Reference Include="Khrussk.NetworkRealm.Silverlight, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\Assets\Packages\Khrussk.NetworkRealm.Silverlight.0.0.4\lib\sl5\Khrussk.NetworkRealm.Silverlight.dll</HintPath>
+      <HintPath>..\..\Assets\Packages\Khrussk.NetworkRealm.Silverlight.0.0.5\lib\sl5\Khrussk.NetworkRealm.Silverlight.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib" />
     <Reference Include="system" />
@@ -98,7 +98,12 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Uberball.Game.Client.Core\Uberball.Game.Client.Core.csproj">
+      <Project>{DFDC27A5-589D-4BE5-873F-CED4A1085AC8}</Project>
+      <Name>Uberball.Game.Client.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Views\Player.xaml">
       <SubType>Designer</SubType>

@@ -5,6 +5,8 @@ namespace Uberball.Game.Client.Areas.MatchArea.ViewModels {
 	using Thersuli;
 	using Uberball.Game.Client.Areas.MatchArea.Commands;
 	using Uberball.Game.Client.Areas.MatchArea.DataProviders;
+	using Uberball.Game.Client.Core.Managers;
+	using System.Windows;
 
 	/// <summary>Match view model.</summary>
 	public sealed class MatchViewModel : ViewModel {
@@ -14,10 +16,15 @@ namespace Uberball.Game.Client.Areas.MatchArea.ViewModels {
 			IsBusy = true;
 			KeyPressCommand = new KeyPressCommand(_matchDataProvider);
 			ConnectCommand = new ConnectCommand(_matchDataProvider, endpoint);
-			ConnectCommand.Completed += (x, y) => { IsBusy = false; OnPropertyChanged("IsBusy"); };
+			ConnectCommand.Success += (x, y) => { IsBusy = false; };
+			ConnectCommand.Failure += (x, y) => { IsBusy = false; ErrorManager.Error("Unable connect to " + endpoint.Address.ToString()); };
 		}
 
-		public bool IsBusy { get; private set; }
+		/// <summary>Gets is busy flag.</summary>
+		public bool IsBusy { 
+			get { return _isBusy; } 
+			private set { _isBusy = value; OnPropertyChanged("IsBusy"); } 
+		}
 
 		/// <summary>Gets list of entity view models.</summary>
 		public ObservableCollection<object> Entities { get { return _matchDataProvider.Entities; } }
@@ -27,6 +34,9 @@ namespace Uberball.Game.Client.Areas.MatchArea.ViewModels {
 
 		/// <summary>Key pressed command.</summary>
 		public KeyPressCommand KeyPressCommand { get; private set; }
+
+		/// <summary>Busy flag.</summary>
+		private bool _isBusy;
 		
 		/// <summary>Match data provider.</summary>
 		private MatchDataProvider _matchDataProvider = new MatchDataProvider();
