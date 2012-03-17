@@ -4,7 +4,7 @@ namespace Uberball.Game.Client.Areas.MatchArea.Commands {
 	using System.Net;
 	using Khrussk.NetworkRealm;
 	using Thersuli;
-	using Uberball.Game.Client.Areas.MatchArea.DataProviders;
+	using Uberball.Game.Client.Areas.MatchArea.DataProviders.MatchDataProvider;
 
 	/// <summary>Connect to match service command.</summary>
 	public class ConnectCommand : Command {

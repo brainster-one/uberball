@@ -1,5 +1,5 @@
 ﻿
-namespace Uberball.Game.Client.Areas.MatchArea.DataProviders {
+namespace Uberball.Game.Client.Areas.MatchArea.DataProviders.MatchDataProvider {
 	using System;
 	using System.Collections.Generic;
 	using System.Collections.ObjectModel;
@@ -14,18 +14,7 @@ namespace Uberball.Game.Client.Areas.MatchArea.DataProviders {
 	using Uberball.Game.Client.Areas.MatchArea.ViewModels.Mappers;
 	using Uberball.Game.Logic.Entities;
 	using Uberball.Game.NetworkProtocol;
-
-	/// <summary>Entity metadata.</summary>
-	public class EntityInfo {
-		/// <summary>Gets or sets entity network Id.</summary>
-		public int Id { get; set; }
-
-		/// <summary>Entity itself.</summary>
-		public object Entity { get; set; }
-
-		/// <summary>Gets or sets entity view model.</summary>
-		public object ViewModel { get; set; }
-	}
+	using Uberball.Game.Client.Areas.MatchArea.DataProviders.MatchDataProvider;
 
 	/// <summary>Match data provider.</summary>
 	public sealed class MatchDataProvider {
@@ -41,8 +30,8 @@ namespace Uberball.Game.Client.Areas.MatchArea.DataProviders {
 			_client.EntityRemoved += _client_EntityRemoved;
 			_client.EntityModified += _client_EntityModified;
 			_realm.AddBehavior(new UpdatePlayerPositionRealmBehavior());
-			_storage.CollectionChanged += EntitiesCollectionChanged;
-			_mappers.Add(typeof(Player), new PlayerMapper());
+
+			_manager = new EntityManager(_realm, Entities);
 
 			/* looks like shit */
 			CompositionTarget.Rendering += (x, y) => {
@@ -82,44 +71,23 @@ namespace Uberball.Game.Client.Areas.MatchArea.DataProviders {
 		}
 
 		void Client_EntityAdded(object sender, RealmEventArgs e) {
-			lock (_realm) {
-				object viewModel = null;
-				var mapper = _mappers[e.Entity.GetType()];
-				mapper.Map(e.Entity, ref viewModel);
-				_storage.Add(new EntityInfo { Id = e.EntityId, Entity = e.Entity, ViewModel = viewModel });
-			}
+			_manager.Add(e.EntityId, e.Entity);
 		}
 
 		void _client_EntityRemoved(object sender, RealmEventArgs e) {
-
+			_manager.Remove(e.EntityId);
 		}
 
 		void _client_EntityModified(object sender, RealmEventArgs e) {
-			lock (_realm) {
-				var ent = _storage.First(x => e.EntityId == x.Id);
-				var viewModel = ent.ViewModel;
-				var mapper = _mappers[ent.Entity.GetType()];
-				e.EntityDiffData.ApplyChanges(ent.Entity);
-				Deployment.Current.Dispatcher.BeginInvoke(() => mapper.Map(ent.Entity, ref viewModel));
-			}
+			_manager.ModifyEntity(e.EntityId, e.EntityDiffData);
 		}
 
-		void EntitiesCollectionChanged(object sender, NotifyCollectionChangedEventArgs e) {
-			if (e.Action == NotifyCollectionChangedAction.Add) {
-				foreach (EntityInfo item in e.NewItems) {
-					_realm.AddEntity(item.ViewModel);
-					Deployment.Current.Dispatcher.BeginInvoke(() => Entities.Add(item.ViewModel));
-				}
-			}
-		}
+		private EntityManager _manager;
 
 		// <summary>Client's realm. Provides client's realm calculations.</summary>
 		private Realm _realm = new Realm();
 
 		/// <summary>Client interface to connect to remote service.</summary>
 		private RealmClient _client = new RealmClient();
-
-		private ObservableCollection<EntityInfo> _storage = new ObservableCollection<EntityInfo>();
-		private Dictionary<Type, IMapper> _mappers = new Dictionary<Type, IMapper>();
 	}
 }

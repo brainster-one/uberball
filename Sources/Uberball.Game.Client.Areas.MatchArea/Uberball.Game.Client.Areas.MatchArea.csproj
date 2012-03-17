@@ -78,6 +78,8 @@
     <Compile Include="..\uberball.game.networkprotocol\PlayerSerializer.cs">
       <Link>Shared\PlayerSerializer.cs</Link>
     </Compile>
+    <Compile Include="DataProviders\MatchDataProvider\EntityInfo.cs" />
+    <Compile Include="DataProviders\MatchDataProvider\EntityManager.cs" />
     <Compile Include="Locators\DataProviderLocator.cs" />
     <Compile Include="RealmBehaviors\UpdatePlayerPositionRealmBehavior.cs" />
     <Compile Include="Commands\ConnectCommand.cs" />
@@ -85,7 +87,7 @@
     <Compile Include="ViewModels\Mappers\IMapper.cs" />
     <Compile Include="ViewModels\Mappers\PlayerMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="DataProviders\MatchDataProvider.cs" />
+    <Compile Include="DataProviders\MatchDataProvider\MatchDataProvider.cs" />
     <Compile Include="ViewModels\Entities\PlayerViewModel.cs" />
     <Compile Include="ViewModels\EntityViewSelector.cs" />
     <Compile Include="ViewModels\MatchViewModel.cs" />

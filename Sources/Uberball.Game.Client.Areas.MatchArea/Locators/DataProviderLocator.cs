@@ -1,6 +1,6 @@
 ﻿
 namespace Uberball.Game.Client.Areas.MatchArea.Locators {
-	using Uberball.Game.Client.Areas.MatchArea.DataProviders;
+	using Uberball.Game.Client.Areas.MatchArea.DataProviders.MatchDataProvider;
 
 	public class DataProviderLocator {
 		private static MatchDataProvider _matchDataProvider;
