@@ -16,6 +16,7 @@ namespace Uberball.Game.Services.MatchService {
 			_service.Protocol.RegisterPacketType(typeof(InputPacket), new InputPacketSrializer());
 			_service.Protocol.RegisterEntityType(typeof(Player), new PlayerSerializer());
 			_service.UserConnected += new System.EventHandler<RealmEventArgs>(_service_UserConnected);
+			_service.UserDisconnected += new EventHandler<RealmEventArgs>(_service_UserDisconnected);
 			_service.PacketReceived += new EventHandler<RealmEventArgs>(_service_PacketReceived);
 
 			_realm.AddBehavior(new MovePlayersRealmBehavior());
@@ -45,6 +46,12 @@ namespace Uberball.Game.Services.MatchService {
 			var plr = new Player { Name = "Player_" + DateTime.Now.Millisecond };
 			_userPlayer[e.User] = plr;
 			_realm.AddEntity(plr);
+		}
+
+		void _service_UserDisconnected(object sender, RealmEventArgs e) {
+			Console.WriteLine("User disconnected: " + e.User);
+			var entity = _userPlayer[e.User];
+			_realm.RemoveEntity(entity);
 		}
 
 		public void Start(IPEndPoint endpoint) {

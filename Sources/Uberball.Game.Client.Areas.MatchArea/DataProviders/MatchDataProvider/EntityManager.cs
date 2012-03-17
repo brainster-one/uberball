@@ -48,6 +48,11 @@ namespace Uberball.Game.Client.Areas.MatchArea.DataProviders.MatchDataProvider {
 					_realm.AddEntity(item.ViewModel);
 					Deployment.Current.Dispatcher.BeginInvoke(() => _viewModels.Add(item.ViewModel));
 				}
+			} else if (e.Action == NotifyCollectionChangedAction.Remove) {
+				foreach (EntityInfo item in e.OldItems) {
+					_realm.RemoveEntity(item.ViewModel);
+					Deployment.Current.Dispatcher.BeginInvoke(() => _viewModels.Remove(item.ViewModel));
+				}
 			}
 		}
 
