@@ -1,28 +1,19 @@
 ﻿
 namespace Uberball.Game.Client.Areas.MatchArea.DataProviders.MatchDataProvider {
 	using System;
-	using System.Collections.Generic;
 	using System.Collections.ObjectModel;
-	using System.Collections.Specialized;
-	using System.Linq;
 	using System.Net;
-	using System.Windows;
 	using System.Windows.Media;
 	using Ardelme.Core;
 	using Khrussk.NetworkRealm;
 	using Uberball.Game.Client.Areas.MatchArea.RealmBehaviors;
-	using Uberball.Game.Client.Areas.MatchArea.ViewModels.Mappers;
-	using Uberball.Game.Logic.Entities;
 	using Uberball.Game.NetworkProtocol;
-	using Uberball.Game.Client.Areas.MatchArea.DataProviders.MatchDataProvider;
 
 	/// <summary>Match data provider.</summary>
 	public sealed class MatchDataProvider {
 		/// <summary>Initializes a new instance of the MatchDataProvider class.</summary>
 		public MatchDataProvider() {
 			Entities = new ObservableCollection<object>();
-			_client.Protocol.RegisterPacketType(typeof(InputPacket), new InputPacketSrializer());
-			_client.Protocol.RegisterEntityType(typeof(Player), new PlayerSerializer());
 			
 			_client.Connected += (s, e) => { var evnt = Connected; if (evnt != null) evnt(this, new EventArgs()); };
 			_client.ConnectionFailed += (s, e) => { var evnt = ConnectionFailed; if (evnt != null) evnt(this, new EventArgs()); };
@@ -63,6 +54,6 @@ namespace Uberball.Game.Client.Areas.MatchArea.DataProviders.MatchDataProvider {
 		private Realm _realm = new Realm();
 
 		/// <summary>Client interface to connect to remote service.</summary>
-		private RealmClient _client = new RealmClient();
+		private RealmClient _client = new RealmClient(new UberballProtocol());
 	}
 }

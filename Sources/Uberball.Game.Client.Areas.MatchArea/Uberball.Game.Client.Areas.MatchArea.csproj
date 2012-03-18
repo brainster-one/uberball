@@ -53,7 +53,7 @@
       <HintPath>..\..\Assets\Packages\Ardelme.0.0.2\lib\sl50\Ardelme.Silverlight.dll</HintPath>
     </Reference>
     <Reference Include="Khrussk.NetworkRealm.Silverlight, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\Assets\Packages\Khrussk.NetworkRealm.Silverlight.0.0.7\lib\sl5\Khrussk.NetworkRealm.Silverlight.dll</HintPath>
+      <HintPath>..\..\Assets\Packages\Khrussk.NetworkRealm.Silverlight.0.0.8\lib\sl5\Khrussk.NetworkRealm.Silverlight.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib" />
     <Reference Include="system" />
@@ -71,12 +71,18 @@
   <ItemGroup>
     <Compile Include="..\uberball.game.logic.entities\Player.cs">
       <Link>Shared\Player.cs</Link>
+      <SubType>Code</SubType>
     </Compile>
     <Compile Include="..\Uberball.Game.NetworkProtocol\InputPacket.cs">
       <Link>Shared\InputPacket.cs</Link>
+      <SubType>Code</SubType>
     </Compile>
     <Compile Include="..\uberball.game.networkprotocol\PlayerSerializer.cs">
       <Link>Shared\PlayerSerializer.cs</Link>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="..\Uberball.Game.NetworkProtocol\UberballProtocol.cs">
+      <Link>Shared\UberballProtocol.cs</Link>
     </Compile>
     <Compile Include="DataProviders\MatchDataProvider\EntityInfo.cs" />
     <Compile Include="DataProviders\MatchDataProvider\EntityManager.cs" />

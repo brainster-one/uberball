@@ -12,9 +12,6 @@ namespace Uberball.Game.Services.MatchService {
 
 	public class MatchService {
 		public MatchService() {
-			_service = new RealmService();
-			_service.Protocol.RegisterPacketType(typeof(InputPacket), new InputPacketSrializer());
-			_service.Protocol.RegisterEntityType(typeof(Player), new PlayerSerializer());
 			_service.UserConnected += _service_UserConnected;
 			_service.UserDisconnected += _service_UserDisconnected;
 			_service.PacketReceived += _service_PacketReceived;
@@ -64,7 +61,7 @@ namespace Uberball.Game.Services.MatchService {
 		}
 
 		Realm _realm = new Realm();
-		RealmService _service;
+		RealmService _service = new RealmService(new UberballProtocol());
 		Dictionary<Khrussk.NetworkRealm.User, Player> _userPlayer = new Dictionary<Khrussk.NetworkRealm.User, Player>();
 	}
 }
