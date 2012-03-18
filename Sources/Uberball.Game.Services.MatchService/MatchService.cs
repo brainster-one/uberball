@@ -15,9 +15,9 @@ namespace Uberball.Game.Services.MatchService {
 			_service = new RealmService();
 			_service.Protocol.RegisterPacketType(typeof(InputPacket), new InputPacketSrializer());
 			_service.Protocol.RegisterEntityType(typeof(Player), new PlayerSerializer());
-			_service.UserConnected += new System.EventHandler<RealmEventArgs>(_service_UserConnected);
-			_service.UserDisconnected += new EventHandler<RealmEventArgs>(_service_UserDisconnected);
-			_service.PacketReceived += new EventHandler<RealmEventArgs>(_service_PacketReceived);
+			_service.UserConnected += _service_UserConnected;
+			_service.UserDisconnected += _service_UserDisconnected;
+			_service.PacketReceived += _service_PacketReceived;
 
 			_realm.AddBehavior(new MovePlayersRealmBehavior());
 			_realm.AddBehavior(new SyncEntitiesRealmBehavior(_service));
@@ -31,7 +31,7 @@ namespace Uberball.Game.Services.MatchService {
 			_realm.Update(e.SignalTime.Millisecond);
 		}
 
-		void _service_PacketReceived(object sender, RealmEventArgs e) {
+		void _service_PacketReceived(object sender, RealmServiceEventArgs e) {
 			/* todo: сохранять пакеты для обработки. Обрабатывать перед обновлением игрового мира. */
 			var player = _userPlayer[e.User];
 
@@ -41,14 +41,14 @@ namespace Uberball.Game.Services.MatchService {
 		}
 
 
-		void _service_UserConnected(object sender, RealmEventArgs e) {
+		void _service_UserConnected(object sender, RealmServiceEventArgs e) {
 			Console.WriteLine("User connected: " + e.User);
 			var plr = new Player { Name = "Player_" + DateTime.Now.Millisecond };
 			_userPlayer[e.User] = plr;
 			_realm.AddEntity(plr);
 		}
 
-		void _service_UserDisconnected(object sender, RealmEventArgs e) {
+		void _service_UserDisconnected(object sender, RealmServiceEventArgs e) {
 			var entity = _userPlayer[e.User];
 			_realm.RemoveEntity(entity);
 			//_service.RemoveEntity(entity);

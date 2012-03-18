@@ -28,9 +28,9 @@ namespace Uberball.Game.Client.Areas.MatchArea.DataProviders.MatchDataProvider {
 			_client.ConnectionFailed += (s, e) => { var evnt = ConnectionFailed; if (evnt != null) evnt(this, new EventArgs()); };
 			_client.Disconnected += (s, e) => { var evnt = Disconnected; if (evnt != null) evnt(this, new EventArgs()); };
 			
-			_client.EntityAdded += (s,e) => _manager.Add(e.EntityId, e.Entity);
-			_client.EntityRemoved += (s,e) => _manager.Remove(e.EntityId);
-			_client.EntityModified += (s, e) => _manager.ModifyEntity(e.EntityId, e.EntityDiffData);
+			_client.EntityAdded += (s,e) => _manager.Add(e.EntityInfo.Id, e.EntityInfo.Entity);
+			_client.EntityRemoved += (s,e) => _manager.Remove(e.EntityInfo.Id);
+			_client.EntityModified += (s, e) => _manager.ModifyEntity(e.EntityInfo.Id, e.EntityInfo.Diff);
 			_realm.AddBehavior(new UpdatePlayerPositionRealmBehavior());
 
 			_manager = new EntityManager(_realm, Entities);
