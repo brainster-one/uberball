@@ -1,7 +1,6 @@
 ﻿
 namespace Uberball.Game.Services.MatchService {
 	using System;
-	using System.Collections.Generic;
 	using System.Net;
 	using System.Timers;
 	using Ardelme.Core;
@@ -19,7 +18,7 @@ namespace Uberball.Game.Services.MatchService {
 			_realm.AddBehavior(new MovePlayersRealmBehavior());
 			_realm.AddBehavior(new SyncEntitiesRealmBehavior(_service));
 
-			var tmr = new Timer(100) { AutoReset = true };
+			var tmr = new Timer { AutoReset = true, Interval = 100 };
 			tmr.Elapsed += new ElapsedEventHandler(tmr_Elapsed);
 			tmr.Start();
 		}
@@ -30,7 +29,7 @@ namespace Uberball.Game.Services.MatchService {
 
 		void _service_PacketReceived(object sender, RealmServiceEventArgs e) {
 			/* todo: сохранять пакеты для обработки. Обрабатывать перед обновлением игрового мира. */
-			var player = _userPlayer[e.User];
+			var player = e.User["player"] as Player;
 
 			var packet = e.Packet as InputPacket;
 			player.VectorX = packet.IsRightPressed ? 20 : packet.IsLeftPressed ? -20 : 0;
@@ -39,17 +38,12 @@ namespace Uberball.Game.Services.MatchService {
 
 
 		void _service_UserConnected(object sender, RealmServiceEventArgs e) {
-			Console.WriteLine("User connected: " + e.User);
-			var plr = new Player { Name = "Player_" + DateTime.Now.Millisecond };
-			_userPlayer[e.User] = plr;
-			_realm.AddEntity(plr);
+			e.User["player"] = new Player { Name = "Player_" + DateTime.Now.Millisecond };
+			_realm.AddEntity(e.User["player"]);
 		}
 
 		void _service_UserDisconnected(object sender, RealmServiceEventArgs e) {
-			var entity = _userPlayer[e.User];
-			_realm.RemoveEntity(entity);
-			//_service.RemoveEntity(entity);
-			Console.WriteLine("User disconnected: " + e.User);
+			_realm.RemoveEntity(e.User["player"]);
 		}
 
 		public void Start(IPEndPoint endpoint) {
@@ -62,6 +56,5 @@ namespace Uberball.Game.Services.MatchService {
 
 		Realm _realm = new Realm();
 		RealmService _service = new RealmService(new UberballProtocol());
-		Dictionary<Khrussk.NetworkRealm.User, Player> _userPlayer = new Dictionary<Khrussk.NetworkRealm.User, Player>();
 	}
 }
