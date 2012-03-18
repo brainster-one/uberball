@@ -2,7 +2,7 @@
 namespace Uberball.Game.Services.MatchService {
 	using System;
 	using System.Net;
-	using System.Timers;
+	using System.Threading;
 	using Ardelme.Core;
 	using Khrussk.NetworkRealm;
 	using Uberball.Game.Logic.Entities;
@@ -15,16 +15,9 @@ namespace Uberball.Game.Services.MatchService {
 			_service.UserDisconnected += _service_UserDisconnected;
 			_service.PacketReceived += _service_PacketReceived;
 
-			_realm.AddBehavior(new MovePlayersRealmBehavior());
-			_realm.AddBehavior(new SyncEntitiesRealmBehavior(_service));
-
-			var tmr = new Timer { AutoReset = true, Interval = 100 };
-			tmr.Elapsed += new ElapsedEventHandler(tmr_Elapsed);
-			tmr.Start();
-		}
-
-		void tmr_Elapsed(object sender, ElapsedEventArgs e) {
-			_realm.Update(e.SignalTime.Millisecond);
+			_realm = new Realm(new IRealmBehavior[] {
+				new MovePlayersRealmBehavior(), new SyncEntitiesRealmBehavior(_service)
+			});
 		}
 
 		void _service_PacketReceived(object sender, RealmServiceEventArgs e) {
@@ -48,13 +41,18 @@ namespace Uberball.Game.Services.MatchService {
 
 		public void Start(IPEndPoint endpoint) {
 			_service.Start(endpoint);
+			new Thread(() => {
+				while (_working) { _realm.Update(0); System.Threading.Thread.Sleep(100); }
+			}).Start();			
 		}
 
 		public void Stop() {
+			_working = false;
 			_service.Stop();
 		}
 
-		Realm _realm = new Realm();
+		Realm _realm;
 		RealmService _service = new RealmService(new UberballProtocol());
+		bool _working = true;
 	}
 }
