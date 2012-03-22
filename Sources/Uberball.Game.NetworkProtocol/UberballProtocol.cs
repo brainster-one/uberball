@@ -7,8 +7,8 @@ namespace Uberball.Game.NetworkProtocol {
 	public class UberballProtocol : RealmProtocol {
 		/// <summary>Initializes a new instance of the UberballProtocol class.</summary>
 		public UberballProtocol() {
-			RegisterPacketType(typeof(InputPacket), new InputPacketSrializer());
-			RegisterEntityType(typeof(Player), new PlayerSerializer());
+			Register<InputPacket>(new InputPacketSrializer());
+			Register<Player>(new PlayerSerializer());
 		}
 	}
 }

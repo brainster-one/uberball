@@ -51,8 +51,9 @@
     <Reference Include="Ardelme.Silverlight, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\Assets\Packages\Ardelme.0.0.3\lib\sl50\Ardelme.Silverlight.dll</HintPath>
     </Reference>
-    <Reference Include="Khrussk.NetworkRealm.Silverlight, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\Assets\Packages\Khrussk.NetworkRealm.Silverlight.0.0.9\lib\sl5\Khrussk.NetworkRealm.Silverlight.dll</HintPath>
+    <Reference Include="Khrussk.NetworkRealm.Silverlight, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Assets\Packages\Khrussk.NetworkRealm.Silverlight.0.0.30\lib\sl5\Khrussk.NetworkRealm.Silverlight.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib" />
     <Reference Include="system" />

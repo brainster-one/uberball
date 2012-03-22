@@ -2,8 +2,10 @@
 namespace Uberball.Game.Client.Areas.MatchArea.ViewModels {
 	using System.Collections.ObjectModel;
 	using System.Net;
+	using Khrussk;
 	using Thersuli;
 	using Uberball.Game.Client.Areas.MatchArea.Commands;
+	using Uberball.Game.Client.Areas.MatchArea.DataProviders.MatchDataProvider;
 	using Uberball.Game.Client.Areas.MatchArea.Locators;
 	using Uberball.Game.Client.Core.Managers;
 
@@ -15,9 +17,12 @@ namespace Uberball.Game.Client.Areas.MatchArea.ViewModels {
 			IsBusy = true;
 			KeyPressCommand = new KeyPressCommand(DataProviderLocator.MatchDataProvider);
 			ConnectCommand = new ConnectCommand(DataProviderLocator.MatchDataProvider, endpoint);
-			ConnectCommand.Success += (x, y) => { IsBusy = false; };
-			ConnectCommand.Failure += (x, y) => { IsBusy = false; ErrorManager.Error("Unable connect to " + endpoint.Address.ToString()); };
-			DataProviderLocator.MatchDataProvider.Disconnected += (x, y) => ErrorManager.Error("Connection lost");
+			DataProviderLocator.MatchDataProvider.ConnectionStateChanged += MatchDataProvider_ConnectionStateChanged;
+		}
+
+		void MatchDataProvider_ConnectionStateChanged(object sender, MatchDataProviderEventArgs e) {
+			IsBusy = false;
+			if (e.ConnectionState == ConnectionState.Disconnected) ErrorManager.Error("Connection lost");
 		}
 
 		/// <summary>Gets is busy flag.</summary>

@@ -10,8 +10,8 @@ namespace Uberball.Game.NetworkProtocol {
 		public bool IsDownPressed { get; set; }
 	}
 
-	public class InputPacketSrializer : IPacketSerializer {
-		public object Deserialize(BinaryReader reader) {
+	public class InputPacketSrializer : IPacketSerializer<InputPacket> {
+		public InputPacket Deserialize(BinaryReader reader) {
 			return new InputPacket {
 				IsUpPressed = reader.ReadBoolean(),
 				IsRightPressed = reader.ReadBoolean(),
@@ -20,12 +20,11 @@ namespace Uberball.Game.NetworkProtocol {
 			};
 		}
 
-		public void Serialize(BinaryWriter writer, object packet) {
-			var p = (InputPacket)packet;
-			writer.Write(p.IsUpPressed);
-			writer.Write(p.IsRightPressed);
-			writer.Write(p.IsDownPressed);
-			writer.Write(p.IsLeftPressed);
+		public void Serialize(BinaryWriter writer, InputPacket packet) {
+			writer.Write(packet.IsUpPressed);
+			writer.Write(packet.IsRightPressed);
+			writer.Write(packet.IsDownPressed);
+			writer.Write(packet.IsLeftPressed);
 		}
 	}
 }
