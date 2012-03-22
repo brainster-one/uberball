@@ -16,8 +16,14 @@ namespace Uberball.Game.Services.MatchService {
 			_service.PacketReceived += _service_PacketReceived;
 
 			_realm = new Realm(new IRealmBehavior[] {
-				new MovePlayersRealmBehavior(), new SyncEntitiesRealmBehavior(_service)
+				new MovePlayersRealmBehavior(), 
+				new PlayerCollideWithBlockRealmBehavior(),
+				new SyncEntitiesRealmBehavior(_service),
 			});
+
+			_realm.AddEntity(new Block() { X = 64 * 4, Y = 64 * 5 });
+			_realm.AddEntity(new Block() { X = 64 * 5, Y = 64 * 5 });
+			_realm.AddEntity(new Block() { X = 64 * 6, Y = 64 * 5 });
 		}
 
 		void _service_PacketReceived(object sender, RealmServiceEventArgs e) {
@@ -32,17 +38,17 @@ namespace Uberball.Game.Services.MatchService {
 
 		void _service_UserConnected(object sender, RealmServiceEventArgs e) {
 			e.User["player"] = new Player { Name = "Player_" + DateTime.Now.Millisecond };
-			_realm.AddEntity(e.User["player"]);
+			lock (_realm) { _realm.AddEntity(e.User["player"]); };
 		}
 
 		void _service_UserDisconnected(object sender, RealmServiceEventArgs e) {
-			_realm.RemoveEntity(e.User["player"]);
+			lock (_realm) { _realm.RemoveEntity(e.User["player"]); };
 		}
 
 		public void Start(IPEndPoint endpoint) {
 			_service.Start(endpoint);
 			new Thread(() => {
-				while (_working) { _realm.Update(0); System.Threading.Thread.Sleep(100); }
+				while (_working) { lock (_realm) { _realm.Update(0); }; System.Threading.Thread.Sleep(100); }
 			}).Start();			
 		}
 

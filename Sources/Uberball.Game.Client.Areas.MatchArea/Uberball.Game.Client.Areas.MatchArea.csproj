@@ -69,9 +69,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\Uberball.Game.Logic.Entities\Block.cs">
+      <Link>Shared\Block.cs</Link>
+    </Compile>
     <Compile Include="..\uberball.game.logic.entities\Player.cs">
       <Link>Shared\Player.cs</Link>
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="..\Uberball.Game.NetworkProtocol\BlockSerializer.cs">
+      <Link>Shared\BlockSerializer.cs</Link>
     </Compile>
     <Compile Include="..\Uberball.Game.NetworkProtocol\InputPacket.cs">
       <Link>Shared\InputPacket.cs</Link>
@@ -90,6 +96,8 @@
     <Compile Include="RealmBehaviors\UpdatePlayerPositionRealmBehavior.cs" />
     <Compile Include="Commands\ConnectCommand.cs" />
     <Compile Include="Commands\KeyPressCommand.cs" />
+    <Compile Include="ViewModels\Entities\BlockViewModel.cs" />
+    <Compile Include="ViewModels\Mappers\BlockMapper.cs" />
     <Compile Include="ViewModels\Mappers\IMapper.cs" />
     <Compile Include="ViewModels\Mappers\PlayerMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -115,15 +123,19 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Views\Player.xaml">
+    <Resource Include="Views\DataTemplates\PlayerDataTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Resource>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Views\Common.xaml">
+    <Page Include="Views\DataTemplates\EntityViewSelectorDataTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DataTemplates\BlockDataTemplate.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Pages\MatchPage.xaml">
       <SubType>Designer</SubType>

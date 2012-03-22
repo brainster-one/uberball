@@ -5,16 +5,14 @@ namespace Uberball.Game.NetworkProtocol {
 	using Khrussk.NetworkRealm.Protocol;
 	using Uberball.Game.Logic.Entities;
 
-	public class PlayerSerializer : IEntitySerializer<Player> {
-		public void Deserialize(BinaryReader reader, ref Player entity) {
-			entity = entity ?? new Player();
-			entity.Name = reader.ReadString();
+	public class BlockSerializer : IEntitySerializer<Block> {
+		public void Deserialize(BinaryReader reader, ref Block entity) {
+			entity = entity ?? new Block();
 			entity.X = reader.ReadInt16();
 			entity.Y = reader.ReadInt16();
 		}
 
-		public void Serialize(BinaryWriter writer, Player entity) {
-			writer.Write(entity.Name);
+		public void Serialize(BinaryWriter writer, Block entity) {
 			writer.Write((Int16)entity.X);
 			writer.Write((Int16)entity.Y);
 		}

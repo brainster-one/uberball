@@ -7,8 +7,9 @@
 	<Application.Resources>
 		<ResourceDictionary>
 			<ResourceDictionary.MergedDictionaries>
-				<ResourceDictionary Source="/Uberball.Game.Client.Areas.MatchArea;component/Views/Common.xaml" />
-				<ResourceDictionary Source="/Uberball.Game.Client.Areas.MatchArea;component/Views/Player.xaml" />
+				<ResourceDictionary Source="/Uberball.Game.Client.Areas.MatchArea;component/Views/DataTemplates/EntityViewSelectorDataTemplate.xaml" />
+				<ResourceDictionary Source="/Uberball.Game.Client.Areas.MatchArea;component/Views/DataTemplates/PlayerDataTemplate.xaml" />
+				<ResourceDictionary Source="/Uberball.Game.Client.Areas.MatchArea;component/Views/DataTemplates/BlockDataTemplate.xaml" />
 			</ResourceDictionary.MergedDictionaries>
 			<Local:ViewModelLocator x:Key="ViewModelLocator"/>
 			<Local:DesignerViewModelLocator x:Key="DesignerViewModelLocator"/>

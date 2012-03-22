@@ -1,0 +1,27 @@
+﻿<ResourceDictionary
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+	<DataTemplate x:Key="PlayerTemplate">
+		<Canvas Width="50" Height="50">
+			<Viewbox Width="40.8832" Height="52.8089" Canvas.Left="-5.26538" Canvas.Top="-1.52588e-005">
+				<Canvas Width="40.8832" Height="52.8089">
+					<Path Width="21" Height="19.6667" Canvas.Left="9.9321" Canvas.Top="0" Stretch="Fill" StrokeLineJoin="Round" Stroke="#FF000000" Fill="#FFBEA073" Data="F1 M 20.4321,0.5C 25.955,0.5 30.4321,4.67862 30.4321,9.83334C 30.4321,14.9879 25.9549,19.1667 20.4321,19.1667C 14.9093,19.1667 10.4321,14.9879 10.4321,9.83334C 10.4321,4.67862 14.9092,0.5 20.4321,0.5 Z "/>
+					<Path Width="2.66669" Height="21" Canvas.Left="19.932" Canvas.Top="18.3334" Stretch="Fill" StrokeLineJoin="Round" Stroke="#FF000000" Fill="#FFBEA073" Data="F1 M 20.432,18.8334C 20.432,25.5232 22.0987,32.1436 22.0987,38.8334"/>
+					<Path Width="7.66666" Height="11.3333" Canvas.Left="14.5987" Canvas.Top="38" Stretch="Fill" StrokeLineJoin="Round" Stroke="#FF000000" Fill="#FFBEA073" Data="F1 M 21.7654,38.5C 20.243,42.3059 18.378,46.3739 15.0987,48.8334"/>
+					<Path Width="14" Height="11.3333" Canvas.Left="21.932" Canvas.Top="39" Stretch="Fill" StrokeLineJoin="Round" Stroke="#FF000000" Fill="#FFBEA073" Data="F1 M 22.432,39.5C 27.1787,42.348 30.4809,47.3578 35.432,49.8334"/>
+					<Path Width="16" Height="7.33334" Canvas.Left="5.26538" Canvas.Top="24" Stretch="Fill" StrokeLineJoin="Round" Stroke="#FF000000" Fill="#FFBEA073" Data="F1 M 20.7654,24.5C 15.7262,26.5157 11.0308,29.5171 5.76538,30.8334"/>
+					<Path Width="12.3333" Height="6" Canvas.Left="19.932" Canvas.Top="23.6667" Stretch="Fill" StrokeLineJoin="Round" Stroke="#FF000000" Fill="#FFBEA073" Data="F1 M 20.432,24.1667C 24.2658,25.7002 27.7596,28.1653 31.7654,29.1667"/>
+				</Canvas>
+			</Viewbox>
+
+			<!-- Name -->
+			<TextBlock Text="{Binding Name}" Foreground="White"/>
+
+			<!-- Position -->
+			<Canvas.RenderTransform>
+				<TranslateTransform X="{Binding X}" Y="{Binding Y}" />
+			</Canvas.RenderTransform>
+		</Canvas>
+	</DataTemplate>
+</ResourceDictionary>

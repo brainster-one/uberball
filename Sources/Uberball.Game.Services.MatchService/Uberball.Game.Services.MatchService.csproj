@@ -40,7 +40,7 @@
       <HintPath>..\..\Assets\Packages\Khrussk.Interfaces.0.0.30\lib\Khrussk.Interfaces.dll</HintPath>
     </Reference>
     <Reference Include="Khrussk.NetworkRealm, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\Assets\Packages\Khrussk.NetworkRealm.0.0.30\lib\Khrussk.NetworkRealm.dll</HintPath>
+      <HintPath>..\..\Assets\Packages\Khrussk.NetworkRealm.0.0.31\lib\Khrussk.NetworkRealm.dll</HintPath>
     </Reference>
     <Reference Include="Khrussk.Peers, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\Assets\Packages\Khrussk.Peers.0.0.30\lib\Khrussk.Peers.dll</HintPath>
@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="MatchService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RealmBehaviors\PlayerCollideWithBlockRealmBehavior.cs" />
     <Compile Include="RealmBehaviors\SyncEntitiesRealmBehavior.cs" />
     <Compile Include="RealmBehaviors\MovePlayersRealmBehavior.cs" />
   </ItemGroup>
