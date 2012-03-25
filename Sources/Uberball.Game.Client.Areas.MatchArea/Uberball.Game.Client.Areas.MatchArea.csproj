@@ -99,10 +99,13 @@
     <Compile Include="..\Uberball.Game.NetworkProtocol\UberballProtocol.cs">
       <Link>Shared\UberballProtocol.cs</Link>
     </Compile>
+    <Compile Include="Behaviors\ConnectionStateChangedBehavior.cs" />
+    <Compile Include="Behaviors\EntityViewModelStateChangedBehavior.cs" />
+    <Compile Include="Behaviors\EntityModelStateChangedBehavior.cs" />
+    <Compile Include="Behaviors\IBehavior.cs" />
     <Compile Include="Commands\MouseRightButtonDownCommand.cs" />
     <Compile Include="Commands\GoToFullScreenModeCommand.cs" />
-    <Compile Include="DataProviders\MatchDataProvider\EntityInfo.cs" />
-    <Compile Include="DataProviders\MatchDataProvider\EntityManager.cs" />
+    <Compile Include="Behaviors\UpdateRealmBehavior.cs" />
     <Compile Include="Locators\DataProviderLocator.cs" />
     <Compile Include="RealmBehaviors\UpdateBallPositionRealmBehavior.cs" />
     <Compile Include="RealmBehaviors\UpdatePlayerPositionRealmBehavior.cs" />
@@ -116,7 +119,7 @@
     <Compile Include="ViewModels\Mappers\IMapper.cs" />
     <Compile Include="ViewModels\Mappers\PlayerMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="DataProviders\MatchDataProvider\MatchDataProvider.cs" />
+    <Compile Include="DataProviders\MatchDataProvider.cs" />
     <Compile Include="ViewModels\Entities\PlayerViewModel.cs" />
     <Compile Include="ViewModels\MatchViewModel.cs" />
     <Compile Include="ViewModels\MatchViewModel.designer.cs">
@@ -169,6 +172,9 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Converters\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <ProjectExtensions>

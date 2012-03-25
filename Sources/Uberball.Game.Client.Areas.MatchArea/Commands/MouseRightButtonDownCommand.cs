@@ -4,7 +4,7 @@ namespace Uberball.Game.Client.Areas.MatchArea.Commands {
 	using System.Windows.Input;
 	using Thersuli;
 	using Thersuli.MarkupExtensions;
-	using Uberball.Game.Client.Areas.MatchArea.DataProviders.MatchDataProvider;
+	using Uberball.Game.Client.Areas.MatchArea.DataProviders;
 
 	/// <summary>Key down command.</summary>
 	public class MouseRightButtonDownCommand : Command {

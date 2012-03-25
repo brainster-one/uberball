@@ -50,6 +50,13 @@ namespace Uberball.Game.Client.Areas.MatchArea.Views.Controls {
 					Root.Children.Add(new Ball { DataContext = itm });
 				}
 			}
+
+			if (e.OldItems != null) {
+				foreach (var itm in e.OldItems.OfType<PlayerViewModel>()) {
+					Root.Children.Where(x => ((UserControl)x).DataContext == itm).ToList().ForEach(y => Root.Children.Remove(y));
+				}
+				
+			}
 		}
 
 		/// <summary>Gets or sets list of entities.</summary>
