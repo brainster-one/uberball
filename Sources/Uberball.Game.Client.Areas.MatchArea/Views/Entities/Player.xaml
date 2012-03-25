@@ -1,0 +1,90 @@
+﻿<UserControl x:Class="Uberball.Game.Client.Areas.MatchArea.Views.Entities.Player"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:local="clr-namespace:Uberball.Game.Client.Areas.MatchArea"
+	mc:Ignorable="d" Width="64" Height="64"
+	local:StateHelper.State="{Binding State}">
+
+	<UserControl.RenderTransform>
+		<TranslateTransform X="{Binding X}" Y="{Binding Y}" />
+	</UserControl.RenderTransform>
+	
+	<Grid Background="Aqua">
+		<VisualStateManager.VisualStateGroups>
+			<VisualStateGroup x:Name="VisualStateGroup">
+				<VisualStateGroup.Transitions>
+					<VisualTransition From="Stay" GeneratedDuration="0:0:0.7" To="RunRight"/>
+				</VisualStateGroup.Transitions>
+				<VisualState x:Name="Stay">
+					<Storyboard RepeatBehavior="forever">
+						<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.Rotation)" Storyboard.TargetName="rectangle1">
+							<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+							<EasingDoubleKeyFrame KeyTime="0:0:1" Value="25.538"/>
+						</DoubleAnimationUsingKeyFrames>
+						<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.Rotation)" Storyboard.TargetName="rectangle">
+							<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+							<EasingDoubleKeyFrame KeyTime="0:0:1" Value="-20.875"/>
+						</DoubleAnimationUsingKeyFrames>
+					</Storyboard>
+				</VisualState>
+				<VisualState x:Name="RunRight">
+					<Storyboard RepeatBehavior="forever">
+						<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="rectangle2">
+							<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+							<EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="-1.5"/>
+							<EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0.5"/>
+							<EasingDoubleKeyFrame KeyTime="0:0:0.8" Value="0.833"/>
+							<EasingDoubleKeyFrame KeyTime="0:0:1" Value="0"/>
+						</DoubleAnimationUsingKeyFrames>
+						<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="rectangle2">
+							<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+							<EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="1"/>
+							<EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="2.833"/>
+							<EasingDoubleKeyFrame KeyTime="0:0:0.8" Value="-0.167"/>
+							<EasingDoubleKeyFrame KeyTime="0:0:1" Value="0"/>
+						</DoubleAnimationUsingKeyFrames>
+					</Storyboard>
+				</VisualState>
+				<VisualState x:Name="RunLeft">
+					<Storyboard RepeatBehavior="forever">
+						<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="rectangle3">
+							<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+							<EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="-2.667"/>
+							<EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="-0.667"/>
+							<EasingDoubleKeyFrame KeyTime="0:0:1" Value="0"/>
+						</DoubleAnimationUsingKeyFrames>
+						<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="rectangle3">
+							<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+							<EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="-1.667"/>
+							<EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="1.833"/>
+							<EasingDoubleKeyFrame KeyTime="0:0:1" Value="0"/>
+						</DoubleAnimationUsingKeyFrames>
+					</Storyboard>
+				</VisualState>
+			</VisualStateGroup>
+		</VisualStateManager.VisualStateGroups>
+		<Rectangle x:Name="rectangle" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="4" Margin="12,24,0,0" Stroke="Black" VerticalAlignment="Top" Width="18" RenderTransformOrigin="1,0.5">
+			<Rectangle.RenderTransform>
+				<CompositeTransform/>
+			</Rectangle.RenderTransform>
+		</Rectangle>
+		<Rectangle x:Name="rectangle1" Fill="#FFF4F4F5" HorizontalAlignment="Right" Height="4" Margin="0,24,12,0" Stroke="Black" VerticalAlignment="Top" Width="18" RenderTransformOrigin="0,0.5">
+			<Rectangle.RenderTransform>
+				<CompositeTransform/>
+			</Rectangle.RenderTransform>
+		</Rectangle>
+		<Rectangle x:Name="rectangle2" Fill="#FFF4F4F5" HorizontalAlignment="Right" Height="17" Margin="0,0,18,0" Stroke="Black" VerticalAlignment="Bottom" Width="6" RenderTransformOrigin="0.5,0.5">
+			<Rectangle.RenderTransform>
+				<CompositeTransform/>
+			</Rectangle.RenderTransform>
+		</Rectangle>
+		<Rectangle x:Name="rectangle3" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="17" Margin="18,0,0,0" Stroke="Black" VerticalAlignment="Bottom" Width="6" RenderTransformOrigin="0.5,0.5">
+			<Rectangle.RenderTransform>
+				<CompositeTransform/>
+			</Rectangle.RenderTransform>
+		</Rectangle>
+		<Ellipse Fill="#FFF4F4F5" Height="20" Margin="0" Stroke="Black" VerticalAlignment="Top" Width="20" HorizontalAlignment="Center"/>
+	</Grid>
+</UserControl>

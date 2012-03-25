@@ -18,6 +18,7 @@ namespace Uberball.Game.Client.Areas.MatchArea.DataProviders.MatchDataProvider {
 			Entities.CollectionChanged += EntitiesCollectionChanged;
 			_mappers.Add(typeof(Player), new PlayerMapper());
 			_mappers.Add(typeof(Block), new BlockMapper());
+			_mappers.Add(typeof(Ball), new BallMapper());
 		}
 
 		public void Add(int id, object entity) {

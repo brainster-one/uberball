@@ -8,8 +8,10 @@ namespace Uberball.Game.NetworkProtocol {
 		/// <summary>Initializes a new instance of the UberballProtocol class.</summary>
 		public UberballProtocol() {
 			Register<InputPacket>(new InputPacketSrializer());
+			Register<KickBallPacket>(new KickBallPacketSerializer());
 			Register<Player>(new PlayerSerializer());
 			Register<Block>(new BlockSerializer());
+			Register<Ball>(new BallSerializer());
 		}
 	}
 }

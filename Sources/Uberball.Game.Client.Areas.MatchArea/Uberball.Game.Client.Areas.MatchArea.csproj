@@ -69,12 +69,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\Uberball.Game.Logic.Entities\Ball.cs">
+      <Link>Shared\Ball.cs</Link>
+    </Compile>
     <Compile Include="..\Uberball.Game.Logic.Entities\Block.cs">
       <Link>Shared\Block.cs</Link>
     </Compile>
     <Compile Include="..\uberball.game.logic.entities\Player.cs">
       <Link>Shared\Player.cs</Link>
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="..\Uberball.Game.NetworkProtocol\BallSerializer.cs">
+      <Link>Shared\BallSerializer.cs</Link>
     </Compile>
     <Compile Include="..\Uberball.Game.NetworkProtocol\BlockSerializer.cs">
       <Link>Shared\BlockSerializer.cs</Link>
@@ -83,6 +89,9 @@
       <Link>Shared\InputPacket.cs</Link>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="..\Uberball.Game.NetworkProtocol\KickBallPacket.cs">
+      <Link>Shared\KickBallPacket.cs</Link>
+    </Compile>
     <Compile Include="..\uberball.game.networkprotocol\PlayerSerializer.cs">
       <Link>Shared\PlayerSerializer.cs</Link>
       <SubType>Code</SubType>
@@ -90,23 +99,40 @@
     <Compile Include="..\Uberball.Game.NetworkProtocol\UberballProtocol.cs">
       <Link>Shared\UberballProtocol.cs</Link>
     </Compile>
+    <Compile Include="Commands\MouseRightButtonDownCommand.cs" />
+    <Compile Include="Commands\GoToFullScreenModeCommand.cs" />
     <Compile Include="DataProviders\MatchDataProvider\EntityInfo.cs" />
     <Compile Include="DataProviders\MatchDataProvider\EntityManager.cs" />
     <Compile Include="Locators\DataProviderLocator.cs" />
+    <Compile Include="RealmBehaviors\UpdateBallPositionRealmBehavior.cs" />
     <Compile Include="RealmBehaviors\UpdatePlayerPositionRealmBehavior.cs" />
     <Compile Include="Commands\ConnectCommand.cs" />
     <Compile Include="Commands\KeyPressCommand.cs" />
+    <Compile Include="StateHelper.cs" />
     <Compile Include="ViewModels\Entities\BlockViewModel.cs" />
+    <Compile Include="ViewModels\Entities\BallViewModel.cs" />
     <Compile Include="ViewModels\Mappers\BlockMapper.cs" />
+    <Compile Include="ViewModels\Mappers\BallMapper.cs" />
     <Compile Include="ViewModels\Mappers\IMapper.cs" />
     <Compile Include="ViewModels\Mappers\PlayerMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DataProviders\MatchDataProvider\MatchDataProvider.cs" />
     <Compile Include="ViewModels\Entities\PlayerViewModel.cs" />
-    <Compile Include="ViewModels\EntityViewSelector.cs" />
     <Compile Include="ViewModels\MatchViewModel.cs" />
     <Compile Include="ViewModels\MatchViewModel.designer.cs">
       <DependentUpon>MatchViewModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\Realm.xaml.cs">
+      <DependentUpon>Realm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Entities\Ball.xaml.cs">
+      <DependentUpon>Ball.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Entities\Block.xaml.cs">
+      <DependentUpon>Block.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Entities\Player.xaml.cs">
+      <DependentUpon>Player.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Pages\MatchPage.xaml.cs">
       <DependentUpon>MatchPage.xaml</DependentUpon>
@@ -123,19 +149,21 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Views\DataTemplates\PlayerDataTemplate.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Resource>
-  </ItemGroup>
-  <ItemGroup>
-    <Page Include="Views\DataTemplates\EntityViewSelectorDataTemplate.xaml">
+    <Page Include="Views\Controls\Realm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\DataTemplates\BlockDataTemplate.xaml">
-      <Generator>MSBuild:Compile</Generator>
+    <Page Include="Views\Entities\Ball.xaml">
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Entities\Block.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Entities\Player.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Pages\MatchPage.xaml">
       <SubType>Designer</SubType>

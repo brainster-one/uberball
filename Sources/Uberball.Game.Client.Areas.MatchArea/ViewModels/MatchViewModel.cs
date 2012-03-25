@@ -2,33 +2,24 @@
 namespace Uberball.Game.Client.Areas.MatchArea.ViewModels {
 	using System.Collections.ObjectModel;
 	using System.Net;
-	using Khrussk;
 	using Thersuli;
 	using Uberball.Game.Client.Areas.MatchArea.Commands;
-	using Uberball.Game.Client.Areas.MatchArea.DataProviders.MatchDataProvider;
 	using Uberball.Game.Client.Areas.MatchArea.Locators;
-	using Uberball.Game.Client.Core.Managers;
 
 	/// <summary>Match view model.</summary>
 	public sealed class MatchViewModel : ViewModel {
 		/// <summary>Initializes a new instance of the MatchViewModel class.</summary>
 		/// <param name="endpoint">EndPoint to connect to.</param>
 		public MatchViewModel(IPEndPoint endpoint) {
-			IsBusy = true;
 			KeyPressCommand = new KeyPressCommand(DataProviderLocator.MatchDataProvider);
+			MouseRightButtonDownCommand = new MouseRightButtonDownCommand(DataProviderLocator.MatchDataProvider);
 			ConnectCommand = new ConnectCommand(DataProviderLocator.MatchDataProvider, endpoint);
-			DataProviderLocator.MatchDataProvider.ConnectionStateChanged += MatchDataProvider_ConnectionStateChanged;
-		}
-
-		void MatchDataProvider_ConnectionStateChanged(object sender, MatchDataProviderEventArgs e) {
-			IsBusy = false;
-			if (e.ConnectionState == ConnectionState.Disconnected) ErrorManager.Error("Connection lost");
+			DataProviderLocator.MatchDataProvider.ConnectionStateChanged += (s, e) => OnPropertyChanged("IsBusy");
 		}
 
 		/// <summary>Gets is busy flag.</summary>
-		public bool IsBusy { 
-			get { return _isBusy; } 
-			private set { _isBusy = value; OnPropertyChanged("IsBusy"); } 
+		public bool IsBusy {
+			get { return !DataProviderLocator.MatchDataProvider.IsConnected; } 
 		}
 
 		/// <summary>Gets list of entity view models.</summary>
@@ -40,7 +31,6 @@ namespace Uberball.Game.Client.Areas.MatchArea.ViewModels {
 		/// <summary>Key pressed command.</summary>
 		public KeyPressCommand KeyPressCommand { get; private set; }
 
-		/// <summary>Busy flag.</summary>
-		private bool _isBusy;
+		public MouseRightButtonDownCommand MouseRightButtonDownCommand { get; private set; }
 	}
 }

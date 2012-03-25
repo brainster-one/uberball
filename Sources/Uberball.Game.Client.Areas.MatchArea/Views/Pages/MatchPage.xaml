@@ -7,22 +7,23 @@
 	xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation"
 	xmlns:toolkit="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Toolkit"
 	xmlns:thersuli="clr-namespace:Thersuli.MarkupExtensions;assembly=Thersuli"
+	xmlns:controls="clr-namespace:Uberball.Game.Client.Areas.MatchArea.Views.Controls"
 	DataContext="{Binding Source={StaticResource ViewModelLocator}, Path=MatchViewModel}"
 	d:DataContext="{Binding Source={StaticResource DesignerViewModelLocator}, Path=MatchViewModel}"
 	d:DesignWidth="640" d:DesignHeight="480" mc:Ignorable="d">
 
-	<Grid Loaded="{thersuli:InvokeCommand Command=ConnectCommand}"
-	      KeyDown="{thersuli:InvokeCommand Command=KeyPressCommand, Parameter=True}"
-	      KeyUp="{thersuli:InvokeCommand Command=KeyPressCommand, Parameter=False}">
-		
-		<ItemsControl ItemsSource="{Binding Path=Entities}" ItemTemplate="{Binding Source={StaticResource EntityViewSelectorDataTemplate}}">
-			<ItemsControl.ItemsPanel>
-				<ItemsPanelTemplate>
-					<Canvas Background="LightGreen" />
-				</ItemsPanelTemplate>
-			</ItemsControl.ItemsPanel>
-		</ItemsControl>
+	<Grid
+		Background="LightGreen"
+		Loaded="{thersuli:InvokeCommand Command=ConnectCommand}"
+		KeyDown="{thersuli:InvokeCommand Command=KeyPressCommand, Parameter=True}"
+		KeyUp="{thersuli:InvokeCommand Command=KeyPressCommand, Parameter=False}"
+		MouseRightButtonDown="{thersuli:InvokeCommand Command=MouseRightButtonDownCommand}">
 
+		<!-- Realm renderer -->
+		<controls:Realm
+			Entities="{Binding Path=Entities}" />
+				
+		<!-- Busy indicator for long procsses -->
 		<toolkit:BusyIndicator IsBusy="{Binding IsBusy}" />
 	</Grid>
 </navigation:Page>

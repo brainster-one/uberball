@@ -47,7 +47,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BlockSerializer.cs" />
+    <Compile Include="BallSerializer.cs" />
     <Compile Include="InputPacket.cs" />
+    <Compile Include="KickBallPacket.cs" />
     <Compile Include="PlayerSerializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UberballProtocol.cs" />
