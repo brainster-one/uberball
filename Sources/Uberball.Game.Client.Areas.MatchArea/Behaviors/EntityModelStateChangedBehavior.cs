@@ -4,12 +4,14 @@ namespace Uberball.Game.Client.Areas.MatchArea.Behaviors {
 	using System.Collections.Generic;
 	using System.Windows;
 	using Khrussk.NetworkRealm;
-	using Uberball.Game.Client.Areas.MatchArea.DataProviders;
-	using Uberball.Game.Client.Areas.MatchArea.ViewModels;
-	using Uberball.Game.Client.Areas.MatchArea.ViewModels.Mappers;
-	using Uberball.Game.Logic.Entities;
+	using Logic.Entities;
+	using ViewModels;
+	using ViewModels.Mappers;
 
+	/// <summary>Entity model state changed.</summary>
 	public class EntityModelStateChangedBehavior : IBehavior {
+		/// <summary>Initializes a new instance of the EntityModelStateChangedBehavior class.</summary>
+		/// <param name="viewModel">View model.</param>
 		public EntityModelStateChangedBehavior(MatchViewModel viewModel) {
 			_viewModel = viewModel;
 			_mappers.Add(typeof(Player), new PlayerMapper());
@@ -17,27 +19,55 @@ namespace Uberball.Game.Client.Areas.MatchArea.Behaviors {
 			_mappers.Add(typeof(Ball), new BallMapper());
 		}
 
+		/// <summary>Handle.</summary>
+		/// <param name="model">Changed model.</param>
+		/// <param name="action">Network action.</param>
 		public void Handle(object model, EntityNetworkAction action) {
-			object viewModel = null;
-			var mapper = _mappers[model.GetType()];
-			_entities.TryGetValue(model, out viewModel);
+			var viewModel = GetViewModel(model);
+			var mapper = GetMapper(model.GetType());
 
-			if (action == EntityNetworkAction.Added) {
-				mapper.Map(model, ref viewModel);
-				_entities.Add(model, viewModel);
-				Deployment.Current.Dispatcher.BeginInvoke(() => _viewModel.Entities.Add(viewModel));
+			Deployment.Current.Dispatcher.BeginInvoke(() => {
+				if (action == EntityNetworkAction.Added) {
+					mapper.Map(model, ref viewModel);
+					_entities.Add(model, viewModel);
+					_viewModel.Entities.Add(viewModel);
 
-			} else if (action == EntityNetworkAction.Modified) {
-				Deployment.Current.Dispatcher.BeginInvoke(() => mapper.Map(model, ref viewModel));
+				} else if (action == EntityNetworkAction.Modified) {
+					mapper.Map(model, ref viewModel);
 
-			} else if (action == EntityNetworkAction.Removed) {
-				_entities.Remove(model);
-				Deployment.Current.Dispatcher.BeginInvoke(() => _viewModel.Entities.Remove(viewModel));
-			}
+				} else if (action == EntityNetworkAction.Removed) {
+					_entities.Remove(model);
+					_viewModel.Entities.Remove(viewModel);
+				}
+			});
 		}
 
-		private MatchViewModel _viewModel;
-		private Dictionary<object /*model*/, object> _entities = new Dictionary<object,object>();
-		private Dictionary<Type, IMapper> _mappers = new Dictionary<Type, IMapper>();
+		/// <summary>Gets view model for specified model.</summary>
+		/// <param name="model">Model to search view model by.</param>
+		/// <returns>View model, or null.</returns>
+		private object GetViewModel(object model) {
+			object viewModel;
+			_entities.TryGetValue(model, out viewModel);
+			return viewModel;
+		}
+
+		/// <summary>Gets mapper.</summary>
+		/// <param name="type">Type.</param>
+		/// <returns>Mapper.</returns>
+		private IMapper GetMapper(Type type) {
+			IMapper mapper;
+			_mappers.TryGetValue(type, out mapper);
+			if (mapper == null) throw new InvalidOperationException("Can not find entity mapper for " + type);
+			return mapper;
+		}
+
+		/// <summary>Match view model.</summary>
+		readonly MatchViewModel _viewModel;
+
+		/// <summary>Entity model to view model map.</summary>
+		readonly Dictionary<object /*model*/, object> _entities = new Dictionary<object,object>();
+
+		/// <summary>Mappers.</summary>
+		readonly Dictionary<Type, IMapper> _mappers = new Dictionary<Type, IMapper>();
 	}
 }

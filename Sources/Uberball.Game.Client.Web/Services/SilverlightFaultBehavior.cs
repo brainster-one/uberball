@@ -1,17 +1,15 @@
 ﻿// This is an auto-generated file to enable WCF faults to reach Silverlight clients.
 
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.Net;
-using System.ServiceModel;
-using System.ServiceModel.Channels;
-using System.ServiceModel.Description;
-using System.ServiceModel.Dispatcher;
 
 namespace Uberball.Game.Client.Web.Services {
+	using System;
+	using System.Collections.ObjectModel;
+	using System.Net;
+	using System.ServiceModel;
+	using System.ServiceModel.Channels;
+	using System.ServiceModel.Description;
+	using System.ServiceModel.Dispatcher;
+
 	public class SilverlightFaultBehavior : Attribute, IServiceBehavior {
 		private class SilverlightFaultEndpointBehavior : IEndpointBehavior {
 			public void AddBindingParameters(ServiceEndpoint endpoint, BindingParameterCollection bindingParameters) {

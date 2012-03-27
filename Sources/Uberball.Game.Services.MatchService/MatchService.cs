@@ -6,9 +6,9 @@ namespace Uberball.Game.Services.MatchService {
 	using System.Threading;
 	using Ardelme.Core;
 	using Khrussk.NetworkRealm;
-	using Uberball.Game.Logic.Entities;
-	using Uberball.Game.NetworkProtocol;
-	using Uberball.Game.Services.MatchService.RealmBehaviors;
+	using Logic.Entities;
+	using NetworkProtocol;
+	using RealmBehaviors;
 
 	public class MatchService {
 		public MatchService() {
@@ -21,7 +21,7 @@ namespace Uberball.Game.Services.MatchService {
 				new PlayerCollideWithBlockRealmBehavior(),
 				new MoveBallRealmBehavior(),
 				new BallCollideWithBlockRealmBehavior(),
-				new SyncEntitiesRealmBehavior(_service),
+				new SyncEntitiesRealmBehavior(_service)
 			});
 
 

@@ -1,10 +1,8 @@
 ﻿
 namespace Uberball.Game.Client.Areas.MatchArea.Behaviors {
-	using System;
+	using Core.Managers;
 	using Khrussk;
-	using Uberball.Game.Client.Areas.MatchArea.DataProviders;
-	using Uberball.Game.Client.Areas.MatchArea.ViewModels;
-	using Uberball.Game.Client.Core.Managers;
+	using ViewModels;
 
 	/// <summary>Connection state changed.</summary>
 	sealed class ConnectionStateChangedBehavior : IBehavior {
@@ -15,8 +13,7 @@ namespace Uberball.Game.Client.Areas.MatchArea.Behaviors {
 		}
 
 		/// <summary>Executes behavior.</summary>
-		/// <param name="sender">Event sender.</param>
-		/// <param name="e">Event args.</param>
+		/// <param name="state">Connection state.</param>
 		public void Handle(ConnectionState state) {
 			if (state == ConnectionState.Connected)
 				_viewModel.IsBusy = false;
@@ -25,6 +22,6 @@ namespace Uberball.Game.Client.Areas.MatchArea.Behaviors {
 		}
 
 		/// <summary>View model.</summary>
-		private MatchViewModel _viewModel;
+		readonly MatchViewModel _viewModel;
 	}
 }
