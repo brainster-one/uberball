@@ -1,6 +1,6 @@
 ﻿
 namespace Uberball.Game.Client {
-	using Uberball.Game.Client.Areas.MatchArea.ViewModels;
+	using Areas.MatchArea.ViewModels;
 
 	public class ViewModelLocator {
 		private static MatchViewModel _matchViewModel;

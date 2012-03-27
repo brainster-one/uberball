@@ -1,7 +1,7 @@
 ﻿
 namespace Uberball.Game.Client.Areas.MatchArea.Behaviors {
 	using System.Collections.Specialized;
-	using Uberball.Game.Client.Areas.MatchArea.ViewModels;
+	using ViewModels;
 
 	public class EntityViewModelStateChangedBehavior : IBehavior {
 		public EntityViewModelStateChangedBehavior(MatchViewModel viewModel) {
@@ -15,6 +15,6 @@ namespace Uberball.Game.Client.Areas.MatchArea.Behaviors {
 				foreach (var vm in e.OldItems) { _viewModel.Realm.RemoveEntity(vm); }
 		}
 
-		private MatchViewModel _viewModel;
+		readonly MatchViewModel _viewModel;
 	}
 }

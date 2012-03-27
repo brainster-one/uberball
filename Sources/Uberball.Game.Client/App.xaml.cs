@@ -1,27 +1,28 @@
-﻿using System;
-using System.Windows;
-using Uberball.Game.Client.Areas.MatchArea.Views.Pages;
-
+﻿
 namespace Uberball.Game.Client {
-	public partial class App : Application {
+	using System;
+	using System.Windows;
+	using Areas.MatchArea.Views.Pages;
+
+	public partial class App {
 
 		public App() {
-			this.Startup += this.Application_Startup;
-			this.Exit += this.Application_Exit;
-			this.UnhandledException += this.Application_UnhandledException;
+			Startup += OnApplicationStartup;
+			Exit += Application_Exit;
+			UnhandledException += OnApplicationUnhandledException;
 
 			InitializeComponent();
 		}
 
-		private void Application_Startup(object sender, StartupEventArgs e) {
-			this.RootVisual = new MatchPage();
+		private void OnApplicationStartup(object sender, StartupEventArgs e) {
+			RootVisual = new MatchPage();
 		}
 
 		private void Application_Exit(object sender, EventArgs e) {
 
 		}
 
-		private void Application_UnhandledException(object sender, ApplicationUnhandledExceptionEventArgs e) {
+		private void OnApplicationUnhandledException(object sender, ApplicationUnhandledExceptionEventArgs e) {
 			// If the app is running outside of the debugger then report the exception using
 			// the browser's exception mechanism. On IE this will display it a yellow alert 
 			// icon in the status bar and Firefox will display a script error.
@@ -32,7 +33,7 @@ namespace Uberball.Game.Client {
 				// For production applications this error handling should be replaced with something that will 
 				// report the error to the website and stop the application.
 				e.Handled = true;
-				Deployment.Current.Dispatcher.BeginInvoke(delegate { ReportErrorToDOM(e); });
+				Deployment.Current.Dispatcher.BeginInvoke(() => ReportErrorToDOM(e));
 			}
 		}
 

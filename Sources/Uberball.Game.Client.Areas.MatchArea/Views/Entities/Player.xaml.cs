@@ -1,8 +1,6 @@
 ﻿
 namespace Uberball.Game.Client.Areas.MatchArea.Views.Entities {
-	using System.Windows.Controls;
-
-	public partial class Player : UserControl {
+	public partial class Player {
 		public Player() {
 			InitializeComponent();
 		}

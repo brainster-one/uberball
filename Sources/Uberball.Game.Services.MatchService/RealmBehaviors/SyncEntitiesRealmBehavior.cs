@@ -4,16 +4,14 @@ namespace Uberball.Game.Services.MatchService.RealmBehaviors {
 	using Khrussk.NetworkRealm;
 
 	class SyncEntitiesRealmBehavior : RealmBehavior {
-		private Khrussk.NetworkRealm.RealmService _service;
-
 		public override void Update(IRealm realm, double delta) {
 			foreach (var entity in realm.Entities) {
 				realm.ModifyEntity(entity);
 			}
 		}
 
-		public SyncEntitiesRealmBehavior(RealmService _service) {
-			this._service = _service;
+		public SyncEntitiesRealmBehavior(RealmService service) {
+			_service = service;
 		}
 		public override void AddEntity(IRealm realm, object entity) {
 			_service.AddEntity(entity);
@@ -26,5 +24,7 @@ namespace Uberball.Game.Services.MatchService.RealmBehaviors {
 		public override void ModifyEntity(IRealm realm, object entity) {
 			_service.ModifyEntity(entity);
 		}
+
+		readonly RealmService _service;
 	}
 }

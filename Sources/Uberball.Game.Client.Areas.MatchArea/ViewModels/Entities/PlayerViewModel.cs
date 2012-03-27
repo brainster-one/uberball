@@ -30,6 +30,6 @@ namespace Uberball.Game.Client.Areas.MatchArea.ViewModels.Entities {
 		private double _y;
 
 		public string State { get { return _state; } set { _state = value; OnPropertyChanged("State"); } }
-		private string _state { get; set; }
+		private string _state;
 	}
 }

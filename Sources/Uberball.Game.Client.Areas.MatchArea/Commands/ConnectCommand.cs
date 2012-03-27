@@ -2,7 +2,7 @@
 namespace Uberball.Game.Client.Areas.MatchArea.Commands {
 	using System.Net;
 	using Thersuli;
-	using Uberball.Game.Client.Areas.MatchArea.DataProviders;
+	using DataProviders;
 
 	/// <summary>Connect to match service command.</summary>
 	public class ConnectCommand : Command {
@@ -21,9 +21,9 @@ namespace Uberball.Game.Client.Areas.MatchArea.Commands {
 		}
 
 		/// <summary>Match data provider.</summary>
-		private MatchDataProvider _provider;
+		readonly MatchDataProvider _provider;
 
 		/// <summary>Endpoint to connect to.</summary>
-		private IPEndPoint _endpoint;
+		readonly IPEndPoint _endpoint;
 	}
 }

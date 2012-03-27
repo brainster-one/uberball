@@ -2,7 +2,7 @@
 namespace Uberball.Game.Client.Areas.MatchArea.RealmBehaviors {
 	using System.Linq;
 	using Ardelme.Core;
-	using Uberball.Game.Client.Areas.MatchArea.ViewModels.Entities;
+	using ViewModels.Entities;
 
 	public class UpdateBallPositionRealmBehavior : RealmBehavior {
 		public override void Update(IRealm realm, double delta) {

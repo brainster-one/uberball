@@ -1,9 +1,8 @@
-﻿
-namespace Uberball.Game.Client.Areas.MatchArea.Behaviors {
-	using Core.Managers;
-	using Khrussk;
-	using ViewModels;
+﻿using Khrussk;
+using Uberball.Game.Client.Areas.MatchArea.ViewModels;
+using Uberball.Game.Client.Core.Managers;
 
+namespace Uberball.Game.Client.Areas.MatchArea.Behaviors {
 	/// <summary>Connection state changed.</summary>
 	sealed class ConnectionStateChangedBehavior : IBehavior {
 		/// <summary>Initializes a new instance of the ConnectionStateChangedBehavior class.</summary>

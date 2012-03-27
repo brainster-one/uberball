@@ -6,11 +6,11 @@ namespace Uberball.Game.Client.Areas.MatchArea.Views.Controls {
 	using System.Linq;
 	using System.Windows;
 	using System.Windows.Controls;
-	using Uberball.Game.Client.Areas.MatchArea.ViewModels.Entities;
-	using Uberball.Game.Client.Areas.MatchArea.Views.Entities;
+	using Entities;
+	using ViewModels.Entities;
 
 	/// <summary>Realm presentation control.</summary>
-	public partial class Realm : UserControl {
+	public partial class Realm {
 		/// <summary>Initializes a new instance of the Realm class.</summary>
 		public Realm() {
 			InitializeComponent();
@@ -20,7 +20,7 @@ namespace Uberball.Game.Client.Areas.MatchArea.Views.Controls {
 		/// <param name="d">Event sender.</param>
 		/// <param name="e">Event args.</param>
 		static void EntitiesPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e) {
-			Realm me = (Realm)d;
+			var me = (Realm)d;
 
 			// Unsubscrives from previous collection events
 			if (e.OldValue != null)

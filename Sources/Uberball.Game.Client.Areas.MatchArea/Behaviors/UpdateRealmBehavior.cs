@@ -1,6 +1,6 @@
 ﻿
 namespace Uberball.Game.Client.Areas.MatchArea.Behaviors {
-	using Uberball.Game.Client.Areas.MatchArea.ViewModels;
+	using ViewModels;
 
 	public class UpdateRealmBehavior : IBehavior {
 		public UpdateRealmBehavior(MatchViewModel viewModel) {
@@ -11,6 +11,6 @@ namespace Uberball.Game.Client.Areas.MatchArea.Behaviors {
 			_viewModel.Realm.Update(0);
 		}
 
-		private MatchViewModel _viewModel;
+		readonly MatchViewModel _viewModel;
 	}
 }

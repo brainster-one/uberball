@@ -1,17 +1,16 @@
 ﻿
 namespace Uberball.Game.NetworkProtocol {
 	using Khrussk.NetworkRealm.Protocol;
-	using Uberball.Game.Logic.Entities;
 
 	/// <summary>Uberball's network protocol.</summary>
 	public class UberballProtocol : RealmProtocol {
 		/// <summary>Initializes a new instance of the UberballProtocol class.</summary>
 		public UberballProtocol() {
-			Register<InputPacket>(new InputPacketSrializer());
-			Register<KickBallPacket>(new KickBallPacketSerializer());
-			Register<Player>(new PlayerSerializer());
-			Register<Block>(new BlockSerializer());
-			Register<Ball>(new BallSerializer());
+			Register(new InputPacketSrializer());
+			Register(new KickBallPacketSerializer());
+			Register(new PlayerSerializer());
+			Register(new BlockSerializer());
+			Register(new BallSerializer());
 		}
 	}
 }

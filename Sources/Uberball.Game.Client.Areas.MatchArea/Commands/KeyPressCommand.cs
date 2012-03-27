@@ -3,7 +3,7 @@ namespace Uberball.Game.Client.Areas.MatchArea.Commands {
 	using System.Windows.Input;
 	using Thersuli;
 	using Thersuli.MarkupExtensions;
-	using Uberball.Game.Client.Areas.MatchArea.DataProviders;
+	using DataProviders;
 
 	/// <summary>Key down command.</summary>
 	public class KeyPressCommand : Command {
@@ -30,7 +30,7 @@ namespace Uberball.Game.Client.Areas.MatchArea.Commands {
 		}
 
 
-		private bool[] _state = new bool[4];
-		private MatchDataProvider _matchDataProvider;
+		readonly bool[] _state = new bool[4];
+		readonly MatchDataProvider _matchDataProvider;
 	}
 }

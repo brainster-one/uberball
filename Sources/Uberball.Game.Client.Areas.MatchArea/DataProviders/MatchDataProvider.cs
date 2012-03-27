@@ -6,8 +6,8 @@ namespace Uberball.Game.Client.Areas.MatchArea.DataProviders {
 	using System.Net;
 	using Khrussk;
 	using Khrussk.NetworkRealm;
-	using Uberball.Game.NetworkProtocol;
-	using Uberball.Game.Logic.Entities;
+	using Logic.Entities;
+	using NetworkProtocol;
 
 	/// <summary>Match data provider.</summary>
 	public sealed class MatchDataProvider {
@@ -73,10 +73,10 @@ namespace Uberball.Game.Client.Areas.MatchArea.DataProviders {
 		}
 
 		/// <summary>Client interface to connect to remote service.</summary>
-		private RealmClient _client = new RealmClient(new UberballProtocol());
+		readonly RealmClient _client = new RealmClient(new UberballProtocol());
 
 		/// <summary>Id to entity map.</summary>
-		private Dictionary<int, object> _entityId = new Dictionary<int, object>();
+		readonly Dictionary<int, object> _entityId = new Dictionary<int, object>();
 	}
 
 	/// <summary>Match data provider event args.</summary>

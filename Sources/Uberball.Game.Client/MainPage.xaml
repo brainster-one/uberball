@@ -6,13 +6,5 @@
 	mc:Ignorable="d"
 	d:DesignHeight="300" d:DesignWidth="400" DataContext="{Binding Source={StaticResource ViewModelLocator}, Path=MatchViewModel}">
 	<Grid>
-		<ItemsControl ItemsSource="{Binding Path=Entities}" ItemTemplate="{Binding Source={StaticResource EntityViewSelectorDataTemplate}}">
-			<ItemsControl.ItemsPanel>
-				<ItemsPanelTemplate>
-					<Canvas Background="LightGreen" />
-				</ItemsPanelTemplate>
-			</ItemsControl.ItemsPanel>
-		</ItemsControl>
-		<Button Command="{Binding Path=ConnectCommand}" Content="{Binding Path=ConnectionState}" Height="39" Width="39" VerticalAlignment="Top" HorizontalAlignment="Left" />
 	</Grid>
 </UserControl>

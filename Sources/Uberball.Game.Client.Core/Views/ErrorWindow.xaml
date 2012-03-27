@@ -8,7 +8,7 @@
             <RowDefinition />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-		<Button x:Name="OKButton" Content="OK" Click="OKButton_Click" Width="75" Height="23" HorizontalAlignment="Right" Margin="0,12,0,0" Grid.Row="1" />
+		<Button x:Name="OKButton" Content="OK" Click="OkButtonClicked" Width="75" Height="23" HorizontalAlignment="Right" Margin="0,12,0,0" Grid.Row="1" />
 		<TextBlock Name="Description" Text="" />
 	</Grid>
 </controls:ChildWindow>

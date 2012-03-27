@@ -25,22 +25,22 @@ namespace Uberball.Game.Services.MatchService {
 			});
 
 
-			_realm.AddEntity(new Block() { X = 64 * 0, Y = 64 * 1 });
-			_realm.AddEntity(new Block() { X = 64 * 1, Y = 64 * 1 });
+			_realm.AddEntity(new Block { X = 64 * 0, Y = 64 * 1 });
+			_realm.AddEntity(new Block { X = 64 * 1, Y = 64 * 1 });
 
-			_realm.AddEntity(new Block() { X = 64 * 1, Y = 64 * 5 });
-			_realm.AddEntity(new Block() { X = 64 * 2, Y = 64 * 5 });
-			_realm.AddEntity(new Block() { X = 64 * 3, Y = 64 * 5 });
+			_realm.AddEntity(new Block { X = 64 * 1, Y = 64 * 5 });
+			_realm.AddEntity(new Block { X = 64 * 2, Y = 64 * 5 });
+			_realm.AddEntity(new Block { X = 64 * 3, Y = 64 * 5 });
 
-			_realm.AddEntity(new Block() { X = 64 * 3, Y = 64 * 6 });
-			_realm.AddEntity(new Block() { X = 64 * 4, Y = 64 * 6 });
-			_realm.AddEntity(new Block() { X = 64 * 5, Y = 64 * 6 });
+			_realm.AddEntity(new Block { X = 64 * 3, Y = 64 * 6 });
+			_realm.AddEntity(new Block { X = 64 * 4, Y = 64 * 6 });
+			_realm.AddEntity(new Block { X = 64 * 5, Y = 64 * 6 });
 
-			_realm.AddEntity(new Block() { X = 64 * 6, Y = 64 * 8 });
-			_realm.AddEntity(new Block() { X = 64 * 7, Y = 64 * 8 });
-			_realm.AddEntity(new Block() { X = 64 * 8, Y = 64 * 8 });
+			_realm.AddEntity(new Block { X = 64 * 6, Y = 64 * 8 });
+			_realm.AddEntity(new Block { X = 64 * 7, Y = 64 * 8 });
+			_realm.AddEntity(new Block { X = 64 * 8, Y = 64 * 8 });
 
-			_realm.AddEntity(new Block() { X = 64 * 6, Y = 64 * 5 });
+			_realm.AddEntity(new Block { X = 64 * 6, Y = 64 * 5 });
 
 			_realm.AddEntity(new Ball { X = 64 * 1, Y = 64 * 3 });
 
@@ -85,7 +85,7 @@ namespace Uberball.Game.Services.MatchService {
 		public void Start(IPEndPoint endpoint) {
 			_service.Start(endpoint);
 			new Thread(() => {
-				while (_working) { lock (_realm) { _realm.Update(0); }; System.Threading.Thread.Sleep(100); }
+				while (_working) { lock (_realm) { _realm.Update(0); }; Thread.Sleep(100); }
 			}).Start();			
 		}
 

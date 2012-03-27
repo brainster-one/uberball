@@ -5,11 +5,11 @@ namespace Uberball.Game.Client.Areas.MatchArea.ViewModels {
 	using System.Windows.Input;
 	using System.Windows.Media;
 	using Ardelme.Core;
+	using Behaviors;
+	using Commands;
+	using Locators;
+	using RealmBehaviors;
 	using Thersuli;
-	using Uberball.Game.Client.Areas.MatchArea.Behaviors;
-	using Uberball.Game.Client.Areas.MatchArea.Commands;
-	using Uberball.Game.Client.Areas.MatchArea.Locators;
-	using Uberball.Game.Client.Areas.MatchArea.RealmBehaviors;
 
 	/// <summary>Match view model.</summary>
 	public sealed class MatchViewModel : ViewModel {
@@ -73,14 +73,6 @@ namespace Uberball.Game.Client.Areas.MatchArea.ViewModels {
 		private UpdateRealmBehavior UpdateRealmBehavior { get; set; }
 
 		/// <summary>IsBusy flag.</summary>
-		private bool _isBusy { get; set; }
+		private bool _isBusy;
 	}
 }
-
-
-/* looks like shit */
-/*_realm.AddBehavior(new UpdatePlayerPositionRealmBehavior())
-_realm.AddBehavior(new UpdateBallPositionRealmBehavior());
-CompositionTarget.Rendering += (x, y) => {
-	lock (_realm) { _realm.Update(0); }
-};*/
