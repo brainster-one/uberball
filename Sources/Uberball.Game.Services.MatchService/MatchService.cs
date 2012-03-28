@@ -12,9 +12,9 @@ namespace Uberball.Game.Services.MatchService {
 
 	public class MatchService {
 		public MatchService() {
-			_service.UserConnected += _service_UserConnected;
-			_service.UserDisconnected += _service_UserDisconnected;
-			_service.PacketReceived += _service_PacketReceived;
+			_service.UserConnected += OnUserConnected;
+			_service.UserDisconnected += OnUserDisconnected;
+			_service.PacketReceived += _OnPacketReceived;
 
 			_realm = new Realm(new IRealmBehavior[] {
 				new MovePlayersRealmBehavior(), 
@@ -24,6 +24,9 @@ namespace Uberball.Game.Services.MatchService {
 				new SyncEntitiesRealmBehavior(_service)
 			});
 
+
+			_realm.AddEntity(new Decoration { X = 64 * 3, Y = 64 * 3 });
+			_realm.AddEntity(new Decoration { X = 64 * 6, Y = 64 * 3 });
 
 			_realm.AddEntity(new Block { X = 64 * 0, Y = 64 * 1 });
 			_realm.AddEntity(new Block { X = 64 * 1, Y = 64 * 1 });
@@ -50,7 +53,7 @@ namespace Uberball.Game.Services.MatchService {
 			}
 		}
 
-		void _service_PacketReceived(object sender, RealmServiceEventArgs e) {
+		void _OnPacketReceived(object sender, RealmServiceEventArgs e) {
 			/* todo: сохранять пакеты для обработки. Обрабатывать перед обновлением игрового мира. */
 			var player = e.User["player"] as Player;
 
@@ -73,12 +76,12 @@ namespace Uberball.Game.Services.MatchService {
 		}
 
 
-		void _service_UserConnected(object sender, RealmServiceEventArgs e) {
+		void OnUserConnected(object sender, RealmServiceEventArgs e) {
 			e.User["player"] = new Player { Name = "Player_" + DateTime.Now.Millisecond };
 			lock (_realm) { _realm.AddEntity(e.User["player"]); };
 		}
 
-		void _service_UserDisconnected(object sender, RealmServiceEventArgs e) {
+		void OnUserDisconnected(object sender, RealmServiceEventArgs e) {
 			lock (_realm) { _realm.RemoveEntity(e.User["player"]); };
 		}
 
@@ -94,8 +97,8 @@ namespace Uberball.Game.Services.MatchService {
 			_service.Stop();
 		}
 
-		Realm _realm;
-		RealmService _service = new RealmService(new UberballProtocol());
+		readonly Realm _realm;
+		readonly RealmService _service = new RealmService(new UberballProtocol());
 		bool _working = true;
 	}
 }

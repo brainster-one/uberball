@@ -2,7 +2,7 @@
 namespace Uberball.Game.Services.MatchService.RealmBehaviors {
 	using System.Linq;
 	using Ardelme.Core;
-	using Uberball.Game.Logic.Entities;
+	using Logic.Entities;
 
 	/// <summary>Moves player by specified vector.</summary>
 	class BallCollideWithBlockRealmBehavior : RealmBehavior {
@@ -26,10 +26,10 @@ namespace Uberball.Game.Services.MatchService.RealmBehaviors {
 						if (player.Y + 64 > block.Y) player.Y = block.Y - 64;
 						
 					}*/
-					int cts = 12;
+					const int cts = 12;
 
-					bool collideRight = PointInsideRect(ball.X + 64 + cts, ball.Y + 32, block.X, block.Y, block.X + 64, block.Y + 64);
-					bool collideLeft = PointInsideRect(ball.X - cts, ball.Y + 32, block.X, block.Y, block.X + 64, block.Y + 64);
+					var collideRight = PointInsideRect(ball.X + 64 + cts, ball.Y + 32, block.X, block.Y, block.X + 64, block.Y + 64);
+					var collideLeft = PointInsideRect(ball.X - cts, ball.Y + 32, block.X, block.Y, block.X + 64, block.Y + 64);
 					bool collideBottom = PointInsideRect(ball.X + 32, ball.Y + 64 + cts, block.X, block.Y, block.X + 64, block.Y + 64);
 
 					if (collideLeft && ball.X <= block.X + 64) { ball.X = block.X + 64; ball.VectorX *= -.5; }

@@ -2,7 +2,7 @@
 namespace Uberball.Game.Services.MatchService.RealmBehaviors {
 	using System.Linq;
 	using Ardelme.Core;
-	using Uberball.Game.Logic.Entities;
+	using Logic.Entities;
 
 	/// <summary>Moves player by specified vector.</summary>
 	class MoveBallRealmBehavior : RealmBehavior {

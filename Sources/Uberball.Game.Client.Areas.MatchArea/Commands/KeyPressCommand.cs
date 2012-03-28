@@ -18,7 +18,7 @@ namespace Uberball.Game.Client.Areas.MatchArea.Commands {
 			var key = (evnt.EventArgs as KeyEventArgs).Key;
 
 			int idx = 0;
-			foreach (var chk in new[] { Key.Up, Key.Right, Key.Down, Key.Left }) {
+			foreach (var chk in new[] { Key.W, Key.D, Key.S, Key.A }) {
 				var prevValue = _state[idx];
 				_state[idx] = key == chk ? state : _state[idx];
 				if (!stateChanged && prevValue != _state[idx]) stateChanged = true;

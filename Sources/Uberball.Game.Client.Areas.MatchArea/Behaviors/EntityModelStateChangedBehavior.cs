@@ -17,6 +17,7 @@ namespace Uberball.Game.Client.Areas.MatchArea.Behaviors {
 			_mappers.Add(typeof(Player), new PlayerMapper());
 			_mappers.Add(typeof(Block), new BlockMapper());
 			_mappers.Add(typeof(Ball), new BallMapper());
+			_mappers.Add(typeof(Decoration), new DecorationMapper());
 		}
 
 		/// <summary>Handle.</summary>

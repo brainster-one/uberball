@@ -1,0 +1,18 @@
+﻿<UserControl x:Class="Uberball.Game.Client.Areas.MatchArea.Views.Entities.Decoration"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	mc:Ignorable="d"
+	d:DesignHeight="132" d:DesignWidth="68">
+
+	<UserControl.RenderTransform>
+		<TranslateTransform X="{Binding X}" Y="{Binding Y}" />
+	</UserControl.RenderTransform>
+
+	<Canvas Width="68.7279" Height="132.327">
+		<Path x:Name="Path" Width="21.9347" Height="50.0037" Canvas.Left="31.2253" Canvas.Top="50.3619" Stretch="Fill" StrokeMiterLimit="2.75" Stroke="#FF743F00" Fill="#FFA1651E" Data="F1 M 32.9568,90.0649L 50.1972,50.8619L 52.6601,50.8619L 31.7253,99.8656"/>
+		<Path x:Name="Path_0" Width="8.38873" Height="108.279" Canvas.Left="25.068" Canvas.Top="22.5489" Stretch="Fill" StrokeMiterLimit="2.75" Stroke="#FF743F00" Fill="#FFA1651E" Data="F1 M 25.568,130.327L 29.2624,27.0222L 31.7253,23.0489L 32.9568,130.327L 25.568,130.327 Z "/>
+		<Path x:Name="Path_1" Width="65.0891" Height="102.307" Canvas.Left="1.67144" Canvas.Top="1.79102" Stretch="Fill" StrokeMiterLimit="2.75" Stroke="#D9009664" Fill="#D900C800" Data="F1 M 32.4131,103.18C 30.6929,102.703 28.9191,103.477 27.185,103.18C 24.3635,102.698 21.6096,101.376 18.8587,100.2C 17.2537,99.5141 15.5033,98.9876 14.2114,97.2203C 9.22987,90.4057 8.05489,78.077 5.49786,68.083C 4.48889,64.1394 3.38936,60.2466 2.59332,56.1631C 2,53.1195 2.20605,49.7693 2.20605,46.5611C 2.20605,39.9758 2.78072,32.8361 4.91695,27.3569C 6.26089,23.9098 8.17171,20.9319 10.3387,19.0792C 11.7992,17.8305 13.6273,17.9792 14.986,16.4304C 17.4353,13.6382 19.2668,9.2037 21.9568,7.15936C 24.6241,5.13232 27.3788,3.02051 30.2832,2.52386C 32.4026,2.16147 34.5431,2.52386 36.6731,2.52386C 38.7386,2.52386 40.8269,1.99997 42.8695,2.52386C 46.9805,3.57834 50.7747,7.52988 54.1003,11.7949C 54.3924,12.1695 54.6344,12.6494 54.8748,13.1193C 55.0873,13.5346 55.1931,14.123 55.4557,14.4437C 57.0592,16.4021 59.0073,17.5226 60.4902,19.7414C 62.7268,23.0878 64.295,27.6972 65.5248,32.3235C 66.7279,36.8493 65.912,42.2518 65.912,47.2232C 65.912,53.4039 66.6961,59.7317 65.912,65.7652C 64.4222,77.2289 59.2336,87.3953 53.5194,93.9093C 50.5273,97.3202 46.6667,97.7815 43.4504,100.531C 40.1274,103.372 36.0803,104.198 32.4131,103.18 Z "/>
+	</Canvas>
+</UserControl>

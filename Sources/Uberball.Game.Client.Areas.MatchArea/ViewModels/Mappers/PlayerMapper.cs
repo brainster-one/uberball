@@ -1,7 +1,7 @@
 ﻿
 namespace Uberball.Game.Client.Areas.MatchArea.ViewModels.Mappers {
-	using Uberball.Game.Client.Areas.MatchArea.ViewModels.Entities;
-	using Uberball.Game.Logic.Entities;
+	using Entities;
+	using Logic.Entities;
 
 	public class PlayerMapper : IMapper {
 

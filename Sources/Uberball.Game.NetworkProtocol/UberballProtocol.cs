@@ -11,6 +11,7 @@ namespace Uberball.Game.NetworkProtocol {
 			Register(new PlayerSerializer());
 			Register(new BlockSerializer());
 			Register(new BallSerializer());
+			Register(new DecorationSerializer());
 		}
 	}
 }

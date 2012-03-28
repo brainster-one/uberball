@@ -32,8 +32,7 @@ namespace Uberball.Game.Client.Web.Services {
 
 				public void BeforeSendReply(ref Message reply, object correlationState) {
 					if ((reply != null) && reply.IsFault) {
-						HttpResponseMessageProperty property = new HttpResponseMessageProperty();
-						property.StatusCode = HttpStatusCode.OK;
+						var property = new HttpResponseMessageProperty { StatusCode = HttpStatusCode.OK };
 						reply.Properties[HttpResponseMessageProperty.Name] = property;
 					}
 				}

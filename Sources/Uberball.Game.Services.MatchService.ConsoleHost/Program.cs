@@ -6,7 +6,7 @@ namespace Uberball.Game.Services.MatchService.ConsoleHost {
 
 	class Program {
 		static void Main() {
-			var srv = new PolicyServer("clientaccesspolicy.xml");
+			new PolicyServer("clientaccesspolicy.xml");
 			Console.WriteLine("Silverlight policy service has been started.");
 
 			var service = new MatchService();

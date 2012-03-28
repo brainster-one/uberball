@@ -3,7 +3,7 @@ namespace Uberball.Game.NetworkProtocol {
 	using System;
 	using System.IO;
 	using Khrussk.NetworkRealm.Protocol;
-	using Uberball.Game.Logic.Entities;
+	using Logic.Entities;
 
 	public class PlayerSerializer : IEntitySerializer<Player> {
 		public void Deserialize(BinaryReader reader, ref Player entity) {

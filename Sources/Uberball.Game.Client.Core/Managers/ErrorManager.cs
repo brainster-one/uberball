@@ -1,6 +1,6 @@
 ﻿
 namespace Uberball.Game.Client.Core.Managers {
-	using Uberball.Game.Client.Core.Views;
+	using Views;
 	using System.Windows;
 
 	public static class ErrorManager {

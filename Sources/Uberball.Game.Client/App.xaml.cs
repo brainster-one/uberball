@@ -8,7 +8,7 @@ namespace Uberball.Game.Client {
 
 		public App() {
 			Startup += OnApplicationStartup;
-			Exit += Application_Exit;
+			Exit += OnApplicationExit;
 			UnhandledException += OnApplicationUnhandledException;
 
 			InitializeComponent();
@@ -18,7 +18,7 @@ namespace Uberball.Game.Client {
 			RootVisual = new MatchPage();
 		}
 
-		private void Application_Exit(object sender, EventArgs e) {
+		private void OnApplicationExit(object sender, EventArgs e) {
 
 		}
 
@@ -33,11 +33,11 @@ namespace Uberball.Game.Client {
 				// For production applications this error handling should be replaced with something that will 
 				// report the error to the website and stop the application.
 				e.Handled = true;
-				Deployment.Current.Dispatcher.BeginInvoke(() => ReportErrorToDOM(e));
+				Deployment.Current.Dispatcher.BeginInvoke(() => ReportErrorToDom(e));
 			}
 		}
 
-		private void ReportErrorToDOM(ApplicationUnhandledExceptionEventArgs e) {
+		private void ReportErrorToDom(ApplicationUnhandledExceptionEventArgs e) {
 			try {
 				string errorMsg = e.ExceptionObject.Message + e.ExceptionObject.StackTrace;
 				errorMsg = errorMsg.Replace('"', '\'').Replace("\r\n", @"\n");

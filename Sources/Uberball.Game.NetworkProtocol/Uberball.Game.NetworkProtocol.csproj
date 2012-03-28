@@ -49,6 +49,7 @@
   <ItemGroup>
     <Compile Include="BlockSerializer.cs" />
     <Compile Include="BallSerializer.cs" />
+    <Compile Include="DecorationSerializer.cs" />
     <Compile Include="InputPacket.cs" />
     <Compile Include="KickBallPacket.cs" />
     <Compile Include="PlayerSerializer.cs" />

@@ -11,7 +11,7 @@
 		<TranslateTransform X="{Binding X}" Y="{Binding Y}" />
 	</UserControl.RenderTransform>
 	
-	<Grid Background="Aqua">
+	<Grid>
 		<VisualStateManager.VisualStateGroups>
 			<VisualStateGroup x:Name="VisualStateGroup">
 				<VisualStateGroup.Transitions>

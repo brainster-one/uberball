@@ -49,6 +49,9 @@ namespace Uberball.Game.Client.Areas.MatchArea.Views.Controls {
 				foreach (var itm in e.NewItems.OfType<BallViewModel>()) {
 					Root.Children.Add(new Ball { DataContext = itm });
 				}
+				foreach (var itm in e.NewItems.OfType<DecorationViewModel>()) {
+					Root.Children.Add(new Decoration { DataContext = itm });
+				}
 			}
 
 			if (e.OldItems != null) {

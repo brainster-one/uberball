@@ -74,6 +74,9 @@
     <Compile Include="..\Uberball.Game.Logic.Entities\Block.cs">
       <Link>Shared\Block.cs</Link>
     </Compile>
+    <Compile Include="..\Uberball.Game.Logic.Entities\Decoration.cs">
+      <Link>Shared\Decoration.cs</Link>
+    </Compile>
     <Compile Include="..\uberball.game.logic.entities\Player.cs">
       <Link>Shared\Player.cs</Link>
       <SubType>Code</SubType>
@@ -83,6 +86,9 @@
     </Compile>
     <Compile Include="..\Uberball.Game.NetworkProtocol\BlockSerializer.cs">
       <Link>Shared\BlockSerializer.cs</Link>
+    </Compile>
+    <Compile Include="..\Uberball.Game.NetworkProtocol\DecorationSerializer.cs">
+      <Link>Shared\DecorationSerializer.cs</Link>
     </Compile>
     <Compile Include="..\Uberball.Game.NetworkProtocol\InputPacket.cs">
       <Link>Shared\InputPacket.cs</Link>
@@ -113,8 +119,10 @@
     <Compile Include="StateHelper.cs" />
     <Compile Include="ViewModels\Entities\BlockViewModel.cs" />
     <Compile Include="ViewModels\Entities\BallViewModel.cs" />
+    <Compile Include="ViewModels\Entities\DecorationViewModel.cs" />
     <Compile Include="ViewModels\Mappers\BlockMapper.cs" />
     <Compile Include="ViewModels\Mappers\BallMapper.cs" />
+    <Compile Include="ViewModels\Mappers\DecorationMapper.cs" />
     <Compile Include="ViewModels\Mappers\IMapper.cs" />
     <Compile Include="ViewModels\Mappers\PlayerMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -132,6 +140,9 @@
     </Compile>
     <Compile Include="Views\Entities\Block.xaml.cs">
       <DependentUpon>Block.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Entities\Decoration.xaml.cs">
+      <DependentUpon>Decoration.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Entities\Player.xaml.cs">
       <DependentUpon>Player.xaml</DependentUpon>
@@ -160,6 +171,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Entities\Block.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Entities\Decoration.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
