@@ -65,8 +65,8 @@ namespace Uberball.Game.Client.Areas.MatchArea.DataProviders {
 				_entityId.Add(e.EntityInfo.Id, e.EntityInfo.Entity);
 			else if (e.EntityInfo.Action == EntityNetworkAction.Removed)
 				_entityId.Remove(e.EntityInfo.Id);
-			else if (e.EntityInfo.Action == EntityNetworkAction.Modified)
-				e.EntityInfo.Diff.ApplyChanges(_entityId[e.EntityInfo.Id]);
+			/*else if (e.EntityInfo.Action == EntityNetworkAction.Modified)
+				e.EntityInfo.Diff.ApplyChanges(_entityId[e.EntityInfo.Id]);*/
 
 			var evnt = EntityStateChanged;
 			if (evnt != null) evnt(this, new MatchDataProviderEventArgs(entity, e.EntityInfo.Action));
