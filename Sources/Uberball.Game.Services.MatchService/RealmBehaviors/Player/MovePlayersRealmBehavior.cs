@@ -7,10 +7,11 @@ namespace Uberball.Game.Services.MatchService.RealmBehaviors {
 	/// <summary>Moves player by specified vector.</summary>
 	class MovePlayersRealmBehavior : RealmBehavior {
 		public override void Update(IRealm realm, double delta) {
-			foreach (var player in realm.Entities.OfType<Player>()) {
-				player.VectorY += 5;
-				player.X += player.VectorX;
-				player.Y += player.VectorY;
+			foreach (var player in realm.Entities.OfType<Player>())
+			{
+				//player.VectorY += 1.8;
+				//player.X += player.VectorX;
+				//player.Y += player.VectorY;
 			}
 		}
 	}

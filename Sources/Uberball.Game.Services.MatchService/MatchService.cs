@@ -19,16 +19,16 @@ namespace Uberball.Game.Services.MatchService {
 			_realm = new Realm(new IRealmBehavior[] {
 				new MovePlayersRealmBehavior(), 
 				new PlayerCollideWithBlockRealmBehavior(),
-				new MoveBallRealmBehavior(),
-				new BallCollideWithBlockRealmBehavior(),
+				//new MoveBallRealmBehavior(),
+				//new BallCollideWithBlockRealmBehavior(),
 				new SyncEntitiesRealmBehavior(_service)
 			});
 
-
+			
 			_realm.AddEntity(new Decoration { X = 64 * 3, Y = 64 * 3 });
 			_realm.AddEntity(new Decoration { X = 64 * 6, Y = 64 * 3 });
 
-			_realm.AddEntity(new Block { X = 64 * 0, Y = 64 * 1 });
+			_realm.AddEntity(new Block { X = 64 * 0, Y = 64 * 10 });
 			_realm.AddEntity(new Block { X = 64 * 1, Y = 64 * 1 });
 
 			_realm.AddEntity(new Block { X = 64 * 1, Y = 64 * 5 });
@@ -51,6 +51,7 @@ namespace Uberball.Game.Services.MatchService {
 				_realm.AddEntity(new Block { X = 64 * i, Y = 64 * 9 });
 				_realm.AddEntity(new Block { X = 64 * 12, Y = 64 * i });
 			}
+			_realm.AddEntity(new Block { X = 0, Y = 64 * 1 });
 		}
 
 		void _OnPacketReceived(object sender, RealmServiceEventArgs e) {
@@ -60,7 +61,7 @@ namespace Uberball.Game.Services.MatchService {
 			if (e.Packet is InputPacket) {
 				var packet = e.Packet as InputPacket;
 				player.VectorX = packet.IsRightPressed ? 40 : packet.IsLeftPressed ? -40 : 0;
-				player.VectorY += packet.IsDownPressed ? 20 : packet.IsUpPressed ? -20 : 0;
+				player.VectorY += packet.IsDownPressed ? 20 : packet.IsUpPressed ? -40 : 0;
 			} else {
 				var packet = e.Packet as KickBallPacket;
 				lock (_realm) {

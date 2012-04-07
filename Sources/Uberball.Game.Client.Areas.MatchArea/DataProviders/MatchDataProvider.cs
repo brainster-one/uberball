@@ -35,7 +35,7 @@ namespace Uberball.Game.Client.Areas.MatchArea.DataProviders {
 		}
 
 		public void KickBall(double x, double y) {
-			var plr = _entityId.Values.OfType<Player>().First();
+			var plr = _entities.OfType<Player>().First();
 			var angle = Math.Atan2(plr.X - x, plr.Y - y);
 			_client.Send(new KickBallPacket { Angle = angle });
 		}
@@ -49,34 +49,29 @@ namespace Uberball.Game.Client.Areas.MatchArea.DataProviders {
 		/// <summary>Connection state changed.</summary>
 		/// <param name="sender">Event sener.</param>
 		/// <param name="e">Event args.</param>
-		void OnConnectionStateChanged(object sender, RealmClientEventArgs e) {
+		void OnConnectionStateChanged(object sender, ConnectionEventArgs e) {
 			var evnt = ConnectionStateChanged;
-			if (evnt != null) evnt(this, new MatchDataProviderEventArgs(e.ConnectionState));
+			if (evnt != null) evnt(this, new MatchDataProviderEventArgs(e.State));
 		}
 
 		/// <summary>On entity state changed.</summary>
 		/// <param name="sender">Entity sanded.</param>
 		/// <param name="e">Event args.</param>
-		void OnEntityStateChanged(object sender, RealmClientEventArgs e) {
-			var entity = e.EntityInfo.Action == EntityNetworkAction.Added ?
-				e.EntityInfo.Entity : _entityId[e.EntityInfo.Id];
-
-			if (e.EntityInfo.Action == EntityNetworkAction.Added)
-				_entityId.Add(e.EntityInfo.Id, e.EntityInfo.Entity);
-			else if (e.EntityInfo.Action == EntityNetworkAction.Removed)
-				_entityId.Remove(e.EntityInfo.Id);
-			/*else if (e.EntityInfo.Action == EntityNetworkAction.Modified)
-				e.EntityInfo.Diff.ApplyChanges(_entityId[e.EntityInfo.Id]);*/
+		void OnEntityStateChanged(object sender, EntityEventArgs e) {
+			if (e.State == EntityState.Added)
+				_entities.Add(e.Entity);
+			else if (e.State == EntityState.Removed)
+				_entities.Remove(e.Entity);
 
 			var evnt = EntityStateChanged;
-			if (evnt != null) evnt(this, new MatchDataProviderEventArgs(entity, e.EntityInfo.Action));
+			if (evnt != null) evnt(this, new MatchDataProviderEventArgs(e.Entity, e.State));
 		}
 
 		/// <summary>Client interface to connect to remote service.</summary>
 		readonly RealmClient _client = new RealmClient(new UberballProtocol());
 
 		/// <summary>Id to entity map.</summary>
-		readonly Dictionary<int, object> _entityId = new Dictionary<int, object>();
+		readonly List<object> _entities = new List<object>();
 	}
 
 	/// <summary>Match data provider event args.</summary>
@@ -89,16 +84,16 @@ namespace Uberball.Game.Client.Areas.MatchArea.DataProviders {
 
 		/// <summary>Initializes a new instance of the MatchViewModel class using specified entity and action.</summary>
 		/// <param name="entity">Entity.</param>
-		/// <param name="action">Action.</param>
-		public MatchDataProviderEventArgs(object entity, EntityNetworkAction action) {
+		/// <param name="state">State.</param>
+		public MatchDataProviderEventArgs(object entity, EntityState state) {
 			Entity = entity;
-			EntityNetworkAction = action;
+			EntityState = state;
 		}
 		/// <summary>Gets connection state.</summary>
 		public ConnectionState ConnectionState { get; private set; }
 
 		/// <summary>Gets entity action.</summary>
-		public EntityNetworkAction EntityNetworkAction { get; private set; }
+		public EntityState EntityState { get; private set; }
 
 		/// <summary>Gets entity.</summary>
 		public object Entity { get; private set; }

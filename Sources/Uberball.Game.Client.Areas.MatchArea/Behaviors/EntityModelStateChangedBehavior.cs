@@ -23,22 +23,24 @@ namespace Uberball.Game.Client.Areas.MatchArea.Behaviors {
 		/// <summary>Handle.</summary>
 		/// <param name="model">Changed model.</param>
 		/// <param name="action">Network action.</param>
-		public void Handle(object model, EntityNetworkAction action) {
+		public void Handle(object model, EntityState action) {
 			var viewModel = GetViewModel(model);
 			var mapper = GetMapper(model.GetType());
 
 			Deployment.Current.Dispatcher.BeginInvoke(() => {
-				if (action == EntityNetworkAction.Added) {
+				switch (action) {
+				case EntityState.Added:
 					mapper.Map(model, ref viewModel);
 					_entities.Add(model, viewModel);
 					_viewModel.Entities.Add(viewModel);
-
-				} else if (action == EntityNetworkAction.Modified) {
+					break;
+				case EntityState.Modified:
 					mapper.Map(model, ref viewModel);
-
-				} else if (action == EntityNetworkAction.Removed) {
+					break;
+				case EntityState.Removed:
 					_entities.Remove(model);
 					_viewModel.Entities.Remove(viewModel);
+					break;
 				}
 			});
 		}
@@ -66,7 +68,7 @@ namespace Uberball.Game.Client.Areas.MatchArea.Behaviors {
 		readonly MatchViewModel _viewModel;
 
 		/// <summary>Entity model to view model map.</summary>
-		readonly Dictionary<object /*model*/, object> _entities = new Dictionary<object,object>();
+		readonly Dictionary<object /*model*/, object> _entities = new Dictionary<object, object>();
 
 		/// <summary>Mappers.</summary>
 		readonly Dictionary<Type, IMapper> _mappers = new Dictionary<Type, IMapper>();
