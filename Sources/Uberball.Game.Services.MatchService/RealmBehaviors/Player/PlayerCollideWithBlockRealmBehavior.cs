@@ -1,7 +1,7 @@
 ﻿
-using System;
 
 namespace Uberball.Game.Services.MatchService.RealmBehaviors {
+	using System;
 	using System.Linq;
 	using Ardelme.Core;
 	using Logic.Entities;

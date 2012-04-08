@@ -52,7 +52,7 @@
       <HintPath>..\..\Assets\Packages\Ardelme.0.0.3\lib\sl50\Ardelme.Silverlight.dll</HintPath>
     </Reference>
     <Reference Include="Khrussk.NetworkRealm.Silverlight, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\Assets\Packages\Khrussk.NetworkRealm.Silverlight.0.0.38\lib\sl5\Khrussk.NetworkRealm.Silverlight.dll</HintPath>
+      <HintPath>..\..\Assets\Packages\Khrussk.NetworkRealm.Silverlight.0.0.39\lib\sl5\Khrussk.NetworkRealm.Silverlight.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib" />
     <Reference Include="system" />
