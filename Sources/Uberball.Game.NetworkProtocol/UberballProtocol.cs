@@ -9,9 +9,9 @@ namespace Uberball.Game.NetworkProtocol {
 			Register(new InputPacketSrializer());
 			Register(new KickBallPacketSerializer());
 			Register(new PlayerSerializer());
-			Register(new BlockSerializer());
 			Register(new BallSerializer());
 			Register(new DecorationSerializer());
+			Register(new GroundSerializer());
 		}
 	}
 }

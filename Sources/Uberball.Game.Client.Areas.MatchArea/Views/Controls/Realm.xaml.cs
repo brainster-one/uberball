@@ -1,4 +1,6 @@
 ﻿
+using Uberball.Game.Logic.Entities;
+
 namespace Uberball.Game.Client.Areas.MatchArea.Views.Controls {
 	using System;
 	using System.Collections.ObjectModel;
@@ -43,14 +45,17 @@ namespace Uberball.Game.Client.Areas.MatchArea.Views.Controls {
 				foreach (var itm in e.NewItems.OfType<PlayerViewModel>()) {
 					Root.Children.Add(new Player { DataContext = itm });
 				}
-				foreach (var itm in e.NewItems.OfType<BlockViewModel>()) {
-					Root.Children.Add(new Block { DataContext = itm });
-				}
 				foreach (var itm in e.NewItems.OfType<BallViewModel>()) {
 					Root.Children.Add(new Ball { DataContext = itm });
 				}
 				foreach (var itm in e.NewItems.OfType<DecorationViewModel>()) {
 					Root.Children.Add(new Decoration { DataContext = itm });
+				}
+				foreach (var itm in e.NewItems.OfType<GroundViewModel>()) {
+					if (itm.Type == GroundType.Polygon)
+						Root.Children.Add(new Ground { DataContext = itm });
+					else
+						Root.Children.Add(new Block { DataContext = itm });
 				}
 			}
 

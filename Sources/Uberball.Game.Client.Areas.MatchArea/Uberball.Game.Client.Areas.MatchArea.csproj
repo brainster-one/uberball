@@ -71,11 +71,11 @@
     <Compile Include="..\Uberball.Game.Logic.Entities\Ball.cs">
       <Link>Shared\Ball.cs</Link>
     </Compile>
-    <Compile Include="..\Uberball.Game.Logic.Entities\Block.cs">
-      <Link>Shared\Block.cs</Link>
-    </Compile>
     <Compile Include="..\Uberball.Game.Logic.Entities\Decoration.cs">
       <Link>Shared\Decoration.cs</Link>
+    </Compile>
+    <Compile Include="..\Uberball.Game.Logic.Entities\Ground.cs">
+      <Link>Shared\Ground.cs</Link>
     </Compile>
     <Compile Include="..\uberball.game.logic.entities\Player.cs">
       <Link>Shared\Player.cs</Link>
@@ -84,11 +84,11 @@
     <Compile Include="..\Uberball.Game.NetworkProtocol\BallSerializer.cs">
       <Link>Shared\BallSerializer.cs</Link>
     </Compile>
-    <Compile Include="..\Uberball.Game.NetworkProtocol\BlockSerializer.cs">
-      <Link>Shared\BlockSerializer.cs</Link>
-    </Compile>
     <Compile Include="..\Uberball.Game.NetworkProtocol\DecorationSerializer.cs">
       <Link>Shared\DecorationSerializer.cs</Link>
+    </Compile>
+    <Compile Include="..\Uberball.Game.NetworkProtocol\GroundSerializer.cs">
+      <Link>Shared\GroundSerializer.cs</Link>
     </Compile>
     <Compile Include="..\Uberball.Game.NetworkProtocol\InputPacket.cs">
       <Link>Shared\InputPacket.cs</Link>
@@ -117,11 +117,11 @@
     <Compile Include="Commands\ConnectCommand.cs" />
     <Compile Include="Commands\KeyPressCommand.cs" />
     <Compile Include="StateHelper.cs" />
-    <Compile Include="ViewModels\Entities\BlockViewModel.cs" />
     <Compile Include="ViewModels\Entities\BallViewModel.cs" />
+    <Compile Include="ViewModels\Entities\GroundViewModel.cs" />
     <Compile Include="ViewModels\Entities\DecorationViewModel.cs" />
-    <Compile Include="ViewModels\Mappers\BlockMapper.cs" />
     <Compile Include="ViewModels\Mappers\BallMapper.cs" />
+    <Compile Include="ViewModels\Mappers\GroundMapper.cs" />
     <Compile Include="ViewModels\Mappers\DecorationMapper.cs" />
     <Compile Include="ViewModels\Mappers\IMapper.cs" />
     <Compile Include="ViewModels\Mappers\PlayerMapper.cs" />
@@ -143,6 +143,9 @@
     </Compile>
     <Compile Include="Views\Entities\Decoration.xaml.cs">
       <DependentUpon>Decoration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Entities\Ground.xaml.cs">
+      <DependentUpon>Ground.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Entities\Player.xaml.cs">
       <DependentUpon>Player.xaml</DependentUpon>
@@ -178,6 +181,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Entities\Ground.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Entities\Player.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -189,6 +196,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Converters\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <ProjectExtensions>

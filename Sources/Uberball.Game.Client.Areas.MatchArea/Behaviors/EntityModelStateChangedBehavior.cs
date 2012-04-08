@@ -15,9 +15,9 @@ namespace Uberball.Game.Client.Areas.MatchArea.Behaviors {
 		public EntityModelStateChangedBehavior(MatchViewModel viewModel) {
 			_viewModel = viewModel;
 			_mappers.Add(typeof(Player), new PlayerMapper());
-			_mappers.Add(typeof(Block), new BlockMapper());
 			_mappers.Add(typeof(Ball), new BallMapper());
 			_mappers.Add(typeof(Decoration), new DecorationMapper());
+			_mappers.Add(typeof(Ground), new GroundMapper());
 		}
 
 		/// <summary>Handle.</summary>

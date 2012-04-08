@@ -4,12 +4,26 @@
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:local="clr-namespace:Uberball.Game.Client.Areas.MatchArea"
-	mc:Ignorable="d" Width="32" Height="32"
+	mc:Ignorable="d" Width="64" Height="64"
 	local:StateHelper.State="{Binding State}">
 
 	<UserControl.RenderTransform>
 		<TranslateTransform X="{Binding X}" Y="{Binding Y}" />
 	</UserControl.RenderTransform>
 	
-	<Ellipse Width="32" Height="32" Fill="Yellow" VerticalAlignment="Bottom" />
+	<!--<Ellipse Width="32" Height="32" Fill="Yellow" VerticalAlignment="Bottom" /> -->
+	<Polygon>
+		<Polygon.Points>
+			<Point X="5" Y="5" />
+			<Point X="61" Y="5" />
+			<Point X="60" Y="25" />
+			<Point X="2" Y="60" />
+		</Polygon.Points>
+		<Polygon.Fill>
+			<ImageBrush ImageSource="/Uberball.Game.Client.Areas.MatchArea;component/Images/1.png" Stretch="UniformToFill" />
+		</Polygon.Fill>
+		<Polygon.Effect>
+			<DropShadowEffect/>
+		</Polygon.Effect>
+	</Polygon>
 </UserControl>

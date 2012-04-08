@@ -4,10 +4,11 @@ namespace Uberball.Game.Services.MatchService.RealmBehaviors {
 	using System.Linq;
 	using Ardelme.Core;
 	using Khrussk.NetworkRealm;
+	using Uberball.Game.Logic.Entities;
 
 	class SyncEntitiesRealmBehavior : RealmBehavior {
 		public override void Update(IRealm realm, double delta) {
-			foreach (var entity in realm.Entities) {
+			foreach (var entity in realm.Entities.OfType<Player>()) {
 				realm.ModifyEntity(entity);
 			}
 		}

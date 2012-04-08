@@ -54,12 +54,8 @@
   <ItemGroup>
     <Compile Include="MatchService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RealmBehaviors\Ball\MoveBallRealmBehavior.cs" />
-    <Compile Include="RealmBehaviors\Ball\BallCollideWithBlockRealmBehavior.cs" />
     <Compile Include="RealmBehaviors\Physics.cs" />
-    <Compile Include="RealmBehaviors\Player\PlayerCollideWithBlockRealmBehavior.cs" />
     <Compile Include="RealmBehaviors\SyncEntitiesRealmBehavior.cs" />
-    <Compile Include="RealmBehaviors\Player\MovePlayersRealmBehavior.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Uberball.Game.Logic.Entities\Uberball.Game.Logic.Entities.csproj">
