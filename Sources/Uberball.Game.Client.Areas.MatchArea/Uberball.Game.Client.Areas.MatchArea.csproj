@@ -111,7 +111,13 @@
     <Compile Include="Commands\MouseRightButtonDownCommand.cs" />
     <Compile Include="Commands\GoToFullScreenModeCommand.cs" />
     <Compile Include="Behaviors\UpdateRealmBehavior.cs" />
-    <Compile Include="Locators\DataProviderLocator.cs" />
+    <Compile Include="Services\EntityMappingService.cs" />
+    <Compile Include="Services\Mappers\BallMapper.cs" />
+    <Compile Include="Services\Mappers\DecorationMapper.cs" />
+    <Compile Include="Services\Mappers\GroundMapper.cs" />
+    <Compile Include="Services\Mappers\IEntityMapper.cs" />
+    <Compile Include="Services\Mappers\PlayerMapper.cs" />
+    <Compile Include="Services\ServiceLocator.cs" />
     <Compile Include="RealmBehaviors\UpdateBallPositionRealmBehavior.cs" />
     <Compile Include="RealmBehaviors\UpdatePlayerPositionRealmBehavior.cs" />
     <Compile Include="Commands\ConnectCommand.cs" />
@@ -120,13 +126,8 @@
     <Compile Include="ViewModels\Entities\BallViewModel.cs" />
     <Compile Include="ViewModels\Entities\GroundViewModel.cs" />
     <Compile Include="ViewModels\Entities\DecorationViewModel.cs" />
-    <Compile Include="ViewModels\Mappers\BallMapper.cs" />
-    <Compile Include="ViewModels\Mappers\GroundMapper.cs" />
-    <Compile Include="ViewModels\Mappers\DecorationMapper.cs" />
-    <Compile Include="ViewModels\Mappers\IMapper.cs" />
-    <Compile Include="ViewModels\Mappers\PlayerMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="DataProviders\MatchDataProvider.cs" />
+    <Compile Include="Services\MatchService.cs" />
     <Compile Include="ViewModels\Entities\PlayerViewModel.cs" />
     <Compile Include="ViewModels\MatchViewModel.cs" />
     <Compile Include="ViewModels\MatchViewModel.designer.cs">
@@ -195,7 +196,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Converters\" />
+    <Folder Include="Mappers\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\1.png" />

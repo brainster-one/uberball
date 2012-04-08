@@ -1,5 +1,7 @@
 ﻿
+
 namespace Uberball.Game.Client.Areas.MatchArea.ViewModels {
+	using Services;
 	using System.Collections.ObjectModel;
 	using System.Net;
 	using System.Windows.Input;
@@ -7,7 +9,6 @@ namespace Uberball.Game.Client.Areas.MatchArea.ViewModels {
 	using Ardelme.Core;
 	using Behaviors;
 	using Commands;
-	using Locators;
 	using RealmBehaviors;
 	using Thersuli;
 
@@ -16,7 +17,7 @@ namespace Uberball.Game.Client.Areas.MatchArea.ViewModels {
 		/// <summary>Initializes a new instance of the MatchViewModel class.</summary>
 		/// <param name="endpoint">EndPoint to connect to.</param>
 		public MatchViewModel(IPEndPoint endpoint) {
-			var dp = DataProviderLocator.MatchDataProvider;
+			var dp = ServiceLocator.MatchService;
 
 			// commands and behaviors
 			Realm = new Realm(new IRealmBehavior[] {

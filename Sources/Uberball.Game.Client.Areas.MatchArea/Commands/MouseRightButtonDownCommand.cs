@@ -2,14 +2,14 @@
 namespace Uberball.Game.Client.Areas.MatchArea.Commands {
 	using System.Windows;
 	using System.Windows.Input;
+	using Services;
 	using Thersuli;
 	using Thersuli.MarkupExtensions;
-	using DataProviders;
 
 	/// <summary>Key down command.</summary>
 	public class MouseRightButtonDownCommand : Command {
-		public MouseRightButtonDownCommand(MatchDataProvider matchDataProvider) {
-			_matchDataProvider = matchDataProvider;
+		public MouseRightButtonDownCommand(MatchService matchService) {
+			_matchService = matchService;
 		}
 
 		public override void Execute(object parameter) {
@@ -18,9 +18,9 @@ namespace Uberball.Game.Client.Areas.MatchArea.Commands {
 			var point = mouse.GetPosition(prm.Sender as UIElement);
 			mouse.Handled = true;
 
-			_matchDataProvider.KickBall(point.X, point.Y);
+			_matchService.KickBall(point.X, point.Y);
 		}
 
-		readonly MatchDataProvider _matchDataProvider;
+		readonly MatchService _matchService;
 	}
 }

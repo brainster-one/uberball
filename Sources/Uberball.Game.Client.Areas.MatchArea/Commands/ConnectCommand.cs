@@ -1,15 +1,15 @@
 ﻿
 namespace Uberball.Game.Client.Areas.MatchArea.Commands {
 	using System.Net;
+	using Services;
 	using Thersuli;
-	using DataProviders;
 
 	/// <summary>Connect to match service command.</summary>
 	public class ConnectCommand : Command {
 		/// <summary>Initializes a new instance of the ConnectCommand class.</summary>
 		/// <param name="provider">Realm client to connect to remote service.</param>
 		/// <param name="endpoint">Endpoint to connect to.</param>
-		public ConnectCommand(MatchDataProvider provider, IPEndPoint endpoint) {
+		public ConnectCommand(MatchService provider, IPEndPoint endpoint) {
 			_endpoint = endpoint;
 			_provider = provider;
 		}
@@ -21,7 +21,7 @@ namespace Uberball.Game.Client.Areas.MatchArea.Commands {
 		}
 
 		/// <summary>Match data provider.</summary>
-		readonly MatchDataProvider _provider;
+		readonly MatchService _provider;
 
 		/// <summary>Endpoint to connect to.</summary>
 		readonly IPEndPoint _endpoint;

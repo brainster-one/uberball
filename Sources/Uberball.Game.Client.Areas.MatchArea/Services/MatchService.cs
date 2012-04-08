@@ -1,5 +1,5 @@
 ﻿
-namespace Uberball.Game.Client.Areas.MatchArea.DataProviders {
+namespace Uberball.Game.Client.Areas.MatchArea.Services {
 	using System;
 	using System.Collections.Generic;
 	using System.Linq;
@@ -10,9 +10,9 @@ namespace Uberball.Game.Client.Areas.MatchArea.DataProviders {
 	using NetworkProtocol;
 
 	/// <summary>Match data provider.</summary>
-	public sealed class MatchDataProvider {
-		/// <summary>Initializes a new instance of the MatchDataProvider class.</summary>
-		public MatchDataProvider() {
+	public sealed class MatchService {
+		/// <summary>Initializes a new instance of the MatchService class.</summary>
+		public MatchService() {
 			_client.ConnectionStateChanged += OnConnectionStateChanged;
 			_client.EntityStateChanged += OnEntityStateChanged;
 		}
@@ -89,6 +89,7 @@ namespace Uberball.Game.Client.Areas.MatchArea.DataProviders {
 			Entity = entity;
 			EntityState = state;
 		}
+
 		/// <summary>Gets connection state.</summary>
 		public ConnectionState ConnectionState { get; private set; }
 

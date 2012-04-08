@@ -1,4 +1,5 @@
 ﻿
+using Uberball.Game.Client.Areas.MatchArea.Services;
 using Uberball.Game.Logic.Entities;
 
 namespace Uberball.Game.Client.Areas.MatchArea.Views.Controls {
@@ -42,20 +43,10 @@ namespace Uberball.Game.Client.Areas.MatchArea.Views.Controls {
 		/// <param name="e">Event args.</param>
 		void EntitiesCollectionChanged(object sender, NotifyCollectionChangedEventArgs e) {
 			if (e.NewItems != null) {
-				foreach (var itm in e.NewItems.OfType<PlayerViewModel>()) {
-					Root.Children.Add(new Player { DataContext = itm });
-				}
-				foreach (var itm in e.NewItems.OfType<BallViewModel>()) {
-					Root.Children.Add(new Ball { DataContext = itm });
-				}
-				foreach (var itm in e.NewItems.OfType<DecorationViewModel>()) {
-					Root.Children.Add(new Decoration { DataContext = itm });
-				}
-				foreach (var itm in e.NewItems.OfType<GroundViewModel>()) {
-					if (itm.Type == GroundType.Polygon)
-						Root.Children.Add(new Ground { DataContext = itm });
-					else
-						Root.Children.Add(new Block { DataContext = itm });
+				foreach (var itm in e.NewItems) {
+					object view = null;
+					ServiceLocator.EntityMappingService.ToView(itm, ref view);
+					Root.Children.Add((UserControl)view);
 				}
 			}
 
@@ -63,7 +54,7 @@ namespace Uberball.Game.Client.Areas.MatchArea.Views.Controls {
 				foreach (var itm in e.OldItems.OfType<PlayerViewModel>()) {
 					Root.Children.Where(x => ((UserControl)x).DataContext == itm).ToList().ForEach(y => Root.Children.Remove(y));
 				}
-				
+
 			}
 		}
 

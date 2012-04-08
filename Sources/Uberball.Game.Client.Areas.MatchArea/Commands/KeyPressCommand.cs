@@ -1,14 +1,14 @@
 ﻿
 namespace Uberball.Game.Client.Areas.MatchArea.Commands {
+	using Services;
 	using System.Windows.Input;
 	using Thersuli;
 	using Thersuli.MarkupExtensions;
-	using DataProviders;
 
 	/// <summary>Key down command.</summary>
 	public class KeyPressCommand : Command {
-		public KeyPressCommand(MatchDataProvider matchDataProvider) {
-			_matchDataProvider = matchDataProvider;
+		public KeyPressCommand(MatchService matchService) {
+			_matchService = matchService;
 		}
 
 		public override void Execute(object parameter) {
@@ -26,11 +26,11 @@ namespace Uberball.Game.Client.Areas.MatchArea.Commands {
 			}
 
 			if (stateChanged)
-				_matchDataProvider.Input(_state[0], _state[1], _state[2], _state[3]);
+				_matchService.Input(_state[0], _state[1], _state[2], _state[3]);
 		}
 
 
 		readonly bool[] _state = new bool[4];
-		readonly MatchDataProvider _matchDataProvider;
+		readonly MatchService _matchService;
 	}
 }
