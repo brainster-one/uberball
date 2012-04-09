@@ -14,7 +14,7 @@ namespace Uberball.Game.Services.MatchService {
 	public class MatchService {
 		public MatchService() {
 			_service.UserConnectionStateChanged += OnUserConnectionStateChanged;
-			_service.PacketReceived += _OnPacketReceived;
+			_service.PacketReceived += OnPacketReceived;
 
 			_realm = new Realm(new IRealmBehavior[] {
 				//new MovePlayersRealmBehavior(), 
@@ -46,8 +46,8 @@ namespace Uberball.Game.Services.MatchService {
 
 
 			for (int i = 0; i < 20; ++i) {
-				_realm.AddEntity(Ground.CreateBlock(64 * i, 64 * 9 ));
-				_realm.AddEntity(Ground.CreateBlock(64 * 12, 64 * i ));
+				_realm.AddEntity(Ground.CreateBlock(64 * i, 64 * 9));
+				_realm.AddEntity(Ground.CreateBlock(64 * 12, 64 * i));
 			}
 
 			//_realm.AddEntity(new Block { X = 64 * 1, Y = 64 * 2 });*/
@@ -56,7 +56,7 @@ namespace Uberball.Game.Services.MatchService {
 			}));*/
 		}
 
-		void _OnPacketReceived(object sender, PacketEventArgs e) {
+		void OnPacketReceived(object sender, PacketEventArgs e) {
 			/* todo: сохранять пакеты для обработки. Обрабатывать перед обновлением игрового мира. */
 			var player = e.User["player"] as Player;
 
@@ -64,6 +64,7 @@ namespace Uberball.Game.Services.MatchService {
 				var packet = e.Packet as InputPacket;
 				player.VectorX = packet.IsRightPressed ? 20 : packet.IsLeftPressed ? -20 : 0;
 				player.VectorY = packet.IsDownPressed ? 2 : packet.IsUpPressed ? -2 : 0;
+				player.AimAngle = packet.AimAngle;
 				//_realm.Input(null, packet.IsUpPressed ? new[] {1} : null);
 			} else {
 				var packet = e.Packet as KickBallPacket;
@@ -81,11 +82,13 @@ namespace Uberball.Game.Services.MatchService {
 
 
 		void OnUserConnectionStateChanged(object sender, ConnectionEventArgs e) {
-			e.User["player"] = new Player { Name = "Player_" + DateTime.Now.Millisecond, X = 64 * 3 };
 			lock (_realm) {
-				if (e.State == ConnectionState.Connected)
+				if (e.State == ConnectionState.Connected) {
+					var name = "Player_" + DateTime.Now.Millisecond;
+					e.User["player"] = new Player { Name = name, X = 64 * 3 };
 					_realm.AddEntity(e.User["player"]);
-				else if (e.State == ConnectionState.Disconnected)
+					_service.Send(e.User, new ControlInfoPacket { Id = name });
+				} else if (e.State == ConnectionState.Disconnected)
 					_realm.RemoveEntity(e.User["player"]);
 			}
 		}

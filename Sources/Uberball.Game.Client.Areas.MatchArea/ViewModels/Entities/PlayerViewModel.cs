@@ -21,13 +21,19 @@ namespace Uberball.Game.Client.Areas.MatchArea.ViewModels.Entities {
 			get { return _y; }
 			set { _y = value; OnPropertyChanged("Y"); }
 		}
+		public double AimAngle {
+			get { return _aimAngle; }
+			set { _aimAngle = value; OnPropertyChanged("AimAngle"); }
+		}
 
+		public double NewAimAngle { get; set; }
 		public double NewX { get; set; }
 		public double NewY { get; set; }
 
 		private string _name;
 		private double _x;
 		private double _y;
+		private double _aimAngle;
 
 		public string State { get { return _state; } set { _state = value; OnPropertyChanged("State"); } }
 		private string _state;

@@ -11,6 +11,7 @@ namespace Uberball.Game.Client.Areas.MatchArea.Services.Mappers {
 			rViewModel.Name = rEntity.Name;
 			rViewModel.NewX = rEntity.X;
 			rViewModel.NewY = rEntity.Y;
+			rViewModel.NewAimAngle = rEntity.AimAngle;
 
 			viewModel = rViewModel;
 		}

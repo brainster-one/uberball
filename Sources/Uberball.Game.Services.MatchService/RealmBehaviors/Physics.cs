@@ -66,9 +66,9 @@ namespace Uberball.Game.Services.MatchService.RealmBehaviors {
 			_world.Step(0.016f);
 			foreach (var entity in _entities) {
 				if (entity.Key is Player) {
-					((Player)entity.Key).X = entity.Value.Position.X + 16.0f;
-					((Player)entity.Key).Y = entity.Value.Position.Y + 16.0f;
-					entity.Value.ApplyLinearImpulse(new Vector2(0, 10 * (float)((Player)entity.Key).VectorY));
+					((Player) entity.Key).X = entity.Value.Position.X -64.0f + 32f;
+					((Player) entity.Key).Y = entity.Value.Position.Y -64.0f + 16f;
+					entity.Value.ApplyLinearImpulse(new Vector2(0, 100 * (float)((Player)entity.Key).VectorY));
 					entity.Value.LinearVelocity = new Vector2((float)((Player)entity.Key).VectorX,
 															  entity.Value.LinearVelocity.Y);
 					/*if (((Player)entity.Key).VectorY > 0)

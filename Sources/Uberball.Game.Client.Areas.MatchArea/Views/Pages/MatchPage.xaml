@@ -17,6 +17,7 @@
 		Loaded="{thersuli:InvokeCommand Command=ConnectCommand}"
 		KeyDown="{thersuli:InvokeCommand Command=KeyPressCommand, Parameter=True}"
 		KeyUp="{thersuli:InvokeCommand Command=KeyPressCommand, Parameter=False}"
+		MouseMove="{thersuli:InvokeCommand Command=MouseMoveCommand}"
 		MouseRightButtonDown="{thersuli:InvokeCommand Command=MouseRightButtonDownCommand}">
 
 		<!-- Realm renderer -->

@@ -11,19 +11,16 @@
 		<TranslateTransform X="{Binding X}" Y="{Binding Y}" />
 	</UserControl.RenderTransform>
 	
-	<!--<Ellipse Width="32" Height="32" Fill="Yellow" VerticalAlignment="Bottom" /> -->
-	<Polygon>
-		<Polygon.Points>
-			<Point X="5" Y="5" />
-			<Point X="61" Y="5" />
-			<Point X="60" Y="25" />
-			<Point X="2" Y="60" />
-		</Polygon.Points>
-		<Polygon.Fill>
-			<ImageBrush ImageSource="/Uberball.Game.Client.Areas.MatchArea;component/Images/1.png" Stretch="UniformToFill" />
-		</Polygon.Fill>
-		<Polygon.Effect>
-			<DropShadowEffect/>
-		</Polygon.Effect>
-	</Polygon>
+	<Canvas>
+		<Ellipse Canvas.Left="16" Canvas.Top="32" Width="32" Height="32" Fill="Yellow" VerticalAlignment="Bottom" />
+		<Rectangle Width="48" Height="8" Fill="Black" Canvas.Left="32" Canvas.Top="48">
+			<Rectangle.RenderTransformOrigin>
+				<Point X="0" Y=".5" />
+			</Rectangle.RenderTransformOrigin>
+			<Rectangle.RenderTransform>
+				<RotateTransform Angle="{Binding AimAngle}" />
+			</Rectangle.RenderTransform>
+		</Rectangle>
+	</Canvas>
+
 </UserControl>

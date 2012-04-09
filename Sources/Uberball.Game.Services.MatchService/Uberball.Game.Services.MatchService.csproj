@@ -43,7 +43,7 @@
       <HintPath>..\..\Assets\Packages\Khrussk.Interfaces.0.0.34\lib\Khrussk.Interfaces.dll</HintPath>
     </Reference>
     <Reference Include="Khrussk.NetworkRealm, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\Assets\Packages\Khrussk.NetworkRealm.0.0.38\lib\Khrussk.NetworkRealm.dll</HintPath>
+      <HintPath>..\..\Assets\Packages\Khrussk.NetworkRealm.0.0.39\lib\Khrussk.NetworkRealm.dll</HintPath>
     </Reference>
     <Reference Include="Khrussk.Peers, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\Assets\Packages\Khrussk.Peers.0.0.34\lib\Khrussk.Peers.dll</HintPath>

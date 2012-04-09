@@ -1,7 +1,5 @@
 ﻿
-
 namespace Uberball.Game.Client.Areas.MatchArea.ViewModels {
-	using Services;
 	using System.Collections.ObjectModel;
 	using System.Net;
 	using System.Windows.Input;
@@ -10,6 +8,7 @@ namespace Uberball.Game.Client.Areas.MatchArea.ViewModels {
 	using Behaviors;
 	using Commands;
 	using RealmBehaviors;
+	using Services;
 	using Thersuli;
 
 	/// <summary>Match view model.</summary>
@@ -17,25 +16,30 @@ namespace Uberball.Game.Client.Areas.MatchArea.ViewModels {
 		/// <summary>Initializes a new instance of the MatchViewModel class.</summary>
 		/// <param name="endpoint">EndPoint to connect to.</param>
 		public MatchViewModel(IPEndPoint endpoint) {
-			var dp = ServiceLocator.MatchService;
+			var matchService = ServiceLocator.MatchService;
 
-			// commands and behaviors
+			// realm
+			Entities = new ObservableCollection<object>();
 			Realm = new Realm(new IRealmBehavior[] {
 				new UpdatePlayerPositionRealmBehavior(),
 				new UpdateBallPositionRealmBehavior()
 			});
-			Entities = new ObservableCollection<object>();
-			KeyPressCommand = new KeyPressCommand(dp);
-			MouseRightButtonDownCommand = new MouseRightButtonDownCommand(dp);
-			ConnectCommand = new ConnectCommand(dp, endpoint);
+			
+			// Commands
+			KeyPressCommand = new KeyPressCommand(matchService);
+			MouseMoveCommand = new MouseMoveCommand(matchService);
+			MouseRightButtonDownCommand = new MouseRightButtonDownCommand(matchService);
+			ConnectCommand = new ConnectCommand(matchService, endpoint);
+
+			// Behaviors
 			ConnectionStateChangedBehavior = new ConnectionStateChangedBehavior(this);
 			EntityModelStateChangedBehavior = new EntityModelStateChangedBehavior(this);
 			EntityViewModelStateChangedBehavior = new EntityViewModelStateChangedBehavior(this);
 			UpdateRealmBehavior = new UpdateRealmBehavior(this);
 
-			// match data provider events
-			dp.ConnectionStateChanged += (s, e) => ConnectionStateChangedBehavior.Handle(e.ConnectionState);
-			dp.EntityStateChanged += (s, e) => EntityModelStateChangedBehavior.Handle(e.Entity, e.EntityState);
+			// MatchService events
+			matchService.ConnectionStateChanged += (s, e) => ConnectionStateChangedBehavior.Handle(e.ConnectionState);
+			matchService.EntityStateChanged += (s, e) => EntityModelStateChangedBehavior.Handle(e.Entity, e.EntityState);
 			Entities.CollectionChanged += (s, e) => { lock (Realm) { EntityViewModelStateChangedBehavior.Handle(e); } };
 			CompositionTarget.Rendering += (s, e) => { lock (Realm) { UpdateRealmBehavior.Handle(); } };
 		}
@@ -57,6 +61,9 @@ namespace Uberball.Game.Client.Areas.MatchArea.ViewModels {
 
 		/// <summary>Key pressed command.</summary>
 		public ICommand KeyPressCommand { get; private set; }
+
+		/// <summary>Key pressed command.</summary>
+		public ICommand MouseMoveCommand { get; private set; }
 
 		/// <summary>Mouse right button clicked.</summary>
 		public ICommand MouseRightButtonDownCommand { get; private set; }

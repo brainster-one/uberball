@@ -11,12 +11,14 @@ namespace Uberball.Game.NetworkProtocol {
 			entity.Name = reader.ReadString();
 			entity.X = reader.ReadInt16();
 			entity.Y = reader.ReadInt16();
+			entity.AimAngle = reader.ReadSingle(); // todo OPTIIZE
 		}
 
 		public void Serialize(BinaryWriter writer, Player entity) {
 			writer.Write(entity.Name);
 			writer.Write((Int16)entity.X);
 			writer.Write((Int16)entity.Y);
+			writer.Write((Single)entity.AimAngle);
 		}
 	}
 }

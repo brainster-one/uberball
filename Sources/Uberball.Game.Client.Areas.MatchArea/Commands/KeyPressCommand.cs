@@ -1,7 +1,7 @@
 ﻿
 namespace Uberball.Game.Client.Areas.MatchArea.Commands {
-	using Services;
 	using System.Windows.Input;
+	using Services;
 	using Thersuli;
 	using Thersuli.MarkupExtensions;
 
@@ -12,25 +12,17 @@ namespace Uberball.Game.Client.Areas.MatchArea.Commands {
 		}
 
 		public override void Execute(object parameter) {
-			var stateChanged = false;
 			var evnt = parameter as InvokeCommandEventArgs;
 			var state = evnt.Parameter.ToString() == "True";
 			var key = (evnt.EventArgs as KeyEventArgs).Key;
 
-			int idx = 0;
-			foreach (var chk in new[] { Key.W, Key.D, Key.S, Key.A }) {
-				var prevValue = _state[idx];
-				_state[idx] = key == chk ? state : _state[idx];
-				if (!stateChanged && prevValue != _state[idx]) stateChanged = true;
-				++idx;
-			}
-
-			if (stateChanged)
-				_matchService.Input(_state[0], _state[1], _state[2], _state[3]);
+			_matchService.Input(new InputState {
+				Up = key == Key.Up ? state : (bool?)null,
+				Right = key == Key.Right ? state : (bool?)null,
+				Down = key == Key.Down ? state : (bool?)null,
+				Left = key == Key.Left ? state : (bool?)null,
+			});
 		}
-
-
-		readonly bool[] _state = new bool[4];
 		readonly MatchService _matchService;
 	}
 }

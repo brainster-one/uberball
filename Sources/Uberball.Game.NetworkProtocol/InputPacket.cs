@@ -1,13 +1,15 @@
 ﻿
 namespace Uberball.Game.NetworkProtocol {
-	using Khrussk.Peers;
+	using System;
 	using System.IO;
+	using Khrussk.Peers;
 
 	public class InputPacket {
 		public bool IsLeftPressed { get; set; }
 		public bool IsRightPressed { get; set; }
 		public bool IsUpPressed { get; set; }
 		public bool IsDownPressed { get; set; }
+		public double AimAngle { get; set; }
 	}
 
 	public class InputPacketSrializer : IPacketSerializer<InputPacket> {
@@ -16,7 +18,8 @@ namespace Uberball.Game.NetworkProtocol {
 				IsUpPressed = reader.ReadBoolean(),
 				IsRightPressed = reader.ReadBoolean(),
 				IsDownPressed = reader.ReadBoolean(),
-				IsLeftPressed = reader.ReadBoolean()
+				IsLeftPressed = reader.ReadBoolean(),
+				AimAngle = reader.ReadSingle() // todo Optimize
 			};
 		}
 
@@ -25,6 +28,7 @@ namespace Uberball.Game.NetworkProtocol {
 			writer.Write(packet.IsRightPressed);
 			writer.Write(packet.IsDownPressed);
 			writer.Write(packet.IsLeftPressed);
+			writer.Write((Single)packet.AimAngle);
 		}
 	}
 }

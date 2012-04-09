@@ -84,6 +84,9 @@
     <Compile Include="..\Uberball.Game.NetworkProtocol\BallSerializer.cs">
       <Link>Shared\BallSerializer.cs</Link>
     </Compile>
+    <Compile Include="..\Uberball.Game.NetworkProtocol\ControlInfoPacket.cs">
+      <Link>Shared\ControlInfoPacket.cs</Link>
+    </Compile>
     <Compile Include="..\Uberball.Game.NetworkProtocol\DecorationSerializer.cs">
       <Link>Shared\DecorationSerializer.cs</Link>
     </Compile>
@@ -108,6 +111,7 @@
     <Compile Include="Behaviors\EntityViewModelStateChangedBehavior.cs" />
     <Compile Include="Behaviors\EntityModelStateChangedBehavior.cs" />
     <Compile Include="Behaviors\IBehavior.cs" />
+    <Compile Include="Commands\MouseMoveCommand.cs" />
     <Compile Include="Commands\MouseRightButtonDownCommand.cs" />
     <Compile Include="Commands\GoToFullScreenModeCommand.cs" />
     <Compile Include="Behaviors\UpdateRealmBehavior.cs" />

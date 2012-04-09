@@ -6,5 +6,6 @@ namespace Uberball.Game.Logic.Entities {
 		public double Y { get; set; }
 		public double VectorX { get; set; }
 		public double VectorY { get; set; }
+		public double AimAngle { get; set; }
 	}
 }

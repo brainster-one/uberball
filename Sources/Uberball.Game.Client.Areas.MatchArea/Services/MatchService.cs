@@ -15,6 +15,7 @@ namespace Uberball.Game.Client.Areas.MatchArea.Services {
 		public MatchService() {
 			_client.ConnectionStateChanged += OnConnectionStateChanged;
 			_client.EntityStateChanged += OnEntityStateChanged;
+			_client.PacketReceived += OnPacketReceived;
 		}
 
 		/// <summary>Connects to remote host.</summary>
@@ -24,13 +25,24 @@ namespace Uberball.Game.Client.Areas.MatchArea.Services {
 		}
 
 		/// <summary>Input.</summary>
-		/// <param name="u">Is Up key pressed?</param>
-		/// <param name="r">Is Right key pressed?</param>
-		/// <param name="d">Is Down key pressed?</param>
-		/// <param name="l">Is Left key pressed?</param>
-		public void Input(bool u, bool r, bool d, bool l) {
+		/// <param name="state">Input state.</param>
+		public void Input(InputState state) {
+			_inputState.Up = state.Up ?? _inputState.Up;
+			_inputState.Right = state.Right ?? _inputState.Right;
+			_inputState.Down = state.Down ?? _inputState.Down;
+			_inputState.Left = state.Left ?? _inputState.Left;
+			_inputState.AimX = state.AimX ?? _inputState.AimX;
+			_inputState.AimY = state.AimY ?? _inputState.AimY;
+
+			var player = _entities.OfType<Player>().First(x => x.Name == _playerId); // TODO it can be empty
+
+			// TODO Send if input state changed
 			_client.Send(new InputPacket {
-				IsUpPressed = u, IsRightPressed = r, IsDownPressed = d, IsLeftPressed = l
+				IsUpPressed = _inputState.Up == true,
+				IsRightPressed = _inputState.Right == true,
+				IsDownPressed = _inputState.Down == true,
+				IsLeftPressed = _inputState.Left == true,
+				AimAngle = Math.Atan2(_inputState.AimY - player.Y - 48 ?? 0d, _inputState.AimX - player.X - 32 ?? 0d) / Math.PI * 180
 			});
 		}
 
@@ -67,11 +79,25 @@ namespace Uberball.Game.Client.Areas.MatchArea.Services {
 			if (evnt != null) evnt(this, new MatchDataProviderEventArgs(e.Entity, e.State));
 		}
 
+		/// <summary>On packet state changed.</summary>
+		/// <param name="sender">Event sender.</param>
+		/// <param name="e">Event args.</param>
+		private void OnPacketReceived(object sender, PacketEventArgs e) {
+			if (e.Packet is ControlInfoPacket) {
+				var packet = (ControlInfoPacket) e.Packet;
+				_playerId = packet.Id; //_entities.OfType<Player>().First(x => x.Name == packet.Id);
+			}
+		}
+
 		/// <summary>Client interface to connect to remote service.</summary>
 		readonly RealmClient _client = new RealmClient(new UberballProtocol());
 
 		/// <summary>Id to entity map.</summary>
 		readonly List<object> _entities = new List<object>();
+
+		string _playerId;
+
+		InputState _inputState;
 	}
 
 	/// <summary>Match data provider event args.</summary>
@@ -98,5 +124,14 @@ namespace Uberball.Game.Client.Areas.MatchArea.Services {
 
 		/// <summary>Gets entity.</summary>
 		public object Entity { get; private set; }
+	}
+
+	public struct InputState {
+		public bool? Up;
+		public bool? Right;
+		public bool? Down;
+		public bool? Left;
+		public double? AimX;
+		public double? AimY;
 	}
 }
