@@ -37,6 +37,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Ball.cs" />
+    <Compile Include="Bullet.cs" />
     <Compile Include="Ground.cs" />
     <Compile Include="Decoration.cs" />
     <Compile Include="Player.cs" />

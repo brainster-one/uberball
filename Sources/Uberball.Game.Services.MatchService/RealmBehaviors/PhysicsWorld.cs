@@ -25,6 +25,7 @@ namespace Uberball.Game.Services.MatchService.RealmBehaviors {
 			if (entity.GetType() == typeof(Ball)) body = CreateBall((Ball)entity);
 			if (entity.GetType() == typeof(Player)) body = CreatePlayer((Player)entity);
 			if (entity.GetType() == typeof(Ground)) body = CreateGround((Ground)entity);
+			if (entity.GetType() == typeof(Bullet)) body = CreateBullet((Bullet)entity);
 
 			if (body == null) throw new InvalidOperationException(string.Format("Can not create physics body for {0}", entity.GetType()));
 			_entities.Add(entity, body);
@@ -61,6 +62,21 @@ namespace Uberball.Game.Services.MatchService.RealmBehaviors {
 			Body body;
 			_entities.TryGetValue(entity, out body);
 			if (body == null) throw new InvalidOperationException("Entity is not exist in physics world.");
+			return body;
+		}
+
+		/// <summary>Creates physics body for player.</summary>
+		/// <param name="entity">Player.</param>
+		/// <returns>Physics body.</returns>
+		private Body CreateBullet(Bullet entity) {
+			var body = BodyFactory.CreateCircle(_world, 5.0f, .5f);
+			body.Position = new Vector2(entity.X, entity.Y);
+			body.BodyType = BodyType.Dynamic;
+			body.IsBullet = true;
+			body.Restitution = .7f;
+			body.Friction = .7f;
+			body.Mass *= .01f;
+			_entities.Where(x => x.Key is Player).ToList().ForEach(x => body.IgnoreCollisionWith(x.Value));
 			return body;
 		}
 

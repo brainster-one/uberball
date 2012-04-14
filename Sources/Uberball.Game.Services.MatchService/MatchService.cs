@@ -46,14 +46,17 @@ namespace Uberball.Game.Services.MatchService {
 			if (e.Packet is InputPacket) {
 				var packet = e.Packet as InputPacket;
 				var user = (Ardelme.Core.User)e.User["user"];
-				_realm.Input(user, new InputState(new Dictionary<string, object> {
-					{ "up", packet.IsUpPressed },
-					{ "right", packet.IsRightPressed },
-					{ "down", packet.IsDownPressed },
-					{ "left", packet.IsLeftPressed },
-					{ "aimAngle", packet.AimAngle },
-					{ "kick", packet.IsKickBallPressed }
-				}));
+				lock (_realm) {
+					_realm.Input(user, new InputState(new Dictionary<string, object> {
+						{ "up", packet.IsUpPressed },
+						{ "right", packet.IsRightPressed },
+						{ "down", packet.IsDownPressed },
+						{ "left", packet.IsLeftPressed },
+						{ "kick", packet.IsKickBallPressed },
+						{ "fire", packet.IsFirePressed },
+						{ "aimAngle", packet.AimAngle },
+					}));
+				}
 			}
 		}
 

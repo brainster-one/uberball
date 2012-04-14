@@ -71,6 +71,9 @@
     <Compile Include="..\Uberball.Game.Logic.Entities\Ball.cs">
       <Link>Shared\Ball.cs</Link>
     </Compile>
+    <Compile Include="..\Uberball.Game.Logic.Entities\Bullet.cs">
+      <Link>Shared\Bullet.cs</Link>
+    </Compile>
     <Compile Include="..\Uberball.Game.Logic.Entities\Decoration.cs">
       <Link>Shared\Decoration.cs</Link>
     </Compile>
@@ -83,6 +86,9 @@
     </Compile>
     <Compile Include="..\Uberball.Game.NetworkProtocol\BallSerializer.cs">
       <Link>Shared\BallSerializer.cs</Link>
+    </Compile>
+    <Compile Include="..\Uberball.Game.NetworkProtocol\BulletSerializer.cs">
+      <Link>Shared\BulletSerializer.cs</Link>
     </Compile>
     <Compile Include="..\Uberball.Game.NetworkProtocol\DecorationSerializer.cs">
       <Link>Shared\DecorationSerializer.cs</Link>
@@ -105,12 +111,15 @@
     <Compile Include="Behaviors\EntityViewModelStateChangedBehavior.cs" />
     <Compile Include="Behaviors\EntityModelStateChangedBehavior.cs" />
     <Compile Include="Behaviors\IBehavior.cs" />
+    <Compile Include="Commands\MouseLeftButtonDownCommand.cs" />
     <Compile Include="Commands\MouseMoveCommand.cs" />
     <Compile Include="Commands\MouseRightButtonDownCommand.cs" />
     <Compile Include="Commands\GoToFullScreenModeCommand.cs" />
     <Compile Include="Behaviors\UpdateRealmBehavior.cs" />
+    <Compile Include="RealmBehaviors\UpdateBulletPositionRealmBehavior.cs" />
     <Compile Include="Services\EntityMappingService.cs" />
     <Compile Include="Services\Mappers\BallMapper.cs" />
+    <Compile Include="Services\Mappers\BulletMapper.cs" />
     <Compile Include="Services\Mappers\DecorationMapper.cs" />
     <Compile Include="Services\Mappers\GroundMapper.cs" />
     <Compile Include="Services\Mappers\IEntityMapper.cs" />
@@ -122,6 +131,7 @@
     <Compile Include="Commands\KeyPressCommand.cs" />
     <Compile Include="StateHelper.cs" />
     <Compile Include="ViewModels\Entities\BallViewModel.cs" />
+    <Compile Include="ViewModels\Entities\BulletViewModel.cs" />
     <Compile Include="ViewModels\Entities\GroundViewModel.cs" />
     <Compile Include="ViewModels\Entities\DecorationViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -139,6 +149,9 @@
     </Compile>
     <Compile Include="Views\Entities\Block.xaml.cs">
       <DependentUpon>Block.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Entities\Bullet.xaml.cs">
+      <DependentUpon>Bullet.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Entities\Decoration.xaml.cs">
       <DependentUpon>Decoration.xaml</DependentUpon>
@@ -176,6 +189,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Entities\Bullet.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\Entities\Decoration.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -193,9 +210,7 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Mappers\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Resource Include="Images\1.png" />
   </ItemGroup>

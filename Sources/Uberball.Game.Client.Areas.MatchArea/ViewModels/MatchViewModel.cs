@@ -22,12 +22,14 @@ namespace Uberball.Game.Client.Areas.MatchArea.ViewModels {
 			Entities = new ObservableCollection<object>();
 			Realm = new Realm(new IRealmBehavior[] {
 				new UpdatePlayerPositionRealmBehavior(),
-				new UpdateBallPositionRealmBehavior()
+				new UpdateBallPositionRealmBehavior(),
+				new UpdateBulletPositionRealmBehavior()
 			});
 			
 			// Commands
 			KeyPressCommand = new KeyPressCommand(matchService);
 			MouseMoveCommand = new MouseMoveCommand(matchService);
+			MouseLeftButtonDownCommand = new MouseLeftButtonDownCommand(matchService);
 			MouseRightButtonDownCommand = new MouseRightButtonDownCommand(matchService);
 			ConnectCommand = new ConnectCommand(matchService, endpoint);
 
@@ -64,6 +66,9 @@ namespace Uberball.Game.Client.Areas.MatchArea.ViewModels {
 
 		/// <summary>Key pressed command.</summary>
 		public ICommand MouseMoveCommand { get; private set; }
+
+		/// <summary>Mouse left button clicked.</summary>
+		public ICommand MouseLeftButtonDownCommand { get; private set; }
 
 		/// <summary>Mouse right button clicked.</summary>
 		public ICommand MouseRightButtonDownCommand { get; private set; }

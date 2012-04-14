@@ -1,7 +1,6 @@
 ﻿
-using System;
-
 namespace Uberball.Game.Services.MatchService.RealmBehaviors {
+	using System;
 	using System.Linq;
 	using Ardelme.Core;
 	using FarseerPhysics.Dynamics;
@@ -39,17 +38,26 @@ namespace Uberball.Game.Services.MatchService.RealmBehaviors {
 			var vectorY = (state.Get<bool>("up") ? 1 : state.Get<bool>("down") ? -1 : 0) * 80;
 			var aimAngle = state.Get<float>("aimAngle");
 			var kickBall = state.Get<bool>("kick");
-
+			var fire = state.Get<bool>("fire");
+			var aimAngleRad = aimAngle / 180.0f * Math.PI;
+			
 			//
 			player.AimAngle = aimAngle;
 			_physicsWorld.SetLinearVelocity(player, vectorX, vectorY);
 
 			//
 			if (kickBall) {
-				var aimAngleRad = aimAngle / 180.0f * Math.PI;
+				
 				foreach (var ball in realm.Entities.OfType<Ball>()) {
 					_physicsWorld.SetLinearVelocity(ball, (float)Math.Cos(aimAngleRad) * 75, -(float)Math.Sin(aimAngleRad) * 75);
 				}
+			}
+
+			//
+			if (fire) {
+				var bullet = new Bullet { X = player.X, Y = player.Y };
+				realm.AddEntity(bullet);
+				_physicsWorld.SetLinearVelocity(bullet, (float)Math.Cos(aimAngleRad) * 150, -(float)Math.Sin(aimAngleRad) * 150);
 			}
 		}
 
@@ -74,6 +82,11 @@ namespace Uberball.Game.Services.MatchService.RealmBehaviors {
 					var ball = (Ball)e;
 					ball.X = body.Position.X;
 					ball.Y = body.Position.Y;
+				}
+				if (e.GetType() == typeof(Bullet)) {
+					var bullet = (Bullet)e;
+					bullet.X = body.Position.X;
+					bullet.Y = body.Position.Y;
 				}
 			}
 		}
