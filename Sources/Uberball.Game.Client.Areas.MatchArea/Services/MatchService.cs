@@ -35,6 +35,7 @@ namespace Uberball.Game.Client.Areas.MatchArea.Services {
 			_inputState.Left = state.Left ?? _inputState.Left;
 			_inputState.AimX = state.AimX ?? _inputState.AimX;
 			_inputState.AimY = state.AimY ?? _inputState.AimY;
+			_inputState.KickBall = state.KickBall == true;
 
 			// TODO Send if input state changed
 			_client.Send(new InputPacket {
@@ -42,14 +43,9 @@ namespace Uberball.Game.Client.Areas.MatchArea.Services {
 				IsRightPressed = _inputState.Right == true,
 				IsDownPressed = _inputState.Down == true,
 				IsLeftPressed = _inputState.Left == true,
+				IsKickBallPressed = _inputState.KickBall == true,
 				AimAngle = (float)(Math.Atan2(_inputState.AimY - player.Y ?? 0, _inputState.AimX - player.X ?? 0) / Math.PI * 180f)
 			});
-		}
-
-		public void KickBall(double x, double y) {
-			var plr = _entities.OfType<Player>().First();
-			var angle = Math.Atan2(plr.X - x, plr.Y - y);
-			_client.Send(new KickBallPacket { Angle = angle });
 		}
 
 		/// <summary>Connection state changed.</summary>
@@ -125,6 +121,7 @@ namespace Uberball.Game.Client.Areas.MatchArea.Services {
 		public bool? Right;
 		public bool? Down;
 		public bool? Left;
+		public bool? KickBall;
 		public float? AimX;
 		public float? AimY;
 	}

@@ -5,12 +5,14 @@
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	mc:Ignorable="d" d:DesignHeight="64" d:DesignWidth="64">
 
+	<UserControl.RenderTransform>
+		<TransformGroup>
+			<TranslateTransform X="{Binding X}" Y="{Binding Y}" />
+			<TranslateTransform X="-32" Y="-48"/>
+		</TransformGroup>
+	</UserControl.RenderTransform>
+
 	<Canvas Width="64" Height="64">
 		<Ellipse Width="32" Height="32" Canvas.Left="16" Canvas.Top="32" Fill="Red"/>
-
-		<!-- Position -->
-		<Canvas.RenderTransform>
-			<TranslateTransform X="{Binding X}" Y="{Binding Y}" />
-		</Canvas.RenderTransform>
 	</Canvas>
 </UserControl>

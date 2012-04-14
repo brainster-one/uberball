@@ -9,6 +9,7 @@ namespace Uberball.Game.NetworkProtocol {
 		public bool IsRightPressed { get; set; }
 		public bool IsUpPressed { get; set; }
 		public bool IsDownPressed { get; set; }
+		public bool IsKickBallPressed { get; set; }
 		public float AimAngle { get; set; }
 	}
 
@@ -19,6 +20,7 @@ namespace Uberball.Game.NetworkProtocol {
 				IsRightPressed = reader.ReadBoolean(),
 				IsDownPressed = reader.ReadBoolean(),
 				IsLeftPressed = reader.ReadBoolean(),
+				IsKickBallPressed = reader.ReadBoolean(),
 				AimAngle = reader.ReadSingle() // todo Optimize
 			};
 		}
@@ -28,6 +30,7 @@ namespace Uberball.Game.NetworkProtocol {
 			writer.Write(packet.IsRightPressed);
 			writer.Write(packet.IsDownPressed);
 			writer.Write(packet.IsLeftPressed);
+			writer.Write(packet.IsKickBallPressed);
 			writer.Write(packet.AimAngle);
 		}
 	}

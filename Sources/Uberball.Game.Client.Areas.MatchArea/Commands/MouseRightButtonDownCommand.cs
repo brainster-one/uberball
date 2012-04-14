@@ -18,7 +18,7 @@ namespace Uberball.Game.Client.Areas.MatchArea.Commands {
 			var point = mouse.GetPosition(prm.Sender as UIElement);
 			mouse.Handled = true;
 
-			_matchService.KickBall(point.X, point.Y);
+			_matchService.Input(new InputState { AimX = (float)point.X, AimY = (float)point.Y, KickBall = true });
 		}
 
 		readonly MatchService _matchService;

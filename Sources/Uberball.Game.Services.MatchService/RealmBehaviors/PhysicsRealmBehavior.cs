@@ -1,4 +1,6 @@
 ﻿
+using System;
+
 namespace Uberball.Game.Services.MatchService.RealmBehaviors {
 	using System.Linq;
 	using Ardelme.Core;
@@ -34,10 +36,21 @@ namespace Uberball.Game.Services.MatchService.RealmBehaviors {
 		public override void Input(IRealm realm, User user, InputState state) {
 			var player = (Player)user["player"];
 			var vectorX = (state.Get<bool>("right") ? 1 : state.Get<bool>("left") ? -1 : 0) * 20;
-			var vectorY = (state.Get<bool>("up") ? 1 : state.Get<bool>("down") ? -1 : 0) * 20;
+			var vectorY = (state.Get<bool>("up") ? 1 : state.Get<bool>("down") ? -1 : 0) * 80;
+			var aimAngle = state.Get<float>("aimAngle");
+			var kickBall = state.Get<bool>("kick");
 
-			player.AimAngle = state.Get<float>("aimAngle");
+			//
+			player.AimAngle = aimAngle;
 			_physicsWorld.SetLinearVelocity(player, vectorX, vectorY);
+
+			//
+			if (kickBall) {
+				var aimAngleRad = aimAngle / 180.0f * Math.PI;
+				foreach (var ball in realm.Entities.OfType<Ball>()) {
+					_physicsWorld.SetLinearVelocity(ball, (float)Math.Cos(aimAngleRad) * 75, -(float)Math.Sin(aimAngleRad) * 75);
+				}
+			}
 		}
 
 		/// <summary>Calculates physics and updates entities.</summary>
@@ -56,6 +69,11 @@ namespace Uberball.Game.Services.MatchService.RealmBehaviors {
 					var player = (Player)e;
 					player.X = body.Position.X;
 					player.Y = body.Position.Y;
+				}
+				if (e.GetType() == typeof(Ball)) {
+					var ball = (Ball)e;
+					ball.X = body.Position.X;
+					ball.Y = body.Position.Y;
 				}
 			}
 		}

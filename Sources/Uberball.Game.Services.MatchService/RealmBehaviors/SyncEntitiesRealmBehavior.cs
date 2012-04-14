@@ -19,9 +19,8 @@ namespace Uberball.Game.Services.MatchService.RealmBehaviors {
 		/// <param name="realm">Realm.</param>
 		/// <param name="delta">Time passed since last update.</param>
 		public override void Update(IRealm realm, double delta) {
-			foreach (var entity in realm.Entities.OfType<Player>()) {
-				realm.ModifyEntity(entity);
-			}
+			foreach (var entity in realm.Entities.OfType<Player>()) { realm.ModifyEntity(entity); }
+			foreach (var entity in realm.Entities.OfType<Ball>()) { realm.ModifyEntity(entity); }
 
 			// It's time for sync
 			if (DateTime.Now > _nextUpdate) {

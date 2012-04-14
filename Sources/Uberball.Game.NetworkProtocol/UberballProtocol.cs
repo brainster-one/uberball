@@ -7,7 +7,6 @@ namespace Uberball.Game.NetworkProtocol {
 		/// <summary>Initializes a new instance of the UberballProtocol class.</summary>
 		public UberballProtocol() {
 			Register(new InputPacketSrializer());
-			Register(new KickBallPacketSerializer());
 			Register(new PlayerSerializer());
 			Register(new BallSerializer());
 			Register(new DecorationSerializer());

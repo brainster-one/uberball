@@ -52,7 +52,7 @@
       <HintPath>..\..\Assets\Packages\Ardelme.0.0.6\lib\sl50\Ardelme.Silverlight.dll</HintPath>
     </Reference>
     <Reference Include="Khrussk.NetworkRealm.Silverlight, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\Assets\Packages\Khrussk.NetworkRealm.Silverlight.0.0.40\lib\sl5\Khrussk.NetworkRealm.Silverlight.dll</HintPath>
+      <HintPath>..\..\Assets\Packages\Khrussk.NetworkRealm.Silverlight.0.0.42\lib\sl5\Khrussk.NetworkRealm.Silverlight.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib" />
     <Reference Include="system" />
@@ -93,9 +93,6 @@
     <Compile Include="..\Uberball.Game.NetworkProtocol\InputPacket.cs">
       <Link>Shared\InputPacket.cs</Link>
       <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="..\Uberball.Game.NetworkProtocol\KickBallPacket.cs">
-      <Link>Shared\KickBallPacket.cs</Link>
     </Compile>
     <Compile Include="..\uberball.game.networkprotocol\PlayerSerializer.cs">
       <Link>Shared\PlayerSerializer.cs</Link>

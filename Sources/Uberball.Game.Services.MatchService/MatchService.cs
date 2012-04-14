@@ -51,20 +51,10 @@ namespace Uberball.Game.Services.MatchService {
 					{ "right", packet.IsRightPressed },
 					{ "down", packet.IsDownPressed },
 					{ "left", packet.IsLeftPressed },
-					{ "aimAngle", packet.AimAngle }
+					{ "aimAngle", packet.AimAngle },
+					{ "kick", packet.IsKickBallPressed }
 				}));
-			} /*else {
-				var packet = e.Packet as KickBallPacket;
-				lock (_realm) {
-					foreach (var ball in _realm.Entities.OfType<Ball>()) {
-						var distance = Math.Sqrt(Math.Pow(ball.X - player.X, 2) + Math.Pow(ball.Y - player.Y, 2));
-						if (distance < 64) {
-							ball.VectorX = -Math.Sin(packet.Angle) * 70;
-							ball.VectorY = -Math.Cos(packet.Angle) * 70;
-						}
-					}
-				}
-			}*/
+			}
 		}
 
 		/// <summary>Starts match service.</summary>

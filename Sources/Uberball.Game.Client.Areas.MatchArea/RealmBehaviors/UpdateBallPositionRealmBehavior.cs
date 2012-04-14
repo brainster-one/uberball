@@ -6,13 +6,10 @@ namespace Uberball.Game.Client.Areas.MatchArea.RealmBehaviors {
 
 	public class UpdateBallPositionRealmBehavior : RealmBehavior {
 		public override void Update(IRealm realm, double delta) {
-
-			foreach (var player in realm.Entities.OfType<BallViewModel>()) {
-				player.X += (player.NewX - player.X) * .2;
-				player.Y += (player.NewY - player.Y) * .2;
-				//player.X = player.NewX;
-				//player.Y = player.NewY;
-				realm.ModifyEntity(player);
+			foreach (var ball in realm.Entities.OfType<BallViewModel>()) {
+				ball.X += (ball.NewX - ball.X) * .5;
+				ball.Y += (ball.NewY - ball.Y) * .5;
+				realm.ModifyEntity(ball);
 			}
 		}
 	}

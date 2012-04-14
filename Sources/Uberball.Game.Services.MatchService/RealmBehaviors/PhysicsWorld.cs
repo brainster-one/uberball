@@ -21,6 +21,8 @@ namespace Uberball.Game.Services.MatchService.RealmBehaviors {
 		/// <param name="entity">Entity.</param>
 		public void Add(object entity) {
 			Body body = null;
+			if (entity.GetType() == typeof(Decoration)) return;
+			if (entity.GetType() == typeof(Ball)) body = CreateBall((Ball)entity);
 			if (entity.GetType() == typeof(Player)) body = CreatePlayer((Player)entity);
 			if (entity.GetType() == typeof(Ground)) body = CreateGround((Ground)entity);
 
@@ -65,10 +67,23 @@ namespace Uberball.Game.Services.MatchService.RealmBehaviors {
 		/// <summary>Creates physics body for player.</summary>
 		/// <param name="entity">Player.</param>
 		/// <returns>Physics body.</returns>
+		private Body CreateBall(Ball entity) {
+			var body = BodyFactory.CreateCircle(_world, 16.0f, .5f);
+			body.Position = new Vector2(entity.X, entity.Y);
+			body.BodyType = BodyType.Dynamic;
+			body.Restitution = .7f;
+			body.Friction = .7f;
+			return body;
+		}
+
+		/// <summary>Creates physics body for player.</summary>
+		/// <param name="entity">Player.</param>
+		/// <returns>Physics body.</returns>
 		private Body CreatePlayer(Player entity) {
 			var body = BodyFactory.CreateCircle(_world, 16.0f, .5f);
 			body.Position = new Vector2(entity.X, entity.Y);
 			body.BodyType = BodyType.Dynamic;
+			body.Restitution = body.Friction = .5f;
 			return body;
 		}
 
