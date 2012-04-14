@@ -15,7 +15,6 @@ namespace Uberball.Game.Client.Areas.MatchArea.Services {
 		public MatchService() {
 			_client.ConnectionStateChanged += OnConnectionStateChanged;
 			_client.EntityStateChanged += OnEntityStateChanged;
-			_client.PacketReceived += OnPacketReceived;
 		}
 
 		/// <summary>Connects to remote host.</summary>
@@ -27,6 +26,9 @@ namespace Uberball.Game.Client.Areas.MatchArea.Services {
 		/// <summary>Input.</summary>
 		/// <param name="state">Input state.</param>
 		public void Input(InputState state) {
+			var player = GetMyPlayer();
+			if (player == null) return;
+
 			_inputState.Up = state.Up ?? _inputState.Up;
 			_inputState.Right = state.Right ?? _inputState.Right;
 			_inputState.Down = state.Down ?? _inputState.Down;
@@ -34,15 +36,13 @@ namespace Uberball.Game.Client.Areas.MatchArea.Services {
 			_inputState.AimX = state.AimX ?? _inputState.AimX;
 			_inputState.AimY = state.AimY ?? _inputState.AimY;
 
-			var player = _entities.OfType<Player>().First(x => x.Name == _playerId); // TODO it can be empty
-
 			// TODO Send if input state changed
 			_client.Send(new InputPacket {
 				IsUpPressed = _inputState.Up == true,
 				IsRightPressed = _inputState.Right == true,
 				IsDownPressed = _inputState.Down == true,
 				IsLeftPressed = _inputState.Left == true,
-				AimAngle = Math.Atan2(_inputState.AimY - player.Y - 48 ?? 0d, _inputState.AimX - player.X - 32 ?? 0d) / Math.PI * 180
+				AimAngle = (float)(Math.Atan2(_inputState.AimY - player.Y ?? 0, _inputState.AimX - player.X ?? 0) / Math.PI * 180f)
 			});
 		}
 
@@ -62,6 +62,7 @@ namespace Uberball.Game.Client.Areas.MatchArea.Services {
 		/// <param name="sender">Event sener.</param>
 		/// <param name="e">Event args.</param>
 		void OnConnectionStateChanged(object sender, ConnectionEventArgs e) {
+			_session = e.User.Session;
 			var evnt = ConnectionStateChanged;
 			if (evnt != null) evnt(this, new MatchDataProviderEventArgs(e.State));
 		}
@@ -79,14 +80,8 @@ namespace Uberball.Game.Client.Areas.MatchArea.Services {
 			if (evnt != null) evnt(this, new MatchDataProviderEventArgs(e.Entity, e.State));
 		}
 
-		/// <summary>On packet state changed.</summary>
-		/// <param name="sender">Event sender.</param>
-		/// <param name="e">Event args.</param>
-		private void OnPacketReceived(object sender, PacketEventArgs e) {
-			if (e.Packet is ControlInfoPacket) {
-				var packet = (ControlInfoPacket) e.Packet;
-				_playerId = packet.Id; //_entities.OfType<Player>().First(x => x.Name == packet.Id);
-			}
+		Player GetMyPlayer() {
+			return _entities.OfType<Player>().FirstOrDefault(x => x.ClientSessionId == _session);
 		}
 
 		/// <summary>Client interface to connect to remote service.</summary>
@@ -95,9 +90,8 @@ namespace Uberball.Game.Client.Areas.MatchArea.Services {
 		/// <summary>Id to entity map.</summary>
 		readonly List<object> _entities = new List<object>();
 
-		string _playerId;
-
 		InputState _inputState;
+		Guid _session;
 	}
 
 	/// <summary>Match data provider event args.</summary>
@@ -131,7 +125,7 @@ namespace Uberball.Game.Client.Areas.MatchArea.Services {
 		public bool? Right;
 		public bool? Down;
 		public bool? Left;
-		public double? AimX;
-		public double? AimY;
+		public float? AimX;
+		public float? AimY;
 	}
 }

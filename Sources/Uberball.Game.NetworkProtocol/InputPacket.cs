@@ -9,7 +9,7 @@ namespace Uberball.Game.NetworkProtocol {
 		public bool IsRightPressed { get; set; }
 		public bool IsUpPressed { get; set; }
 		public bool IsDownPressed { get; set; }
-		public double AimAngle { get; set; }
+		public float AimAngle { get; set; }
 	}
 
 	public class InputPacketSrializer : IPacketSerializer<InputPacket> {
@@ -28,7 +28,7 @@ namespace Uberball.Game.NetworkProtocol {
 			writer.Write(packet.IsRightPressed);
 			writer.Write(packet.IsDownPressed);
 			writer.Write(packet.IsLeftPressed);
-			writer.Write((Single)packet.AimAngle);
+			writer.Write(packet.AimAngle);
 		}
 	}
 }

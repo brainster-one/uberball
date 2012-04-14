@@ -1,72 +1,59 @@
 ﻿
 namespace Uberball.Game.Services.MatchService {
-	using System;
-	using System.Linq;
+	using System.Collections.Generic;
 	using System.Net;
 	using System.Threading;
 	using Ardelme.Core;
 	using Khrussk;
 	using Khrussk.NetworkRealm;
-	using Logic.Entities;
 	using NetworkProtocol;
 	using RealmBehaviors;
 
+	/// <summary>Match service.</summary>
 	public class MatchService {
+		/// <summary>Initializes a new instance of the MatchService class.</summary>
 		public MatchService() {
+			_sync = new SyncEntitiesRealmBehavior(_service);
+
 			_service.UserConnectionStateChanged += OnUserConnectionStateChanged;
 			_service.PacketReceived += OnPacketReceived;
 
 			_realm = new Realm(new IRealmBehavior[] {
-				//new MovePlayersRealmBehavior(), 
-				//new PlayerCollideWithBlockRealmBehavior(),
-				//new MoveBallRealmBehavior(),
-				//new BallCollideWithBlockRealmBehavior(),
-				new Physics(),
+				new LoadMapRealmBehavior(),
+				new EnterLeaveRealmBehavior(),
+				new PhysicsRealmBehavior(),
 				_sync
 			});
-
-
-			//_realm.AddEntity(new Decoration { X = 64 * 3, Y = 64 * 3 });
-			//_realm.AddEntity(new Decoration { X = 64 * 6, Y = 64 * 3 });
-
-			_realm.AddEntity(Ground.CreateBlock(64 * 0, 64 * 10));
-			_realm.AddEntity(Ground.CreateBlock(64 * 1, 64 * 1));
-			_realm.AddEntity(Ground.CreateBlock(64 * 1, 64 * 5));
-			_realm.AddEntity(Ground.CreateBlock(64 * 2, 64 * 5));
-			_realm.AddEntity(Ground.CreateBlock(64 * 3, 64 * 5));
-			_realm.AddEntity(Ground.CreateBlock(64 * 3, 64 * 6));
-			_realm.AddEntity(Ground.CreateBlock(64 * 4, 64 * 6));
-			_realm.AddEntity(Ground.CreateBlock(64 * 5, 64 * 6));
-			_realm.AddEntity(Ground.CreateBlock(64 * 6, 64 * 8));
-			_realm.AddEntity(Ground.CreateBlock(64 * 7, 64 * 8));
-			_realm.AddEntity(Ground.CreateBlock(64 * 8, 64 * 8));
-			_realm.AddEntity(Ground.CreateBlock(64 * 6, 64 * 5));
-
-			//_realm.AddEntity(new Ball { X = 64 * 1, Y = 64 * 3 });
-
-
-			for (int i = 0; i < 20; ++i) {
-				_realm.AddEntity(Ground.CreateBlock(64 * i, 64 * 9));
-				_realm.AddEntity(Ground.CreateBlock(64 * 12, 64 * i));
-			}
-
-			//_realm.AddEntity(new Block { X = 64 * 1, Y = 64 * 2 });*/
-			/*_realm.AddEntity(new Ground(new[] {
-				new Point(10, 100), new Point(290, 250), new Point(420, 450),  new Point(580, 350), new Point(620, 750), new Point(30, 790)
-			}));*/
 		}
 
-		void OnPacketReceived(object sender, PacketEventArgs e) {
-			/* todo: сохранять пакеты для обработки. Обрабатывать перед обновлением игрового мира. */
-			var player = e.User["player"] as Player;
+		/// <summary>User connection state changed.</summary>
+		/// <param name="sender">Event sender.</param>
+		/// <param name="e">Event args.</param>
+		void OnUserConnectionStateChanged(object sender, ConnectionEventArgs e) {
+			if (e.State == ConnectionState.Connected) {
+				var user = new Ardelme.Core.User(e.User.Session);
+				e.User["user"] = user;
+				lock (_realm) { _realm.Enter(user); }
+			} else if (e.State == ConnectionState.Disconnected)
+				lock (_realm) { _realm.Leave((Ardelme.Core.User)e.User["user"]); }
+		}
 
+		/// <summary>On packet received.</summary>
+		/// <param name="sender">Event sender.</param>
+		/// <param name="e">Event args.</param>
+		void OnPacketReceived(object sender, PacketEventArgs e) {
+			// todo: сохранять пакеты для обработки. Обрабатывать перед обновлением игрового мира.
 			if (e.Packet is InputPacket) {
 				var packet = e.Packet as InputPacket;
-				player.VectorX = packet.IsRightPressed ? 20 : packet.IsLeftPressed ? -20 : 0;
-				player.VectorY = packet.IsDownPressed ? 2 : packet.IsUpPressed ? -2 : 0;
-				player.AimAngle = packet.AimAngle;
-				//_realm.Input(null, packet.IsUpPressed ? new[] {1} : null);
-			} else {
+				var user = (Ardelme.Core.User)e.User["user"];
+				_realm.Input(user, new InputState(new Dictionary<string, object> {
+					{ "up", packet.IsUpPressed },
+					{ "right", packet.IsRightPressed },
+					{ "down", packet.IsDownPressed },
+					{ "left", packet.IsLeftPressed },
+					{ "aimAngle", packet.AimAngle }
+				}));
+			} /*else {
 				var packet = e.Packet as KickBallPacket;
 				lock (_realm) {
 					foreach (var ball in _realm.Entities.OfType<Ball>()) {
@@ -77,58 +64,39 @@ namespace Uberball.Game.Services.MatchService {
 						}
 					}
 				}
-			}
+			}*/
 		}
 
-
-		void OnUserConnectionStateChanged(object sender, ConnectionEventArgs e) {
-			lock (_realm) {
-				if (e.State == ConnectionState.Connected) {
-					var name = "Player_" + DateTime.Now.Millisecond;
-					e.User["player"] = new Player { Name = name, X = 64 * 3 };
-					_realm.AddEntity(e.User["player"]);
-					_service.Send(e.User, new ControlInfoPacket { Id = name });
-				} else if (e.State == ConnectionState.Disconnected)
-					_realm.RemoveEntity(e.User["player"]);
-			}
-		}
-
+		/// <summary>Starts match service.</summary>
+		/// <param name="endpoint">End point to listen on.</param>
 		public void Start(IPEndPoint endpoint) {
 			_service.Start(endpoint);
-			var nextUpdate = DateTime.Now;
+			_realm.Start();
+
 			new Thread(() => {
 				while (_working) {
-					lock (_realm) {
-						_realm.Update(0);
-
-
-						// Update
-						if (DateTime.Now > nextUpdate) {
-							foreach (var ent in _sync.EntityStates) {
-								if (ent.Value == EntityState.Added) _service.AddEntity(ent.Key);
-								if (ent.Value == EntityState.Modified) _service.ModifyEntity(ent.Key);
-								if (ent.Value == EntityState.Removed) _service.RemoveEntity(ent.Key);
-							}
-							_sync.Clear();
-							nextUpdate = DateTime.Now.AddMilliseconds(100);
-						}
-
-
-					}
-
+					lock (_realm) { _realm.Update(0.016d); }
 					Thread.Sleep(1);
 				}
 			}).Start();
 		}
 
+		/// <summary>Stops service.</summary>
 		public void Stop() {
 			_working = false;
 			_service.Stop();
 		}
 
-		readonly SyncEntitiesRealmBehavior _sync = new SyncEntitiesRealmBehavior();
-		readonly Realm _realm;
+		/// <summary>Service.</summary>
 		readonly RealmService _service = new RealmService(new UberballProtocol());
+
+		/// <summary>Match realm.</summary>
+		readonly Realm _realm;
+
+		/// <summary>Sync entities behavior.</summary>
+		readonly SyncEntitiesRealmBehavior _sync;
+
+		/// <summary>Is service working?</summary>
 		bool _working = true;
 	}
 }

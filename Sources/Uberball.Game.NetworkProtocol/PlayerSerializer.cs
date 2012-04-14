@@ -8,6 +8,7 @@ namespace Uberball.Game.NetworkProtocol {
 	public class PlayerSerializer : IEntitySerializer<Player> {
 		public void Deserialize(BinaryReader reader, ref Player entity) {
 			entity = entity ?? new Player();
+			entity.ClientSessionId = Guid.Parse(reader.ReadString());
 			entity.Name = reader.ReadString();
 			entity.X = reader.ReadInt16();
 			entity.Y = reader.ReadInt16();
@@ -15,10 +16,11 @@ namespace Uberball.Game.NetworkProtocol {
 		}
 
 		public void Serialize(BinaryWriter writer, Player entity) {
+			writer.Write(entity.ClientSessionId.ToString());
 			writer.Write(entity.Name);
 			writer.Write((Int16)entity.X);
 			writer.Write((Int16)entity.Y);
-			writer.Write((Single)entity.AimAngle);
+			writer.Write(entity.AimAngle);
 		}
 	}
 }

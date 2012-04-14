@@ -49,10 +49,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Ardelme.Silverlight, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\Assets\Packages\Ardelme.0.0.3\lib\sl50\Ardelme.Silverlight.dll</HintPath>
+      <HintPath>..\..\Assets\Packages\Ardelme.0.0.6\lib\sl50\Ardelme.Silverlight.dll</HintPath>
     </Reference>
     <Reference Include="Khrussk.NetworkRealm.Silverlight, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\Assets\Packages\Khrussk.NetworkRealm.Silverlight.0.0.39\lib\sl5\Khrussk.NetworkRealm.Silverlight.dll</HintPath>
+      <HintPath>..\..\Assets\Packages\Khrussk.NetworkRealm.Silverlight.0.0.40\lib\sl5\Khrussk.NetworkRealm.Silverlight.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib" />
     <Reference Include="system" />
@@ -83,9 +83,6 @@
     </Compile>
     <Compile Include="..\Uberball.Game.NetworkProtocol\BallSerializer.cs">
       <Link>Shared\BallSerializer.cs</Link>
-    </Compile>
-    <Compile Include="..\Uberball.Game.NetworkProtocol\ControlInfoPacket.cs">
-      <Link>Shared\ControlInfoPacket.cs</Link>
     </Compile>
     <Compile Include="..\Uberball.Game.NetworkProtocol\DecorationSerializer.cs">
       <Link>Shared\DecorationSerializer.cs</Link>

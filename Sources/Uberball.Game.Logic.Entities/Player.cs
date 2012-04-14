@@ -1,11 +1,13 @@
 ﻿
 namespace Uberball.Game.Logic.Entities {
+	using System;
+
 	public class Player {
+		public Guid ClientSessionId { get; set; }
 		public string Name { get; set; }
-		public double X { get; set; }
-		public double Y { get; set; }
-		public double VectorX { get; set; }
-		public double VectorY { get; set; }
-		public double AimAngle { get; set; }
+		public float X { get; set; }
+		public float Y { get; set; }
+		
+		public float AimAngle { get; set; }
 	}
 }

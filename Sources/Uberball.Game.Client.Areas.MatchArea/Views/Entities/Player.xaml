@@ -6,11 +6,14 @@
 	xmlns:local="clr-namespace:Uberball.Game.Client.Areas.MatchArea"
 	mc:Ignorable="d" Width="64" Height="64"
 	local:StateHelper.State="{Binding State}">
-
-	<UserControl.RenderTransform>
-		<TranslateTransform X="{Binding X}" Y="{Binding Y}" />
-	</UserControl.RenderTransform>
 	
+	<UserControl.RenderTransform>
+		<TransformGroup>
+			<TranslateTransform X="{Binding X}" Y="{Binding Y}" />
+			<TranslateTransform X="-32" Y="-48"/>
+		</TransformGroup>
+	</UserControl.RenderTransform>
+
 	<Canvas>
 		<Ellipse Canvas.Left="16" Canvas.Top="32" Width="32" Height="32" Fill="Yellow" VerticalAlignment="Bottom" />
 		<Rectangle Width="48" Height="8" Fill="Black" Canvas.Left="32" Canvas.Top="48">

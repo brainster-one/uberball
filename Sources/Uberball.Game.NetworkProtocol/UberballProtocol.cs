@@ -8,7 +8,6 @@ namespace Uberball.Game.NetworkProtocol {
 		public UberballProtocol() {
 			Register(new InputPacketSrializer());
 			Register(new KickBallPacketSerializer());
-			Register(new ControlInfoPacketSrializer());
 			Register(new PlayerSerializer());
 			Register(new BallSerializer());
 			Register(new DecorationSerializer());

@@ -15,7 +15,7 @@ namespace Uberball.Game.Client.Areas.MatchArea.Commands {
 			var evnt = parameter as InvokeCommandEventArgs;
 			var position = (evnt.EventArgs as MouseEventArgs).GetPosition(null);
 
-			_matchService.Input(new InputState { AimX = position.X, AimY = position.Y });
+			_matchService.Input(new InputState { AimX = (float?)position.X, AimY = (float?)position.Y });
 		}
 		readonly MatchService _matchService;
 	}

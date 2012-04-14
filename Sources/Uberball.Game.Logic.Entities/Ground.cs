@@ -6,12 +6,12 @@ namespace Uberball.Game.Logic.Entities {
 
 
 	public struct Point {
-		public Point(double x, double y) {
+		public Point(float x, float y) {
 			X = x;
 			Y = y;
 		}
-		public double X;
-		public double Y;
+		public float X;
+		public float Y;
 	}
 
 	public enum GroundType {
