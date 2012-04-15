@@ -1,7 +1,4 @@
 ﻿
-using Uberball.Game.Client.Areas.MatchArea.Services;
-using Uberball.Game.Logic.Entities;
-
 namespace Uberball.Game.Client.Areas.MatchArea.Views.Controls {
 	using System;
 	using System.Collections.ObjectModel;
@@ -9,7 +6,7 @@ namespace Uberball.Game.Client.Areas.MatchArea.Views.Controls {
 	using System.Linq;
 	using System.Windows;
 	using System.Windows.Controls;
-	using Entities;
+	using Services;
 	using ViewModels.Entities;
 
 	/// <summary>Realm presentation control.</summary>

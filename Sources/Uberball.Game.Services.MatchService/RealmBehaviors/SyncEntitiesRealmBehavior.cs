@@ -34,7 +34,7 @@ namespace Uberball.Game.Services.MatchService.RealmBehaviors {
 				_nextUpdate = DateTime.Now.AddMilliseconds(100);
 			}
 		}
-		
+
 		/// <summary>New entity added to realm.</summary>
 		/// <param name="realm">Realm.</param>
 		/// <param name="entity">Entity.</param>
@@ -46,7 +46,13 @@ namespace Uberball.Game.Services.MatchService.RealmBehaviors {
 		/// <param name="realm">Realm.</param>
 		/// <param name="entity">Entity.</param>
 		public override void RemoveEntity(IRealm realm, object entity) {
-			_list.Add(new KeyValuePair<object, EntityState>(entity, EntityState.Removed));
+			/*var exist = _list.FirstOrDefault(x => x.Key == entity);
+			if (exist.Key != null) {
+				if (exist.Value == EntityState.Modified) exist.Value = EntityState.Removed;
+				if (exist.Value == EntityState.Added) _list.Remove(exist);
+			} else
+				_list.Add(new KeyValuePair<object, EntityState>(entity, EntityState.Removed));*/
+			 _list.Add(new KeyValuePair<object, EntityState>(entity, EntityState.Removed));
 		}
 
 		/// <summary>Entity's state modified.</summary>
@@ -66,6 +72,6 @@ namespace Uberball.Game.Services.MatchService.RealmBehaviors {
 
 		/// <summary>Next sync time.</summary>
 		private DateTime _nextUpdate = DateTime.Now;
-		
+
 	}
 }
