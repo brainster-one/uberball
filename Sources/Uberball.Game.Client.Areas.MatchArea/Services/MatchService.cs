@@ -79,6 +79,7 @@ namespace Uberball.Game.Client.Areas.MatchArea.Services {
 		}
 
 		Player GetMyPlayer() {
+			// todo: collection has been changed
 			return _entities.OfType<Player>().FirstOrDefault(x => x.ClientSessionId == _session);
 		}
 

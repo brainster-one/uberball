@@ -21,7 +21,8 @@ namespace Uberball.Game.Services.MatchService.RealmBehaviors.Physics {
 			body.IsBullet = true;
 			body.Restitution = .7f;
 			body.Friction = .7f;
-			body.Mass *= .01f;
+			body.IgnoreGravity = true;
+			body.Mass *= .001f;
 
 			var hasBeenRemoved = false;
 			body.OnCollision += (a, b, contact) => {

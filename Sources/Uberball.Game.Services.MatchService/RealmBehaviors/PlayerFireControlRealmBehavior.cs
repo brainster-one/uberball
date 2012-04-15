@@ -20,9 +20,9 @@ namespace Uberball.Game.Services.MatchService.RealmBehaviors {
 				var vectorX = (float)Math.Cos(aimAngleRad);
 				var vectorY = (float)Math.Sin(aimAngleRad);
 				var bullet = new Bullet {
-					X = player.X + vectorX * 20, Y = player.Y + vectorY * 20,
-					VectorX = vectorX * 25000,
-					VectorY = vectorY * 25000
+					X = player.X + vectorX * 25, Y = player.Y + vectorY * 25,
+					VectorX = vectorX * 100,
+					VectorY = vectorY * 100
 				};
 				realm.AddEntity(bullet);
 			}
