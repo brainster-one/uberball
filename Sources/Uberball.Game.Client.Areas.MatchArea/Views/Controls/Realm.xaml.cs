@@ -54,6 +54,9 @@ namespace Uberball.Game.Client.Areas.MatchArea.Views.Controls {
 				foreach (var itm in e.OldItems.OfType<PlayerViewModel>()) {
 					Root.Children.Where(x => ((UserControl)x).DataContext == itm).ToList().ForEach(y => Root.Children.Remove(y));
 				}
+				foreach (var itm in e.OldItems.OfType<BulletViewModel>()) {
+					Root.Children.Where(x => ((UserControl)x).DataContext == itm).ToList().ForEach(y => Root.Children.Remove(y));
+				}
 
 			}
 		}

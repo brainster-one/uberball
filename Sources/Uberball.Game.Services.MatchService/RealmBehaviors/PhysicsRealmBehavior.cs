@@ -20,7 +20,7 @@ namespace Uberball.Game.Services.MatchService.RealmBehaviors {
 			if (entity.GetType() == typeof(Ball)) body = new BallPhysicsBodyFactory().Create(_world, (Ball)entity);
 			if (entity.GetType() == typeof(Player)) body = new PlayerPhysicsBodyFactory().Create(_world, (Player)entity);
 			if (entity.GetType() == typeof(Ground)) body = new GroundPhysicsBodyFactory().Create(_world, (Ground)entity);
-			if (entity.GetType() == typeof(Bullet)) body = new BulletPhysicsBodyFactory().Create(_world, (Bullet)entity);
+			if (entity.GetType() == typeof(Bullet)) body = new BulletPhysicsBodyFactory(realm).Create(_world, (Bullet)entity);
 
 			if (body == null) throw new InvalidOperationException(string.Format("Can not create physics body for {0}", entity.GetType()));
 			_entities.Add(entity, body);

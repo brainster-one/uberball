@@ -12,6 +12,7 @@ namespace Uberball.Game.Services.MatchService.RealmBehaviors {
 		/// <returns>Aceept user to the game?</returns>
 		public override bool Enter(IRealm realm, User user) {
 			user["player"] = new Player {
+				X = 64 * 3,
 				Name = "Player_" + DateTime.Now.Millisecond, 
 				ClientSessionId = user.Session
 			};
