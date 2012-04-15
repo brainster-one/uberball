@@ -54,10 +54,23 @@
   <ItemGroup>
     <Compile Include="MatchService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RealmBehaviors\Physics\BallPhysicsBodyFactory.cs" />
+    <Compile Include="RealmBehaviors\Physics\BulletPhysicsBodyFactory.cs" />
+    <Compile Include="RealmBehaviors\Physics\GroundPhysicsBodyFactory.cs" />
+    <Compile Include="RealmBehaviors\Physics\IPhysicsBodyFactory.cs" />
+    <Compile Include="RealmBehaviors\Physics\PlayerPhysicsBodyFactory.cs" />
+    <Compile Include="RealmBehaviors\PlayerControlRealmBehavior.cs" />
     <Compile Include="RealmBehaviors\LoadMapRealmBehavior.cs" />
-    <Compile Include="RealmBehaviors\PhysicsRealmBehavior.cs" />
-    <Compile Include="RealmBehaviors\PhysicsWorld.cs" />
     <Compile Include="RealmBehaviors\EnterLeaveRealmBehavior.cs" />
+    <Compile Include="RealmBehaviors\PhysicsRealmBehavior.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="RealmBehaviors\PlayerFireControlRealmBehavior.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="RealmBehaviors\PlayerKickBallControlRealmBehavior.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="RealmBehaviors\SyncEntitiesRealmBehavior.cs" />
   </ItemGroup>
   <ItemGroup>

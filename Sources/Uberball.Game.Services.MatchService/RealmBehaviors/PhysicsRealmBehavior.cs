@@ -1,64 +1,37 @@
 ﻿
 namespace Uberball.Game.Services.MatchService.RealmBehaviors {
 	using System;
-	using System.Linq;
+	using System.Collections.Generic;
 	using Ardelme.Core;
 	using FarseerPhysics.Dynamics;
 	using Logic.Entities;
 	using Microsoft.Xna.Framework;
+	using Physics;
 
 	/// <summary>Physics calculation for realm.</summary>
 	sealed class PhysicsRealmBehavior : RealmBehavior {
-		/// <summary>Initializes a new instance of the PhysicsRealmBehavior class.</summary>
-		public PhysicsRealmBehavior() {
-			_physicsWorld = new PhysicsWorld(new World(new Vector2(0, 10)));
-		}
 
 		/// <summary>Entity added to realm.</summary>
 		/// <param name="realm">Realm.</param>
 		/// <param name="entity">Entity.</param>
 		public override void AddEntity(IRealm realm, object entity) {
-			_physicsWorld.Add(entity);
+			Body body = null;
+			if (entity.GetType() == typeof(Decoration)) return;
+			if (entity.GetType() == typeof(Ball)) body = new BallPhysicsBodyFactory().Create(_world, (Ball)entity);
+			if (entity.GetType() == typeof(Player)) body = new PlayerPhysicsBodyFactory().Create(_world, (Player)entity);
+			if (entity.GetType() == typeof(Ground)) body = new GroundPhysicsBodyFactory().Create(_world, (Ground)entity);
+			if (entity.GetType() == typeof(Bullet)) body = new BulletPhysicsBodyFactory().Create(_world, (Bullet)entity);
+
+			if (body == null) throw new InvalidOperationException(string.Format("Can not create physics body for {0}", entity.GetType()));
+			_entities.Add(entity, body);
 		}
 
 		/// <summary>Entity removed from realm.</summary>
 		/// <param name="realm">Realm.</param>
 		/// <param name="entity">Entity.</param>
 		public override void RemoveEntity(IRealm realm, object entity) {
-			_physicsWorld.Remove(entity);
-		}
-
-		/// <summary>User input.</summary>
-		/// <param name="realm">Realm.</param>
-		/// <param name="user">User.</param>
-		/// <param name="state">Keys.</param>
-		public override void Input(IRealm realm, User user, InputState state) {
-			var player = (Player)user["player"];
-			var vectorX = (state.Get<bool>("right") ? 1 : state.Get<bool>("left") ? -1 : 0) * 20;
-			var vectorY = (state.Get<bool>("up") ? 1 : state.Get<bool>("down") ? -1 : 0) * 80;
-			var aimAngle = state.Get<float>("aimAngle");
-			var kickBall = state.Get<bool>("kick");
-			var fire = state.Get<bool>("fire");
-			var aimAngleRad = aimAngle / 180.0f * Math.PI;
-			
-			//
-			player.AimAngle = aimAngle;
-			_physicsWorld.SetLinearVelocity(player, vectorX, vectorY);
-
-			//
-			if (kickBall) {
-				
-				foreach (var ball in realm.Entities.OfType<Ball>()) {
-					_physicsWorld.SetLinearVelocity(ball, (float)Math.Cos(aimAngleRad) * 75, -(float)Math.Sin(aimAngleRad) * 75);
-				}
-			}
-
-			//
-			if (fire) {
-				var bullet = new Bullet { X = player.X, Y = player.Y };
-				realm.AddEntity(bullet);
-				_physicsWorld.SetLinearVelocity(bullet, (float)Math.Cos(aimAngleRad) * 150, -(float)Math.Sin(aimAngleRad) * 150);
-			}
+			_world.RemoveBody(GetPhysicsBody(entity));
+			_entities.Remove(entity);
 		}
 
 		/// <summary>Calculates physics and updates entities.</summary>
@@ -66,10 +39,10 @@ namespace Uberball.Game.Services.MatchService.RealmBehaviors {
 		/// <param name="delta">Delta time.</param>
 		public override void Update(IRealm realm, double delta) {
 			// Update physics
-			_physicsWorld.Update(delta);
+			_world.Step((float)delta);
 
 			// Update entities
-			foreach (var entity in _physicsWorld.Entities) {
+			foreach (var entity in _entities) {
 				var e = entity.Key;
 				var body = entity.Value;
 
@@ -77,21 +50,44 @@ namespace Uberball.Game.Services.MatchService.RealmBehaviors {
 					var player = (Player)e;
 					player.X = body.Position.X;
 					player.Y = body.Position.Y;
+
+					//body.LinearVelocity = new Vector2(player.VectorX, player.VectorY);
+					body.ApplyLinearImpulse(new Vector2(player.VectorX, player.VectorY));
 				}
 				if (e.GetType() == typeof(Ball)) {
 					var ball = (Ball)e;
 					ball.X = body.Position.X;
 					ball.Y = body.Position.Y;
+
+					body.ApplyLinearImpulse(new Vector2(ball.VectorX, ball.VectorY));
+					ball.VectorX = ball.VectorY = 0;
 				}
 				if (e.GetType() == typeof(Bullet)) {
 					var bullet = (Bullet)e;
 					bullet.X = body.Position.X;
 					bullet.Y = body.Position.Y;
+
+					body.ApplyLinearImpulse(new Vector2(bullet.VectorX, bullet.VectorY));
+					bullet.VectorX = bullet.VectorY = 0;
 				}
 			}
 		}
 
-		/// <summary>Physics world.</summary>
-		readonly PhysicsWorld _physicsWorld;
+		/// <summary>Returns physics body for entity.</summary>
+		/// <param name="entity">Entity.</param>
+		/// <returns>Physics body.</returns>
+		private Body GetPhysicsBody(object entity) {
+			Body body;
+			_entities.TryGetValue(entity, out body);
+			if (body == null) throw new InvalidOperationException("Entity is not exist in physics world.");
+			return body;
+		}
+
+		/// <summary>Farseer world.</summary>
+		readonly World _world = new World(new Vector2(0, 10f));
+
+		/// <summary>Entity to physics body map.</summary>
+		readonly Dictionary<object, Body> _entities = new Dictionary<object, Body>();
+
 	}
 }

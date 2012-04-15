@@ -7,7 +7,8 @@ namespace Uberball.Game.Logic.Entities {
 		public string Name { get; set; }
 		public float X { get; set; }
 		public float Y { get; set; }
-		
+		public float VectorX { get; set; }
+		public float VectorY { get; set; }
 		public float AimAngle { get; set; }
 	}
 }
