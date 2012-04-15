@@ -25,6 +25,7 @@ namespace Uberball.Game.Services.MatchService {
 				new PlayerKickBallControlRealmBehavior(),
 				new PlayerFireControlRealmBehavior(),
 				new PhysicsRealmBehavior(),
+				new BallInGateRealmBehavior(), 
 				_sync
 			});
 		}

@@ -21,6 +21,9 @@ namespace Uberball.Game.Client.Areas.MatchArea.Services {
 
 			_mappers.Add(typeof(Logic.Entities.Bullet), new BulletMapper());
 			_mappers.Add(typeof(ViewModels.Entities.BulletViewModel), new BulletMapper());
+
+			_mappers.Add(typeof(Logic.Entities.Gate), new GateMapper());
+			_mappers.Add(typeof(ViewModels.Entities.GateViewModel), new GateMapper());
 		}
 
 		public void ToViewModel(object model, ref object viewModel) {

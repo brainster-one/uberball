@@ -22,6 +22,7 @@ namespace Uberball.Game.Services.MatchService.RealmBehaviors {
 			foreach (var entity in realm.Entities.OfType<Player>()) { realm.ModifyEntity(entity); }
 			foreach (var entity in realm.Entities.OfType<Ball>()) { realm.ModifyEntity(entity); }
 			foreach (var entity in realm.Entities.OfType<Bullet>()) { realm.ModifyEntity(entity); }
+			foreach (var entity in realm.Entities.OfType<Gate>()) { realm.ModifyEntity(entity); }
 
 			// It's time for sync
 			if (DateTime.Now > _nextUpdate) {

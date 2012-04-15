@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="BallSerializer.cs" />
     <Compile Include="BulletSerializer.cs" />
+    <Compile Include="GateSerializer.cs" />
     <Compile Include="GroundSerializer.cs" />
     <Compile Include="DecorationSerializer.cs" />
     <Compile Include="InputPacket.cs" />

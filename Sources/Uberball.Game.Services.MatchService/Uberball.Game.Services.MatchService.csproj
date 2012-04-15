@@ -54,6 +54,7 @@
   <ItemGroup>
     <Compile Include="MatchService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RealmBehaviors\BallInGateRealmBehavior.cs" />
     <Compile Include="RealmBehaviors\Physics\BallPhysicsBodyFactory.cs" />
     <Compile Include="RealmBehaviors\Physics\BulletPhysicsBodyFactory.cs" />
     <Compile Include="RealmBehaviors\Physics\GroundPhysicsBodyFactory.cs" />

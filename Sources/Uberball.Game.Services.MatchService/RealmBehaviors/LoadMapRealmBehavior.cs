@@ -33,6 +33,7 @@ namespace Uberball.Game.Services.MatchService.RealmBehaviors {
 			}
 
 			realm.AddEntity(new Ball { X = 64 * 3, Y = 64 * 3 });
+			realm.AddEntity(new Gate { X = 64 * 6, Y = 64 * 4 });
 			
 			/*_realm.AddEntity(new Ground(new[] {
 				new Point(10, 100), new Point(290, 250), new Point(420, 450),  new Point(580, 350), new Point(620, 750), new Point(30, 790)

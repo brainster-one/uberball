@@ -18,26 +18,24 @@ namespace Uberball.Game.Client.Areas.MatchArea.Behaviors {
 		/// <param name="model">Changed model.</param>
 		/// <param name="action">Network action.</param>
 		public void Handle(object model, EntityState action) {
-			
-
 			lock (_viewModel) {
 				Deployment.Current.Dispatcher.BeginInvoke(() => {
 					var viewModel = GetViewModel(model);
-																switch (action) {
-																case EntityState.Added:
-																	ServiceLocator.EntityMappingService.ToViewModel(model, ref viewModel);
-																	_entities.Add(model, viewModel);
-																	_viewModel.Entities.Add(viewModel);
-																	break;
-																case EntityState.Modified:
-																	ServiceLocator.EntityMappingService.ToViewModel(model, ref viewModel);
-																	break;
-																case EntityState.Removed:
-																	_entities.Remove(model);
-																	_viewModel.Entities.Remove(viewModel);
-																	break;
-																}
-															});
+					switch (action) {
+					case EntityState.Added:
+						ServiceLocator.EntityMappingService.ToViewModel(model, ref viewModel);
+						_entities.Add(model, viewModel);
+						_viewModel.Entities.Add(viewModel);
+						break;
+					case EntityState.Modified:
+						ServiceLocator.EntityMappingService.ToViewModel(model, ref viewModel);
+						break;
+					case EntityState.Removed:
+						_entities.Remove(model);
+						_viewModel.Entities.Remove(viewModel);
+						break;
+					}
+				});
 			}
 		}
 

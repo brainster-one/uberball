@@ -17,6 +17,7 @@ namespace Uberball.Game.Services.MatchService.RealmBehaviors {
 		public override void AddEntity(IRealm realm, object entity) {
 			Body body = null;
 			if (entity.GetType() == typeof(Decoration)) return;
+			if (entity.GetType() == typeof(Gate)) return;
 			if (entity.GetType() == typeof(Ball)) body = new BallPhysicsBodyFactory().Create(_world, (Ball)entity);
 			if (entity.GetType() == typeof(Player)) body = new PlayerPhysicsBodyFactory().Create(_world, (Player)entity);
 			if (entity.GetType() == typeof(Ground)) body = new GroundPhysicsBodyFactory().Create(_world, (Ground)entity);

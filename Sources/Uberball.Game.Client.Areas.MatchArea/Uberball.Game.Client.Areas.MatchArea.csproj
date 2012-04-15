@@ -77,6 +77,9 @@
     <Compile Include="..\Uberball.Game.Logic.Entities\Decoration.cs">
       <Link>Shared\Decoration.cs</Link>
     </Compile>
+    <Compile Include="..\Uberball.Game.Logic.Entities\Gate.cs">
+      <Link>Shared\Gate.cs</Link>
+    </Compile>
     <Compile Include="..\Uberball.Game.Logic.Entities\Ground.cs">
       <Link>Shared\Ground.cs</Link>
     </Compile>
@@ -92,6 +95,9 @@
     </Compile>
     <Compile Include="..\Uberball.Game.NetworkProtocol\DecorationSerializer.cs">
       <Link>Shared\DecorationSerializer.cs</Link>
+    </Compile>
+    <Compile Include="..\Uberball.Game.NetworkProtocol\GateSerializer.cs">
+      <Link>Shared\GateSerializer.cs</Link>
     </Compile>
     <Compile Include="..\Uberball.Game.NetworkProtocol\GroundSerializer.cs">
       <Link>Shared\GroundSerializer.cs</Link>
@@ -120,6 +126,7 @@
     <Compile Include="Services\EntityMappingService.cs" />
     <Compile Include="Services\Mappers\BallMapper.cs" />
     <Compile Include="Services\Mappers\BulletMapper.cs" />
+    <Compile Include="Services\Mappers\GateMapper.cs" />
     <Compile Include="Services\Mappers\DecorationMapper.cs" />
     <Compile Include="Services\Mappers\GroundMapper.cs" />
     <Compile Include="Services\Mappers\IEntityMapper.cs" />
@@ -132,6 +139,7 @@
     <Compile Include="StateHelper.cs" />
     <Compile Include="ViewModels\Entities\BallViewModel.cs" />
     <Compile Include="ViewModels\Entities\BulletViewModel.cs" />
+    <Compile Include="ViewModels\Entities\GateViewModel.cs" />
     <Compile Include="ViewModels\Entities\GroundViewModel.cs" />
     <Compile Include="ViewModels\Entities\DecorationViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -152,6 +160,9 @@
     </Compile>
     <Compile Include="Views\Entities\Bullet.xaml.cs">
       <DependentUpon>Bullet.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Entities\Gate.xaml.cs">
+      <DependentUpon>Gate.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Entities\Decoration.xaml.cs">
       <DependentUpon>Decoration.xaml</DependentUpon>
@@ -190,6 +201,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Entities\Bullet.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Entities\Gate.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
