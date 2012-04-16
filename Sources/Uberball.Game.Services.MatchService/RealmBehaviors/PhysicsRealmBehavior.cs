@@ -67,9 +67,9 @@ namespace Uberball.Game.Services.MatchService.RealmBehaviors {
 					var bullet = (Bullet)e;
 					bullet.X = body.Position.X;
 					bullet.Y = body.Position.Y;
-
-					body.ApplyForce(new Vector2(bullet.VectorX, bullet.VectorY));
-					bullet.VectorX = bullet.VectorY = 0;
+					if (body.LinearVelocity.Length() < 1)
+						body.ApplyForce(new Vector2(bullet.VectorX, bullet.VectorY));
+					//bullet.VectorX = bullet.VectorY = 0;
 				}
 			}
 		}

@@ -1,10 +1,7 @@
 ﻿
-using Ardelme.Core;
-
 namespace Uberball.Game.Services.MatchService.RealmBehaviors.Physics {
-	using System.Linq;
+	using Ardelme.Core;
 	using FarseerPhysics.Dynamics;
-	using FarseerPhysics.Dynamics.Contacts;
 	using FarseerPhysics.Factories;
 	using Logic.Entities;
 	using Microsoft.Xna.Framework;

@@ -60,7 +60,7 @@ namespace Uberball.Game.Client.Areas.MatchArea.Services {
 		/// <param name="sender">Event sener.</param>
 		/// <param name="e">Event args.</param>
 		void OnConnectionStateChanged(object sender, ConnectionEventArgs e) {
-			_session = e.User.Session;
+			_session = e.User != null ? e.User.Session : Guid.Empty;
 			var evnt = ConnectionStateChanged;
 			if (evnt != null) evnt(this, new MatchDataProviderEventArgs(e.State));
 		}

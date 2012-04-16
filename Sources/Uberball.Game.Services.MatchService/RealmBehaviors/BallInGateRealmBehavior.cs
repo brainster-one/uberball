@@ -13,9 +13,6 @@ namespace Uberball.Game.Services.MatchService.RealmBehaviors {
 			foreach (var gate in gates) {
 				foreach (var ball in balls) {
 					if (ball.X > gate.X && ball.X < gate.X + 64 && ball.Y > gate.Y && ball.Y < gate.Y + 64) {
-						ball.X = 0;
-						ball.Y = 0;
-
 						gate.Score += 1;
 					}
 				}

@@ -21,8 +21,8 @@ namespace Uberball.Game.Services.MatchService.RealmBehaviors {
 				var vectorY = (float)Math.Sin(aimAngleRad);
 				var bullet = new Bullet {
 					X = player.X + vectorX * 25, Y = player.Y + vectorY * 25,
-					VectorX = vectorX * 100,
-					VectorY = vectorY * 100
+					VectorX = vectorX * 50,
+					VectorY = vectorY * 50
 				};
 				realm.AddEntity(bullet);
 			}
