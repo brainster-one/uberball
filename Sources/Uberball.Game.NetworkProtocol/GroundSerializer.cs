@@ -10,7 +10,8 @@ namespace Uberball.Game.NetworkProtocol {
 		/// <summary>Deserializes ground from stream.</summary>
 		/// <param name="reader">Reader.</param>
 		/// <param name="entity">Entity.</param>
-		public void Deserialize(BinaryReader reader, ref Ground entity) {
+		/// <param name="info">Serialization info.</param>
+		public void Deserialize(BinaryReader reader, ref Ground entity, SerializationInfo info) {
 			entity = entity ?? new Ground();
 			var cnt = reader.ReadByte();
 			entity.Type = (GroundType)reader.ReadByte();
@@ -23,7 +24,8 @@ namespace Uberball.Game.NetworkProtocol {
 		/// <summary>Serializes entity into stream.</summary>
 		/// <param name="writer">Writer.</param>
 		/// <param name="entity">Entity.</param>
-		public void Serialize(BinaryWriter writer, Ground entity) {
+		/// <param name="info">Serialization info.</param>
+		public void Serialize(BinaryWriter writer, Ground entity, SerializationInfo info) {
 			writer.Write((byte)entity.Points.Count);
 			writer.Write((byte)entity.Type);
 			foreach (var point in entity.Points) {

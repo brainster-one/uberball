@@ -40,13 +40,13 @@
       <HintPath>..\..\Assets\Dependencies\FarseerPhysics.dll</HintPath>
     </Reference>
     <Reference Include="Khrussk.Interfaces, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\Assets\Packages\Khrussk.Interfaces.0.0.34\lib\Khrussk.Interfaces.dll</HintPath>
+      <HintPath>..\..\Assets\Packages\Khrussk.Interfaces.0.0.35\lib\Khrussk.Interfaces.dll</HintPath>
     </Reference>
     <Reference Include="Khrussk.NetworkRealm, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\Assets\Packages\Khrussk.NetworkRealm.0.0.42\lib\Khrussk.NetworkRealm.dll</HintPath>
+      <HintPath>..\..\Assets\Packages\Khrussk.NetworkRealm.0.0.43\lib\Khrussk.NetworkRealm.dll</HintPath>
     </Reference>
     <Reference Include="Khrussk.Peers, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\Assets\Packages\Khrussk.Peers.0.0.35\lib\Khrussk.Peers.dll</HintPath>
+      <HintPath>..\..\Assets\Packages\Khrussk.Peers.0.0.36\lib\Khrussk.Peers.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
