@@ -78,7 +78,7 @@ namespace Uberball.Game.Client.Areas.MatchArea.Services {
 			if (evnt != null) evnt(this, new MatchDataProviderEventArgs(e.Entity, e.State));
 		}
 
-		Player GetMyPlayer() {
+		public Player GetMyPlayer() {
 			// todo: collection has been changed
 			return _entities.OfType<Player>().FirstOrDefault(x => x.ClientSessionId == _session);
 		}

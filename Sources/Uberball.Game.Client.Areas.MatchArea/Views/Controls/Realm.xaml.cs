@@ -1,4 +1,6 @@
 ﻿
+using Uberball.Game.Client.Areas.MatchArea.Views.Entities;
+
 namespace Uberball.Game.Client.Areas.MatchArea.Views.Controls {
 	using System;
 	using System.Collections.ObjectModel;
@@ -7,7 +9,6 @@ namespace Uberball.Game.Client.Areas.MatchArea.Views.Controls {
 	using System.Windows;
 	using System.Windows.Controls;
 	using Services;
-	using ViewModels.Entities;
 
 	/// <summary>Realm presentation control.</summary>
 	public partial class Realm {
@@ -48,13 +49,9 @@ namespace Uberball.Game.Client.Areas.MatchArea.Views.Controls {
 			}
 
 			if (e.OldItems != null) {
-				foreach (var itm in e.OldItems.OfType<PlayerViewModel>()) {
+				foreach (var itm in e.OldItems) {
 					Root.Children.Where(x => ((UserControl)x).DataContext == itm).ToList().ForEach(y => Root.Children.Remove(y));
 				}
-				foreach (var itm in e.OldItems.OfType<BulletViewModel>()) {
-					Root.Children.Where(x => ((UserControl)x).DataContext == itm).ToList().ForEach(y => Root.Children.Remove(y));
-				}
-
 			}
 		}
 
@@ -67,5 +64,21 @@ namespace Uberball.Game.Client.Areas.MatchArea.Views.Controls {
 		/// <summary>Entities dependency property.</summary>
 		public static readonly DependencyProperty EntitiesProperty =
 			DependencyProperty.Register("Entities", typeof(ObservableCollection<object>), typeof(Realm), new PropertyMetadata(null, EntitiesPropertyChanged));
+
+		public double CameraX {
+			get { return (double)GetValue(CameraXProperty); }
+			set { SetValue(CameraXProperty, value); }
+		}
+
+		public static readonly DependencyProperty CameraXProperty =
+			DependencyProperty.Register("CameraX", typeof(double), typeof(Realm), new PropertyMetadata(default(double)));
+
+		public double CameraY {
+			get { return (double)GetValue(CameraYProperty); }
+			set { SetValue(CameraYProperty, value); }
+		}
+
+		public static readonly DependencyProperty CameraYProperty =
+			DependencyProperty.Register("CameraY", typeof(double), typeof(Realm), new PropertyMetadata(default(double)));
 	}
 }

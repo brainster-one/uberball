@@ -25,7 +25,7 @@ namespace Uberball.Game.Client.Areas.MatchArea.ViewModels {
 				new UpdateBallPositionRealmBehavior(),
 				new UpdateBulletPositionRealmBehavior()
 			});
-			
+
 			// Commands
 			KeyPressCommand = new KeyPressCommand(matchService);
 			MouseMoveCommand = new MouseMoveCommand(matchService);
@@ -37,6 +37,7 @@ namespace Uberball.Game.Client.Areas.MatchArea.ViewModels {
 			ConnectionStateChangedBehavior = new ConnectionStateChangedBehavior(this);
 			EntityModelStateChangedBehavior = new EntityModelStateChangedBehavior(this);
 			EntityViewModelStateChangedBehavior = new EntityViewModelStateChangedBehavior(this);
+			CameraFollowBehavior = new CameraFollowBehavior(this);
 			UpdateRealmBehavior = new UpdateRealmBehavior(this);
 
 			// MatchService events
@@ -44,12 +45,23 @@ namespace Uberball.Game.Client.Areas.MatchArea.ViewModels {
 			matchService.EntityStateChanged += (s, e) => EntityModelStateChangedBehavior.Handle(e.Entity, e.EntityState);
 			Entities.CollectionChanged += (s, e) => { lock (Realm) { EntityViewModelStateChangedBehavior.Handle(e); } };
 			CompositionTarget.Rendering += (s, e) => { lock (Realm) { UpdateRealmBehavior.Handle(); } };
+			CompositionTarget.Rendering += (s, e) => CameraFollowBehavior.Handle(matchService.GetMyPlayer());
 		}
 
 		/// <summary>Gets is busy flag.</summary>
 		public bool IsBusy {
 			get { return _isBusy; }
-			set { _isBusy = value; OnPropertyChanged("IsBusy"); } 
+			set { _isBusy = value; OnPropertyChanged("IsBusy"); }
+		}
+
+		public double CameraX {
+			get { return _cameraX; }
+			set { _cameraX = value; OnPropertyChanged("CameraX"); }
+		}
+
+		public double CameraY {
+			get { return _cameraY; }
+			set { _cameraY = value; OnPropertyChanged("CameraY"); }
 		}
 
 		/// <summary></summary>
@@ -77,15 +89,21 @@ namespace Uberball.Game.Client.Areas.MatchArea.ViewModels {
 		private ConnectionStateChangedBehavior ConnectionStateChangedBehavior { get; set; }
 
 		/// <summary>Gets entity state changed.</summary>
-		private EntityModelStateChangedBehavior EntityModelStateChangedBehavior { get; set; }
+		EntityModelStateChangedBehavior EntityModelStateChangedBehavior { get; set; }
 
 		/// <summary>Gets entity state changed.</summary>
-		private EntityViewModelStateChangedBehavior EntityViewModelStateChangedBehavior { get; set; }
+		EntityViewModelStateChangedBehavior EntityViewModelStateChangedBehavior { get; set; }
 
 		/// <summary>Gets handler.</summary>
-		private UpdateRealmBehavior UpdateRealmBehavior { get; set; }
+		UpdateRealmBehavior UpdateRealmBehavior { get; set; }
+
+		/// <summary>Gets behavior.</summary>
+		CameraFollowBehavior CameraFollowBehavior { get; set; }
 
 		/// <summary>IsBusy flag.</summary>
-		private bool _isBusy;
+		bool _isBusy;
+
+		double _cameraX;
+		double _cameraY;
 	}
 }

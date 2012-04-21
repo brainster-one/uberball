@@ -13,8 +13,6 @@ namespace Uberball.Game.Services.MatchService {
 	public class MatchService {
 		/// <summary>Initializes a new instance of the MatchService class.</summary>
 		public MatchService() {
-			_sync = new SyncEntitiesRealmBehavior(_service);
-
 			_service.UserConnectionStateChanged += OnUserConnectionStateChanged;
 			_service.PacketReceived += OnPacketReceived;
 
@@ -26,7 +24,7 @@ namespace Uberball.Game.Services.MatchService {
 				new PlayerFireControlRealmBehavior(),
 				new PhysicsRealmBehavior(),
 				new BallInGateRealmBehavior(), 
-				_sync
+				new SyncEntitiesRealmBehavior(_service)
 			});
 		}
 
@@ -69,19 +67,20 @@ namespace Uberball.Game.Services.MatchService {
 		public void Start(IPEndPoint endpoint) {
 			_service.Start(endpoint);
 			_realm.Start();
-
+			
 			new Thread(() => {
 				while (_working) {
 					lock (_realm) { _realm.Update(0.016d); }
 					Thread.Sleep(1);
 				}
+
+				_service.Stop();
 			}).Start();
 		}
 
 		/// <summary>Stops service.</summary>
 		public void Stop() {
 			_working = false;
-			_service.Stop();
 		}
 
 		/// <summary>Service.</summary>
@@ -89,9 +88,6 @@ namespace Uberball.Game.Services.MatchService {
 
 		/// <summary>Match realm.</summary>
 		readonly Realm _realm;
-
-		/// <summary>Sync entities behavior.</summary>
-		readonly SyncEntitiesRealmBehavior _sync;
 
 		/// <summary>Is service working?</summary>
 		bool _working = true;

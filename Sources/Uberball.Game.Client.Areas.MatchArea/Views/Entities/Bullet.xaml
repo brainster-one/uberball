@@ -12,7 +12,7 @@
 		</TransformGroup>
 	</UserControl.RenderTransform>
 
-	<Canvas Width="10" Height="10">
+	<Canvas Width="10" Height="10" CacheMode="BitmapCache">
 		<Ellipse Width="10" Height="10" Fill="Black"/>
 	</Canvas>
 </UserControl>

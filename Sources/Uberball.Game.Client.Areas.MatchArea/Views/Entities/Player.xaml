@@ -14,7 +14,7 @@
 		</TransformGroup>
 	</UserControl.RenderTransform>
 
-	<Canvas>
+	<Canvas CacheMode="BitmapCache">
 		<Ellipse Canvas.Left="16" Canvas.Top="32" Width="32" Height="32" Fill="Yellow" VerticalAlignment="Bottom" />
 		<Rectangle Width="48" Height="8" Fill="Black" Canvas.Left="32" Canvas.Top="48">
 			<Rectangle.RenderTransformOrigin>

@@ -6,5 +6,11 @@
     mc:Ignorable="d"
     d:DesignHeight="300" d:DesignWidth="400">
 
-	<Canvas x:Name="Root" />
+	<Canvas x:Name="Root">
+		<Canvas.RenderTransform>
+			<TransformGroup>
+				<TranslateTransform X="{Binding CameraX}" Y="{Binding CameraY}" />
+			</TransformGroup>
+		</Canvas.RenderTransform>
+	</Canvas>
 </UserControl>

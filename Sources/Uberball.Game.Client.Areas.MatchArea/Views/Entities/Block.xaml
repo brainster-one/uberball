@@ -5,11 +5,15 @@
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	mc:Ignorable="d" d:DesignHeight="64" d:DesignWidth="64">
 
+	<UserControl.CacheMode>
+		<BitmapCache />
+	</UserControl.CacheMode>
+	
 	<UserControl.RenderTransform>
 		<TranslateTransform X="{Binding X}" Y="{Binding Y}" />
 	</UserControl.RenderTransform>
 
-	<Canvas x:Name="Layer_1">
+	<Canvas>
 		<Rectangle x:Name="Rectangle" Width="65" Height="65" Canvas.Left="7.62939e-006" Canvas.Top="0" Stretch="Fill" StrokeLineJoin="Round" Stroke="#FF743F00" Fill="#FFA1651E"/>
 		<Path x:Name="Path" Width="64" Height="16.7778" Canvas.Left="0.500008" Canvas.Top="5.63348" Stretch="Fill" StrokeThickness="1" StrokeLineJoin="Round" Stroke="#3E000000" Fill="#3E000000" Data="F1 M 0.500008,5.63348L 64.5,5.63348L 64.5,18.6335C 60.0833,18.6335 53.5,10.1335 51.25,18.6335C 49,27.1335 37.2514,18.6335 37.2514,18.6335C 37.2514,18.6335 27.5,26.1335 20.75,18.6335C 14,11.1335 11.0848,18.6335 6.2522,18.6335L 0.500008,18.6335L 0.500008,5.63348 Z "/>
 		<Path x:Name="Path_0" Width="65" Height="17.7778" Canvas.Left="7.62939e-006" Canvas.Top="0" Stretch="Fill" StrokeLineJoin="Round" Stroke="#FF000000" Fill="#FF6FC237" Data="F1 M 0.500008,0.5L 64.5,0.5L 64.5,13.5C 60.0833,13.5 53.5,5 51.25,13.5C 49,22 41.9176,13.5 37.2514,13.5C 31.7509,13.5 27.5,21 20.75,13.5C 14,6 11.0848,13.5 6.2522,13.5L 0.500008,13.5L 0.500008,0.5 Z "/>

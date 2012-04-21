@@ -9,7 +9,7 @@
 		<TranslateTransform X="{Binding X}" Y="{Binding Y}" />
 	</UserControl.RenderTransform>
 
-	<Canvas>
+	<Canvas CacheMode="BitmapCache">
 		<Path x:Name="Path" Width="64" Height="64" Stretch="Fill" StrokeLineJoin="Round" Stroke="#85000000" Fill="#85270218" Data="F1 M 0.5,0.5L 25.5,0.500031L 64.5,49.5L 64.5,64.5L 0.5,64.5L 0.5,0.5 Z "/>
 		<TextBlock Text="{Binding Score}" FontSize="22" />
 	</Canvas>

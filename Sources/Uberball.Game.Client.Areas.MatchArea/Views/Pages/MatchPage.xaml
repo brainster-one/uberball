@@ -11,9 +11,9 @@
 	DataContext="{Binding Source={StaticResource ViewModelLocator}, Path=MatchViewModel}"
 	d:DataContext="{Binding Source={StaticResource DesignerViewModelLocator}, Path=MatchViewModel}"
 	d:DesignWidth="640" d:DesignHeight="480" mc:Ignorable="d">
-
+	
 	<Grid
-		Background="LightGreen"
+		Background="SkyBlue"
 		Loaded="{thersuli:InvokeCommand Command=ConnectCommand}"
 		KeyDown="{thersuli:InvokeCommand Command=KeyPressCommand, Parameter=True}"
 		KeyUp="{thersuli:InvokeCommand Command=KeyPressCommand, Parameter=False}"
@@ -23,8 +23,9 @@
 
 		<!-- Realm renderer -->
 		<controls:Realm
-			Entities="{Binding Path=Entities}" />
-				
+			Entities="{Binding Path=Entities}" CameraX="{Binding Path=CameraX}"/>
+		<Button Width="100" Height="100" CacheMode="BitmapCache" Click="Button_Click" VerticalAlignment="Top" HorizontalAlignment="Left"></Button>
+		<Button  Width="100" Height="100" CacheMode="BitmapCache" Click="Button_Click2" VerticalAlignment="Top" HorizontalAlignment="Right"></Button>
 		<!-- Busy indicator for long procsses -->
 		<toolkit:BusyIndicator IsBusy="{Binding IsBusy}" />
 	</Grid>

@@ -113,6 +113,7 @@
     <Compile Include="..\Uberball.Game.NetworkProtocol\UberballProtocol.cs">
       <Link>Shared\UberballProtocol.cs</Link>
     </Compile>
+    <Compile Include="Behaviors\CameraFollowBehavior.cs" />
     <Compile Include="Behaviors\ConnectionStateChangedBehavior.cs" />
     <Compile Include="Behaviors\EntityViewModelStateChangedBehavior.cs" />
     <Compile Include="Behaviors\EntityModelStateChangedBehavior.cs" />
