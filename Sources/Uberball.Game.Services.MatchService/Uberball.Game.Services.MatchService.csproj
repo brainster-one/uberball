@@ -34,19 +34,13 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Ardelme, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\Assets\Packages\Ardelme.0.0.6\lib\net40\Ardelme.dll</HintPath>
+      <HintPath>..\..\Assets\Packages\Ardelme.0.0.12\lib\net40\Ardelme.dll</HintPath>
     </Reference>
     <Reference Include="FarseerPhysics, Version=3.3.4480.31117, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\Assets\Dependencies\FarseerPhysics.dll</HintPath>
     </Reference>
-    <Reference Include="Khrussk.Interfaces, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\Assets\Packages\Khrussk.Interfaces.0.0.35\lib\Khrussk.Interfaces.dll</HintPath>
-    </Reference>
-    <Reference Include="Khrussk.NetworkRealm, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\Assets\Packages\Khrussk.NetworkRealm.0.0.43\lib\Khrussk.NetworkRealm.dll</HintPath>
-    </Reference>
-    <Reference Include="Khrussk.Peers, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\Assets\Packages\Khrussk.Peers.0.0.36\lib\Khrussk.Peers.dll</HintPath>
+    <Reference Include="Khrussk, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\Assets\Packages\Khrussk.0.0.52\lib\net40\Khrussk.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -87,7 +81,6 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\..\Assets\nuget.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
